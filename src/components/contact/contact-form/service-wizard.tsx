@@ -20,8 +20,9 @@ export const SERVICES = [
     id: 'boardbook',
     title: 'Board Book Kenangan Si Kecil',
     price: 'Rp185.000',
-    meta: 'Sudah termasuk desain buku',
-    description: 'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati, kenangan yang patut diabadikan.',
+    meta: '13 - 15 halaman · termasuk cetak dan desain ilustrasi',
+    description:
+      'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati. Selesai maks. 5 hari kerja, belum termasuk ongkir.',
     example: 'https://heyzine.com/flip-book/4ad570f64d.html'
   },
   {

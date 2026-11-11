@@ -117,16 +117,17 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
           {title && <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>}
         </div>
 
-        <div className='grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4'>
+        <div className='flex flex-wrap justify-center gap-3 sm:gap-6'>
           {caseStudies.map((item, index) => (
+            <div key={item.slug} className='w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'>
             <Folder
-              key={item.slug}
               item={item}
               onOpen={() => {
                 setPhotoIndex(0)
                 setOpenIndex(index)
               }}
             />
+            </div>
           ))}
         </div>
       </div>

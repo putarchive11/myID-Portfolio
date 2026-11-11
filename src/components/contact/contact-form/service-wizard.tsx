@@ -55,10 +55,11 @@ export const SERVICES = [
   },
   {
     id: 'marketplace',
-    title: 'Setup Toko Marketplace',
-    price: 'Rp300.000',
-    meta: 'Mulai dari',
-    description: 'Membuka toko, menyusun listing produk, foto katalog, dan deskripsi di Shopee atau Tokopedia.'
+    title: 'Pembuatan Toko Marketplace',
+    price: 'Rp500.000',
+    meta: 'Gratis masuk grup reseller herbal dan buku · langsung ada 50 produk',
+    description:
+      'Saya bukakan toko Anda di Shopee atau Tokopedia, lengkap dengan 50 produk herbal dan buku islami yang sudah terpasang dan siap dijual.'
   },
   {
     id: 'lainnya',

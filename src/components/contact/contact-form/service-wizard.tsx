@@ -22,7 +22,7 @@ export const SERVICES = [
     title: 'Board Book Kenangan Si Kecil',
     price: 'Rp185.000',
     meta: '13 - 15 halaman · termasuk cetak dan desain ilustrasi',
-    images: ['/images/putra/boardbook-sampul.webp', '/images/putra/boardbook-belakang.webp'],
+    images: ['/images/putra/bb-sampul.webp', '/images/putra/boardbook-isi-rules.webp', '/images/putra/boardbook-isi-doa.webp'],
     description:
       'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati. Selesai maks. 5 hari kerja, belum termasuk ongkir.'
   },

@@ -13,6 +13,7 @@ export type CaseStudyMetadata = {
   image?: string
   heroImage?: string
   logo?: string
+  kategori?: 'web' | 'desain'
 }
 
 export async function getAllCaseStudies(): Promise<CollectionEntry<'case-studies'>[]> {

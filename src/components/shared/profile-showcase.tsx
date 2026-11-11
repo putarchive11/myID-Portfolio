@@ -34,11 +34,8 @@ const ProfileShowcase = ({ className, backgroundImageClassName }: ProfileShowcas
       </div>
 
       <div className='flex flex-col items-center justify-between gap-1.5 px-5 py-4'>
-        <p className='flex items-center gap-2 font-medium'>
-          {PROFILE.name}
-          <span className='bg-muted-foreground inline-block size-2 rounded-full' />
-          <span className='text-muted-foreground font-normal'>{PROFILE.title}</span>
-        </p>
+        <p className='text-center font-medium'>{PROFILE.name}</p>
+        <p className='text-muted-foreground text-center text-sm'>{PROFILE.title}</p>
 
         <div className='flex items-center gap-1'>
           {SOCIALS.map(({ label, icon: Icon, href, external }) => (

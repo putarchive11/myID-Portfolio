@@ -35,7 +35,17 @@ const schema = {
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION} keywords={pageKeywords} schema={schema}>
   <Hero />
   <About />
-  <FeaturedWorks caseStudies={caseStudies} title='Proyek dan acara yang pernah saya kerjakan' />
+  <FeaturedWorks
+    caseStudies={caseStudies.filter(item => item.kategori === 'web')}
+    eyebrow='Karya web'
+    title='Website dan aplikasi yang saya bangun'
+  />
+  <FeaturedWorks
+    caseStudies={caseStudies.filter(item => item.kategori !== 'web')}
+    id='karya-desain'
+    eyebrow='Desain dan acara'
+    title='Kemasan, poster, kepanitiaan, dan seminar'
+  />
   <Experience />
   <Services client:visible />
   <HireMe />

@@ -71,8 +71,8 @@ const ProfileCard = ({ className }: { className?: string }) => {
                     <h3 className='text-center text-xl font-semibold lg:text-[28px] lg:leading-tight'>
                       {PROFILE.firstName} Rayhan
                     </h3>
-                    <p className='text-muted-foreground flex items-center justify-center gap-1 text-base font-medium'>
-                      <BadgeCheckIcon className='text-accent size-5' />
+                    <p className='text-muted-foreground flex items-start justify-center gap-1 text-center text-sm font-medium text-balance lg:text-base'>
+                      <BadgeCheckIcon className='text-accent mt-0.5 size-4.5 shrink-0' />
                       {PROFILE.title}
                     </p>
                   </div>

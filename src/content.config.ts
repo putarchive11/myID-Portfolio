@@ -18,7 +18,9 @@ const caseStudies = defineCollection({
     publishedAt: z.string(),
     image: z.string().optional(),
     heroImage: z.string().optional(),
-    logo: z.string().optional()
+    logo: z.string().optional(),
+    // 'web' = website/aplikasi, 'desain' = desain, kepanitiaan, seminar
+    kategori: z.enum(['web', 'desain']).default('desain')
   })
 })
 

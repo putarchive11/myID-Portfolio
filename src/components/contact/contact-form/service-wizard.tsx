@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { CheckIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { CONTACT } from '@/consts'
@@ -14,6 +14,7 @@ export const SERVICES = [
     title: 'Pembuatan Website',
     price: 'Rp1.500.000',
     meta: 'Gratis domain · revisi maks. 1 bulan',
+    images: ['/images/putra/work-umroh-landing.webp', '/images/putra/work-nafis-online.webp', '/images/putra/work-hanifah-edu.webp'],
     description: 'Landing page toko, profil usaha, atau situs pribadi. Rapi di HP dan tersambung ke WhatsApp.'
   },
   {
@@ -21,6 +22,7 @@ export const SERVICES = [
     title: 'Board Book Kenangan Si Kecil',
     price: 'Rp185.000',
     meta: '13 - 15 halaman · termasuk cetak dan desain ilustrasi',
+    images: ['/images/putra/boardbook-sampul.webp', '/images/putra/boardbook-belakang.webp'],
     description:
       'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati. Selesai maks. 5 hari kerja, belum termasuk ongkir.'
   },
@@ -30,6 +32,7 @@ export const SERVICES = [
     price: 'Rp50.000',
     unit: '/poster',
     meta: 'Untuk promo, acara, atau kajian',
+    images: ['/images/putra/service-poster.webp', '/images/putra/work-tifa.webp', '/images/putra/work-ibf.webp'],
     description: 'Poster siap unggah ke media sosial atau siap cetak.'
   },
   {
@@ -38,6 +41,7 @@ export const SERVICES = [
     price: 'Rp35.000',
     unit: '/desain',
     meta: 'Feed atau story',
+    images: ['/images/putra/service-marketing.webp'],
     description: 'Konten produk dan promo untuk Instagram, TikTok, atau katalog WhatsApp.'
   },
   {
@@ -46,6 +50,7 @@ export const SERVICES = [
     price: 'Rp250.000',
     unit: '/desain',
     meta: 'Mulai dari',
+    images: ['/images/putra/service-packaging.webp', '/images/putra/work-packaging.webp'],
     description: 'Label dan kemasan yang memuat informasi produk dengan lengkap dan tampil rapi di rak.'
   },
   {
@@ -88,6 +93,7 @@ const ServiceWizard = ({ className }: { className?: string }) => {
   const [detail, setDetail] = useState('')
   const [deadline, setDeadline] = useState('')
   const [errors, setErrors] = useState<{ name?: string; detail?: string }>({})
+  const [preview, setPreview] = useState<{ images: readonly string[]; index: number; title: string } | null>(null)
 
   const goNext = () => {
     if (step === 0 && !service) {
@@ -198,6 +204,24 @@ const ServiceWizard = ({ className }: { className?: string }) => {
                           </div>
                           <p className='text-accent text-sm'>{item.meta}</p>
                           <p className='text-muted-foreground text-sm'>{item.description}</p>
+                          {'images' in item && (
+                            <div className='flex gap-2 pt-2'>
+                              {item.images.map((src, i) => (
+                                <button
+                                  key={src}
+                                  type='button'
+                                  onClick={event => {
+                                    event.stopPropagation()
+                                    setPreview({ images: item.images, index: i, title: item.title })
+                                  }}
+                                  aria-label={`Lihat foto ${i + 1} ${item.title}`}
+                                  className='size-16 shrink-0 overflow-hidden rounded-lg ring-1 ring-black/10 transition-transform hover:scale-105 sm:size-20'
+                                >
+                                  <img src={src} alt='' loading='lazy' className='size-full object-cover' />
+                                </button>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -316,6 +340,63 @@ const ServiceWizard = ({ className }: { className?: string }) => {
           )}
         </div>
       </div>
+
+      <AnimatePresence>
+        {preview && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setPreview(null)}
+            role='dialog'
+            aria-modal='true'
+            aria-label={preview.title}
+            className='fixed inset-0 z-80 flex flex-col items-center justify-center gap-4 bg-black/80 p-4 backdrop-blur-sm'
+          >
+            <button
+              type='button'
+              onClick={() => setPreview(null)}
+              aria-label='Tutup'
+              className='absolute top-4 right-4 flex size-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25'
+            >
+              <XIcon className='size-5' />
+            </button>
+            <img
+              src={preview.images[preview.index]}
+              alt={preview.title}
+              onClick={event => event.stopPropagation()}
+              className='max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl'
+            />
+            <div className='flex items-center gap-3 text-white' onClick={event => event.stopPropagation()}>
+              {preview.images.length > 1 && (
+                <button
+                  type='button'
+                  aria-label='Foto sebelumnya'
+                  onClick={() =>
+                    setPreview(p => p && { ...p, index: (p.index - 1 + p.images.length) % p.images.length })
+                  }
+                  className='flex size-10 items-center justify-center rounded-full bg-white/15 hover:bg-white/25'
+                >
+                  <ChevronLeftIcon className='size-5' />
+                </button>
+              )}
+              <span className='text-sm'>
+                {preview.title} · {preview.index + 1}/{preview.images.length}
+              </span>
+              {preview.images.length > 1 && (
+                <button
+                  type='button'
+                  aria-label='Foto berikutnya'
+                  onClick={() => setPreview(p => p && { ...p, index: (p.index + 1) % p.images.length })}
+                  className='flex size-10 items-center justify-center rounded-full bg-white/15 hover:bg-white/25'
+                >
+                  <ChevronRightIcon className='size-5' />
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

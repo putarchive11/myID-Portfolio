@@ -2,8 +2,8 @@
 import Layout from '@/layouts/Layout.astro'
 import Hero from '@/components/home/hero/hero.astro'
 import About from '@/components/home/about/about.astro'
-import FeaturedWorks from '@/components/shared/featured-works/featured-works.astro'
 import WorkShowcase from '@/components/shared/featured-works/work-showcase.astro'
+import WorkFolders from '@/components/shared/featured-works/work-folders'
 import Experience from '@/components/home/experience/experience.astro'
 import Services from '@/components/shared/services/services'
 import HireMe from '@/components/home/hire-me/hire-me.astro'
@@ -41,7 +41,8 @@ const schema = {
     eyebrow='Karya web'
     title='Website dan aplikasi yang saya bangun'
   />
-  <FeaturedWorks
+  <WorkFolders
+    client:visible
     caseStudies={caseStudies.filter(item => item.kategori !== 'web')}
     id='karya-desain'
     eyebrow='Desain dan acara'

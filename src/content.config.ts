@@ -24,6 +24,8 @@ const caseStudies = defineCollection({
     // Untuk slide karya web
     jenis: z.string().optional(),
     showcase: z.string().optional(),
+    // Foto-foto untuk folder dan popup galeri
+    galeri: z.array(z.string()).default([]),
     liveUrl: z.string().url().optional(),
     github: z.string().url().optional()
   })

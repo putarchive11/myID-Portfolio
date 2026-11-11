@@ -16,6 +16,7 @@ export type CaseStudyMetadata = {
   kategori?: 'web' | 'desain'
   jenis?: string
   showcase?: string
+  galeri?: string[]
   liveUrl?: string
   github?: string
 }

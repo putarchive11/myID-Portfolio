@@ -24,7 +24,7 @@ export const SITE_TITLE = `${PROFILE.name} - ${PROFILE.title} Portfolio`
 export const SITE_DESCRIPTION = `Portfolio of ${PROFILE.fullName}, a creative designer and digital marketer: product packaging, event posters, e-commerce and event committee work.`
 
 export const GITHUB_URL = 'https://github.com/putarchive11/myID-Portfolio'
-export const SITE_URL = '/'
+export const SITE_URL = 'https://putranyarayhan.my.id/'
 
 export const SITE_METADATA = {
   title: {

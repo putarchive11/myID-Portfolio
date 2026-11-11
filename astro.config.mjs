@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'http://localhost:4321/',
+  site: process.env.SITE_URL || 'https://putranyarayhan.my.id/',
   integrations: [
     react(),
     mdx(),

@@ -20,7 +20,12 @@ const caseStudies = defineCollection({
     heroImage: z.string().optional(),
     logo: z.string().optional(),
     // 'web' = website/aplikasi, 'desain' = desain, kepanitiaan, seminar
-    kategori: z.enum(['web', 'desain']).default('desain')
+    kategori: z.enum(['web', 'desain']).default('desain'),
+    // Untuk slide karya web
+    jenis: z.string().optional(),
+    showcase: z.string().optional(),
+    liveUrl: z.string().url().optional(),
+    github: z.string().url().optional()
   })
 })
 

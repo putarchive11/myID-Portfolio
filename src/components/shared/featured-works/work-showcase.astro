@@ -1,0 +1,217 @@
+---
+import { ArrowUpRightIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+
+import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
+import GithubIcon from '@/assets/svg/github-icon'
+
+import { cn } from '@/lib/utils'
+import type { CaseStudyMetadata } from '@/lib/case-studies'
+
+interface Props {
+  caseStudies: CaseStudyMetadata[]
+  id?: string
+  eyebrow?: string
+  title?: string
+}
+
+const { caseStudies, id = 'featured-works', eyebrow = 'Karya web', title = 'Karya web' } = Astro.props
+const total = String(caseStudies.length).padStart(2, '0')
+---
+
+<section id={id} class='border-b py-8 sm:py-16 lg:py-24'>
+  <div class='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-12 lg:px-10.5'>
+    <div class='space-y-2'>
+      <Eyebrow text={eyebrow} />
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>
+    </div>
+
+    <div
+      data-showcase
+      class='relative isolate overflow-hidden rounded-[28px] bg-[#101413] text-white shadow-xl ring-1 ring-black/5 dark:ring-white/10'
+    >
+      <div data-showcase-track class='grid'>
+        {
+          caseStudies.map((item, index) => (
+            <article
+              data-slide={index}
+              aria-hidden={index === 0 ? undefined : 'true'}
+              class={cn(
+                'col-start-1 row-start-1 grid transition-opacity duration-700 ease-out lg:min-h-140 lg:grid-cols-[1fr_1fr]',
+                index === 0 ? 'opacity-100' : 'pointer-events-none opacity-0'
+              )}
+            >
+              <div class='relative order-1 aspect-16/10 overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[54%]'>
+                <img
+                  src={item.showcase ?? item.heroImage ?? item.image}
+                  alt={item.title ?? ''}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  class='size-full object-cover object-top-left lg:brightness-[0.82]'
+                />
+                <div class='absolute inset-0 bg-linear-to-t from-[#101413] via-[#101413]/25 to-transparent lg:hidden' />
+                <div class='absolute inset-0 hidden bg-[linear-gradient(to_right,#101413_0%,#101413_12%,rgb(16_20_19/0.8)_40%,rgb(16_20_19/0.25)_75%,rgb(16_20_19/0.1)_100%)] lg:block' />
+                <div class='absolute inset-x-0 bottom-0 hidden h-40 bg-linear-to-t from-[#101413] to-transparent lg:block' />
+              </div>
+
+              <div class='relative z-10 order-2 flex flex-col justify-center gap-5 px-5 pt-2 pb-20 sm:px-8 lg:order-0 lg:py-14 lg:pr-0 lg:pl-12'>
+                <div class='flex items-center gap-3 text-sm'>
+                  {item.jenis && (
+                    <span class='rounded-full border border-white/25 bg-white/10 px-3 py-1 font-medium'>{item.jenis}</span>
+                  )}
+                  <span class='text-white/50 tabular-nums'>
+                    [{String(index + 1).padStart(2, '0')}/{total}]
+                  </span>
+                </div>
+
+                <h3 class='max-w-md lg:max-w-lg text-[28px] leading-[1.1] font-bold tracking-tight text-balance sm:text-4xl lg:text-[42px]'>
+                  {item.title}
+                </h3>
+
+                <p class='max-w-lg text-[15px] leading-relaxed text-white/70 sm:text-base'>{item.description}</p>
+
+                {item.tools && item.tools.length > 0 && (
+                  <ul class='flex max-w-lg flex-wrap gap-2'>
+                    {item.tools.map(tool => (
+                      <li class='rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium tracking-wider uppercase'>{tool}</li>
+                    ))}
+                  </ul>
+                )}
+
+                <div class='flex flex-wrap items-center gap-2 pt-2 sm:gap-3'>
+                  {item.liveUrl ? (
+                    <a
+                      href={item.liveUrl}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      class='inline-flex h-10 items-center gap-1.5 rounded-lg text-sm sm:h-11 sm:gap-2 sm:text-base bg-white px-3.5 font-medium text-[#101413] no-underline transition-transform hover:-translate-y-0.5'
+                    >
+                      Lihat situs
+                      <ArrowUpRightIcon className='size-4' />
+                    </a>
+                  ) : null}
+                  <a
+                    href={`/case-study/${item.slug}`}
+                    class={cn(
+                      'inline-flex h-10 items-center gap-1.5 rounded-lg text-sm sm:h-11 sm:gap-2 sm:text-base px-3.5 font-medium no-underline transition-transform hover:-translate-y-0.5',
+                      item.liveUrl ? 'border border-white/30 text-white' : 'bg-white text-[#101413]'
+                    )}
+                  >
+                    Baca detail
+                    <ArrowUpRightIcon className='size-4' />
+                  </a>
+                  {item.github && (
+                    <a
+                      href={item.github}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      aria-label={`Kode ${item.title} di GitHub`}
+                      class='inline-flex size-10 items-center justify-center rounded-lg sm:size-11 border border-white/30 text-white transition-transform hover:-translate-y-0.5'
+                    >
+                      <GithubIcon className='size-5' />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class='absolute right-5 bottom-5 z-20 flex items-center gap-4 sm:right-8 sm:bottom-7'>
+        <div class='flex items-center gap-1.5'>
+          {
+            caseStudies.map((item, index) => (
+              <button
+                type='button'
+                data-dot={index}
+                aria-label={`Tampilkan ${item.title}`}
+                class={cn('h-1.5 rounded-full transition-all duration-300', index === 0 ? 'bg-white w-7' : 'bg-white/35 w-1.5')}
+              />
+            ))
+          }
+        </div>
+        <button
+          type='button'
+          data-prev
+          aria-label='Karya sebelumnya'
+          class='flex size-10 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur transition-colors hover:bg-white hover:text-[#101413]'
+        >
+          <ChevronLeftIcon className='size-5' />
+        </button>
+        <button
+          type='button'
+          data-next
+          aria-label='Karya berikutnya'
+          class='flex size-10 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur transition-colors hover:bg-white hover:text-[#101413]'
+        >
+          <ChevronRightIcon className='size-5' />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const setup = () => {
+    document.querySelectorAll<HTMLElement>('[data-showcase]').forEach(root => {
+      if (root.dataset.ready) return
+      root.dataset.ready = '1'
+
+      const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'))
+      const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-dot]'))
+      if (slides.length < 2) return
+
+      let current = 0
+      let timer: ReturnType<typeof setInterval> | undefined
+
+      const show = (next: number) => {
+        current = (next + slides.length) % slides.length
+        slides.forEach((slide, i) => {
+          const active = i === current
+          slide.classList.toggle('opacity-100', active)
+          slide.classList.toggle('opacity-0', !active)
+          slide.classList.toggle('pointer-events-none', !active)
+          if (active) slide.removeAttribute('aria-hidden')
+          else slide.setAttribute('aria-hidden', 'true')
+        })
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-white', i === current)
+          dot.classList.toggle('w-7', i === current)
+          dot.classList.toggle('bg-white/35', i !== current)
+          dot.classList.toggle('w-1.5', i !== current)
+        })
+      }
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const start = () => {
+        if (reduce) return
+        stop()
+        timer = setInterval(() => show(current + 1), 7000)
+      }
+      const stop = () => timer && clearInterval(timer)
+
+      root.querySelector('[data-prev]')?.addEventListener('click', () => (show(current - 1), start()))
+      root.querySelector('[data-next]')?.addEventListener('click', () => (show(current + 1), start()))
+      dots.forEach((dot, i) => dot.addEventListener('click', () => (show(i), start())))
+
+      let x0: number | null = null
+      root.addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true })
+      root.addEventListener(
+        'touchend',
+        e => {
+          if (x0 === null) return
+          const dx = e.changedTouches[0].clientX - x0
+          if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1))
+          x0 = null
+          start()
+        },
+        { passive: true }
+      )
+      root.addEventListener('mouseenter', stop)
+      root.addEventListener('mouseleave', start)
+      start()
+    })
+  }
+
+  setup()
+  document.addEventListener('astro:page-load', setup)
+</script>

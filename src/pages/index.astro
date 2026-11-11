@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro'
 import Hero from '@/components/home/hero/hero.astro'
 import About from '@/components/home/about/about.astro'
 import FeaturedWorks from '@/components/shared/featured-works/featured-works.astro'
+import WorkShowcase from '@/components/shared/featured-works/work-showcase.astro'
 import Experience from '@/components/home/experience/experience.astro'
 import Services from '@/components/shared/services/services'
 import HireMe from '@/components/home/hire-me/hire-me.astro'
@@ -35,7 +36,7 @@ const schema = {
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION} keywords={pageKeywords} schema={schema}>
   <Hero />
   <About />
-  <FeaturedWorks
+  <WorkShowcase
     caseStudies={caseStudies.filter(item => item.kategori === 'web')}
     eyebrow='Karya web'
     title='Website dan aplikasi yang saya bangun'

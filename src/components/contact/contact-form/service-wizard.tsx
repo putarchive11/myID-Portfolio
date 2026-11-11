@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { CheckIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { ArrowUpRightIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { CONTACT } from '@/consts'
@@ -15,6 +15,14 @@ export const SERVICES = [
     price: 'Rp1.500.000',
     meta: 'Gratis domain · revisi maks. 1 bulan',
     description: 'Landing page toko, profil usaha, atau situs pribadi. Rapi di HP dan tersambung ke WhatsApp.'
+  },
+  {
+    id: 'boardbook',
+    title: 'Board Book Kenangan Si Kecil',
+    price: 'Rp185.000',
+    meta: 'Sudah termasuk desain buku',
+    description: 'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati, kenangan yang patut diabadikan.',
+    example: 'https://heyzine.com/flip-book/4ad570f64d.html'
   },
   {
     id: 'poster',
@@ -149,18 +157,25 @@ const ServiceWizard = ({ className }: { className?: string }) => {
         <AnimatePresence mode='wait' initial={false}>
           {step === 0 && (
             <StepPanel stepKey={0}>
-              <div className='max-h-[420px] space-y-3 overflow-y-auto pr-1'>
+              <div role='radiogroup' aria-label='Pilih layanan' className='max-h-[420px] space-y-3 overflow-y-auto pr-1'>
                 {SERVICES.map(item => {
                   const selected = service?.id === item.id
 
                   return (
-                    <button
+                    <div
                       key={item.id}
-                      type='button'
+                      role='radio'
+                      tabIndex={0}
+                      aria-checked={selected}
                       onClick={() => setService(item)}
-                      aria-pressed={selected}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          setService(item)
+                        }
+                      }}
                       className={cn(
-                        'w-full rounded-2xl border p-4 text-left transition-colors',
+                        'w-full cursor-pointer rounded-2xl border p-4 text-left transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent',
                         selected ? 'border-accent bg-accent/5' : 'hover:border-foreground/25'
                       )}
                     >
@@ -183,9 +198,21 @@ const ServiceWizard = ({ className }: { className?: string }) => {
                           </div>
                           <p className='text-accent text-sm'>{item.meta}</p>
                           <p className='text-muted-foreground text-sm'>{item.description}</p>
+                          {'example' in item && (
+                            <a
+                              href={item.example}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              onClick={event => event.stopPropagation()}
+                              className='text-accent inline-flex items-center gap-1 pt-1 text-sm font-medium underline-offset-4 hover:underline'
+                            >
+                              Lihat contoh buku
+                              <ArrowUpRightIcon className='size-3.5' />
+                            </a>
+                          )}
                         </div>
                       </div>
-                    </button>
+                    </div>
                   )
                 })}
               </div>

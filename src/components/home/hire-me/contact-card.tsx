@@ -10,6 +10,7 @@ import { CONTACT, PROFILE } from '@/consts'
 const HELP_WITH = [
   'Website & kanal pribadi',
   'Landing page toko online',
+  'Board book kenangan si kecil',
   'Kemasan & label produk',
   'Poster acara & promo',
   'Toko online & marketplace'

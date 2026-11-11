@@ -1,0 +1,36 @@
+---
+slug: 'aplikasi-kunci-umroh-sendiri'
+title: 'Aplikasi Kunci Umroh Sendiri'
+description: 'Aplikasi web (PWA) panduan umroh mandiri: checklist, kalkulator biaya, panduan ibadah dengan doa, dan sistem kode aktivasi untuk pembeli.'
+organisation: 'Proyek pribadi'
+role: 'Pembuat Aplikasi Web'
+period: 'Nov 2026'
+tools: ['React', 'Vite', 'PWA', 'Vercel', 'Upstash Redis']
+publishedAt: '2026-11-09'
+image: '/images/putra/work-umroh-app.webp'
+heroImage: '/images/putra/slide-umroh-app.webp'
+logo: 'KS'
+---
+
+## Aplikasinya
+
+Kunci Umroh Sendiri adalah pendamping ebook Kunci Umroh Mandiri. Aplikasi ini bisa dipasang di layar utama HP seperti aplikasi biasa dan tetap bisa dibuka tanpa sinyal, yang penting saat sudah berada di Tanah Suci.
+
+## Fitur utama
+
+- **Beranda:** jalan pintas ke alat yang paling sering dipakai
+- **Persiapan:** checklist dokumen dan barang bawaan, timeline H-6 bulan sampai H-1, itinerary, kalkulator biaya umroh, kalkulator nabung, dan konversi riyal ke rupiah
+- **Ibadah:** urutan rukun umroh, panduan miqat dan niat ihram, tawaf, sa'i, dan tahallul, lengkap dengan doa berharakat
+- **Saya:** status aktivasi atas nama pembeli
+
+<div className='bg-card relative my-16 w-full overflow-hidden rounded-3xl p-1.5 dark:bg-white/10'>
+  <img src='/images/putra/slide-umroh-app.webp' alt='Layar aktivasi, beranda, persiapan, dan panduan ibadah aplikasi Kunci Umroh Sendiri' className='w-full rounded-3xl' />
+</div>
+
+## Kode aktivasi
+
+Supaya hanya pembeli yang bisa memakai aplikasi, saya membuat sistem kode aktivasi berformat KUS-XXXX-XXXX. Kode diperiksa di server (fungsi Vercel dengan database Upstash Redis), jadi daftar kode tidak pernah sampai ke browser. Satu kode berlaku untuk maksimal dua perangkat. Ada halaman admin untuk membuat kode, mengirimkannya ke pembeli lewat WhatsApp, mereset perangkat saat pembeli ganti HP, dan mencabut kode bila ada pengembalian dana.
+
+## Detail tampilan
+
+Ikon emoji saya ganti dengan ikon garis yang seragam, latar memakai pola bintang islami, dan teks doa memakai bentuk sukun mushaf agar sama dengan yang dibaca jamaah di Al-Qur'an.

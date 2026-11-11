@@ -1,6 +1,6 @@
 import Eyebrow from '@/components/shared/eyebrow/eyebrow'
 import ProfileShowcase from '@/components/shared/profile-showcase'
-import ContactForm from '@/components/contact/contact-form/contact-form'
+import ServiceWizard from '@/components/contact/contact-form/service-wizard'
 
 const ContactHero = () => {
   return (
@@ -18,10 +18,10 @@ const ContactHero = () => {
         </div>
 
         <div className='grid gap-8 lg:grid-cols-2 lg:items-start'>
-          <ContactForm className='order-2 lg:order-1' />
+          <ServiceWizard className='order-2' />
 
           <ProfileShowcase
-            className='order-1 mx-auto max-h-130 w-full lg:order-2'
+            className='order-1 mx-auto max-h-130 w-full lg:sticky lg:top-24'
             backgroundImageClassName='max-h-93.5'
           />
         </div>

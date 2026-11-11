@@ -24,7 +24,7 @@ const ThemeToggle = ({ className, children, ...props }: ThemeToggleProps) => {
         <SunIcon className='absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
       </span>
       {children}
-      <span className='sr-only'>Toggle theme</span>
+      <span className='sr-only'>Ganti tema</span>
     </button>
   )
 }

@@ -12,11 +12,11 @@ import TagPriceIcon from '@/assets/svg/tag-price'
 import MailIcon from '@/assets/svg/mail'
 
 const NAV_ITEMS = [
-  { href: '/#about', id: 'about', label: 'About', icon: UserIcon },
-  { href: '/#featured-works', id: 'featured-works', label: 'Work', icon: RulerPenIcon },
-  { href: '/#experience', id: 'experience', label: 'Experience', icon: ProgrammingIcon },
-  { href: '/#hire-me', id: 'hire-me', label: 'Hire me', icon: TagPriceIcon },
-  { href: '/contact', id: 'contact', label: 'Contact', icon: MailIcon }
+  { href: '/#about', id: 'about', label: 'Tentang', icon: UserIcon },
+  { href: '/#featured-works', id: 'featured-works', label: 'Karya', icon: RulerPenIcon },
+  { href: '/#experience', id: 'experience', label: 'Pengalaman', icon: ProgrammingIcon },
+  { href: '/#hire-me', id: 'hire-me', label: 'Kerja sama', icon: TagPriceIcon },
+  { href: '/contact', id: 'contact', label: 'Kontak', icon: MailIcon }
 ]
 
 const SECTION_IDS = NAV_ITEMS.filter(item => item.id !== 'contact').map(item => item.id)

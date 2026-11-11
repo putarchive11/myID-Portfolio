@@ -10,11 +10,11 @@ import { cn } from '@/lib/utils'
 
 import { PROFILE } from '@/consts'
 
-// Figures taken from the portfolio PDF
+// Angka diambil dari PDF portofolio
 const STATS = [
-  { label: 'Avg. sales / month', value: '80 jt' },
-  { label: 'Sold in a month', value: '1000+' },
-  { label: 'BPOM products', value: '7' }
+  { label: 'Rata-rata omzet / bulan', value: '80 jt' },
+  { label: 'Terjual sebulan', value: '1000+' },
+  { label: 'Produk BPOM', value: '7' }
 ]
 
 const ProfileCard = ({ className }: { className?: string }) => {
@@ -64,7 +64,7 @@ const ProfileCard = ({ className }: { className?: string }) => {
                       <AvatarFallback>P</AvatarFallback>
                     </Avatar>
                     <span className='absolute -bottom-3 left-[50%] flex size-7.5 -translate-x-1/2 items-center justify-center'>
-                      <img src='/images/hire-me/profile-star-icon.webp' alt='Verified' />
+                      <img src='/images/hire-me/profile-star-icon.webp' alt='Terverifikasi' />
                     </span>
                   </div>
                   <div>
@@ -97,11 +97,11 @@ const ProfileCard = ({ className }: { className?: string }) => {
             <CardContent className='relative flex h-full flex-col justify-between gap-6'>
               <div>
                 <p className='text-xs text-white/60'>{PROFILE.fullName}</p>
-                <h3 className='text-base font-medium'>Bachelor of Islamic Education</h3>
+                <h3 className='text-base font-medium'>Sarjana Pendidikan Agama Islam</h3>
               </div>
 
               <div className='flex items-end justify-between gap-3'>
-                <p className='text-base'>Barakallahu fiikum. Hope to work with you.</p>
+                <p className='text-base'>Barakallahu fiikum. Semoga bisa bekerja sama.</p>
                 <Avatar className='h-24.5 w-20.5 shrink-0 rounded-[12px]'>
                   <AvatarImage src={PROFILE.photo} alt={PROFILE.name} className='rounded-[12px] object-cover' />
                   <AvatarFallback>P</AvatarFallback>
@@ -115,10 +115,10 @@ const ProfileCard = ({ className }: { className?: string }) => {
       <div className='mt-6 space-y-3'>
         <AvailabilityBadge className='h-6.5 gap-1 rounded-full' />
 
-        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Hire me today</p>
+        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Ajak saya bekerja sama</p>
 
         <p className='text-muted-foreground text-base'>
-          Open for creative design, digital marketing and event projects. Reach me on WhatsApp or email.
+          Terbuka untuk pembuatan landing page, aplikasi web, desain, dan proyek e-commerce. Hubungi saya lewat WhatsApp atau email.
         </p>
       </div>
     </div>

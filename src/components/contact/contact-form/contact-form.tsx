@@ -38,17 +38,17 @@ const ContactForm = ({ className }: ContactFormProps) => {
     }
   })
 
-  // There is no backend: the message is opened in WhatsApp, ready to send to Putra.
+  // Tidak ada backend: pesan dibuka di WhatsApp, siap dikirim ke Putra.
   const onSubmit = (values: ContactFormValues) => {
     const text = [
-      `Assalamu'alaikum, my name is ${values.name} (${values.email}).`,
-      `Service: ${values.service}`,
+      `Assalamu'alaikum, nama saya ${values.name} (${values.email}).`,
+      `Layanan: ${values.service}`,
       '',
       values.message
     ].join('\n')
 
     window.open(`${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
-    toast.success('Opening WhatsApp, just press send.')
+    toast.success('Membuka WhatsApp, tinggal tekan kirim.')
     reset()
   }
 
@@ -57,11 +57,11 @@ const ContactForm = ({ className }: ContactFormProps) => {
       <FieldGroup>
         <Field data-invalid={!!errors.name} className='gap-1'>
           <FieldLabel htmlFor='contact-name' className='text-muted-foreground text-base'>
-            Name*
+            Nama*
           </FieldLabel>
           <Input
             id='contact-name'
-            placeholder='Your name'
+            placeholder='Nama Anda'
             aria-invalid={!!errors.name}
             className='border-border h-11 rounded-[12px] bg-(--background-darker)'
             {...register('name')}
@@ -76,7 +76,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           <Input
             id='contact-email'
             type='email'
-            placeholder='you@example.com'
+            placeholder='nama@contoh.com'
             aria-invalid={!!errors.email}
             className='border-border h-11 rounded-[12px] bg-(--background-darker)'
             {...register('email')}
@@ -86,7 +86,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
 
         <Field data-invalid={!!errors.service} className='gap-1'>
           <FieldLabel htmlFor='contact-service' className='text-muted-foreground text-base'>
-            Service*
+            Layanan*
           </FieldLabel>
           <Controller
             control={control}
@@ -101,7 +101,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
                   id='contact-service'
                   className='border-border h-11! w-full rounded-[12px] bg-(--background-darker)'
                 >
-                  <SelectValue placeholder='Select a service' />
+                  <SelectValue placeholder='Pilih layanan' />
                 </SelectTrigger>
                 <SelectContent alignItemWithTrigger={false}>
                   <SelectGroup>
@@ -120,11 +120,11 @@ const ContactForm = ({ className }: ContactFormProps) => {
 
         <Field data-invalid={!!errors.message} className='gap-1'>
           <FieldLabel htmlFor='contact-message' className='text-muted-foreground text-base'>
-            Message
+            Pesan
           </FieldLabel>
           <Textarea
             id='contact-message'
-            placeholder='Enter your message'
+            placeholder='Tulis pesan Anda'
             aria-invalid={!!errors.message}
             className='border-border min-h-25 rounded-[12px] bg-(--background-darker)'
             {...register('message')}
@@ -137,7 +137,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           variant='outline'
           className='hover:bg-card hover:text-accent bg-card h-10 w-full rounded-[12px]'
         >
-          Send via WhatsApp
+          Kirim via WhatsApp
         </Button>
       </FieldGroup>
     </form>

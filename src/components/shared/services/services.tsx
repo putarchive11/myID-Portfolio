@@ -9,44 +9,44 @@ import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from '@/
 
 const SERVICES = [
   {
-    title: 'Product Packaging Design',
+    title: 'Desain Kemasan Produk',
     image: '/images/putra/service-packaging.webp',
-    highlight: '7 new BPOM-approved products designed',
-    tags: ['Packaging', 'Product label', 'Branding'],
+    highlight: '7 produk baru ber-BPOM sudah didesain',
+    tags: ['Kemasan', 'Label produk', 'Branding'],
     description:
-      'I design product packaging and labels that look premium on the shelf and carry the information a product needs, such as the Black Garlic premium pouch.'
+      'Saya mendesain kemasan dan label produk yang tampil premium di rak dan memuat informasi yang dibutuhkan produk, seperti pouch premium Black Garlic.'
   },
   {
-    title: 'Event & Promotional Posters',
+    title: 'Poster Acara & Promosi',
     image: '/images/putra/service-poster.webp',
-    highlight: 'Umrah packages, seminars and book fair campaigns',
-    tags: ['Event poster', 'Banner', 'Certificate'],
+    highlight: 'Paket umrah, seminar, dan kampanye pameran buku',
+    tags: ['Poster acara', 'Banner', 'Sertifikat'],
     description:
-      'I create posters, banners, flyers and certificates for events and promotions, such as umrah package schedules, seminar materials and booth banners.'
+      'Saya membuat poster, banner, flyer, dan sertifikat untuk acara dan promosi, seperti jadwal paket umrah, materi seminar, dan banner booth.'
   },
   {
     title: 'Digital Marketing & E-commerce',
     image: '/images/putra/service-marketing.webp',
-    highlight: '80 million average sales per month',
-    tags: ['Marketplace', 'Online store', 'After-sales'],
+    highlight: 'Rata-rata omzet 80 juta per bulan',
+    tags: ['Marketplace', 'Toko online', 'Purnajual'],
     description:
-      'I run and grow online stores: product listings, promotional content, seller relationships and after-sales service. Sold more than 1,000 products in one month.'
+      'Saya mengelola dan mengembangkan toko online: listing produk, konten promosi, relasi seller, dan layanan purnajual. Pernah menjual lebih dari 1.000 produk dalam sebulan.'
   },
   {
-    title: 'Event Committee & Coordination',
+    title: 'Kepanitiaan & Koordinasi Acara',
     image: '/images/putra/service-committee.webp',
-    highlight: 'Islamic Book Fair 2023 · Tifa Tour seminar',
-    tags: ['Planning', 'Weekly meetings', 'Participants'],
+    highlight: 'Islamic Book Fair 2023 · Seminar Tifa Tour',
+    tags: ['Perencanaan', 'Rapat mingguan', 'Peserta'],
     description:
-      'I help organise office events and seminars so they run smoothly: preparing the marketing campaign, leading weekly meetings and coordinating participants.'
+      'Saya membantu acara kantor dan seminar berjalan lancar: menyiapkan kampanye pemasaran, memimpin rapat mingguan, dan mengoordinasikan peserta.'
   },
   {
-    title: 'Seminar & Training',
+    title: 'Seminar & Pelatihan',
     image: '/images/putra/service-seminar.webp',
-    highlight: 'Digital marketing for youth organizations',
+    highlight: 'Digital marketing untuk karang taruna',
     tags: ['Public speaking', 'Digital marketing', 'Workshop'],
     description:
-      'I present seminars on digital marketing, like the session for youth organizations at posko KKN Citeureup, Bogor.'
+      'Saya membawakan seminar digital marketing, seperti sesi untuk karang taruna di posko KKN Citeureup, Bogor.'
   }
 ]
 
@@ -104,8 +104,8 @@ const Services = () => {
     <section id='services' className='border-b py-8 sm:py-16 lg:py-24'>
       <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
         <div className='space-y-2'>
-          <Eyebrow>What I do</Eyebrow>
-          <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>I can help you with these things</h2>
+          <Eyebrow>Layanan saya</Eyebrow>
+          <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>Hal-hal yang bisa saya bantu</h2>
         </div>
 
         <div

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { AnimatePresence, motion } from 'motion/react'
 
-const GREETINGS = ['Hello', 'Halo', 'Ahlan']
+const GREETINGS = ['Halo', 'Ahlan', 'Hello']
 const INTERVAL_MS = 2200
 
 const GreetingWord = () => {

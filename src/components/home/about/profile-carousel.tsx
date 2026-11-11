@@ -46,7 +46,7 @@ const ProfileCarousel = () => {
       <button
         type='button'
         onClick={goPrev}
-        aria-label='Previous image'
+        aria-label='Gambar sebelumnya'
         className='group/prev absolute inset-y-0 left-0 flex w-1/4 items-center justify-start pl-3 outline-none'
       >
         <span className='absolute inset-0 bg-linear-to-r from-black/30 to-transparent mask-[linear-gradient(to_right,black,transparent)] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover/prev:opacity-100' />
@@ -56,7 +56,7 @@ const ProfileCarousel = () => {
       <button
         type='button'
         onClick={goNext}
-        aria-label='Next image'
+        aria-label='Gambar berikutnya'
         className='group/next absolute inset-y-0 right-0 flex w-1/4 items-center justify-end pr-3 outline-none'
       >
         <span className='absolute inset-0 bg-linear-to-l from-black/30 to-transparent mask-[linear-gradient(to_left,black,transparent)] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover/next:opacity-100' />

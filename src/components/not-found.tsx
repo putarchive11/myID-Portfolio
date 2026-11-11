@@ -7,8 +7,8 @@ const NotFound = () => {
     <div className='flex h-screen flex-col items-center justify-center gap-9 p-6'>
       <Icon404 className='h-auto w-full sm:h-120 sm:w-146' />
       <div className='flex flex-col items-center gap-4 text-center'>
-        <p className='text-muted-foreground text-xl sm:text-2xl'>We couldn&apos;t find the page you are looking for</p>
-        <Button size='lg' render={<a href='/'>Go back to home</a>} nativeButton={false} />
+        <p className='text-muted-foreground text-xl sm:text-2xl'>Halaman yang Anda cari tidak ditemukan</p>
+        <Button size='lg' render={<a href='/'>Kembali ke beranda</a>} nativeButton={false} />
       </div>
     </div>
   )

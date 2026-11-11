@@ -1,19 +1,20 @@
 import { z } from 'zod'
 
 export const SERVICE_OPTIONS = [
-  'Product Packaging Design',
-  'Event & Promotional Posters',
+  'Landing Page & Aplikasi Web',
+  'Desain Kemasan Produk',
+  'Poster Acara & Promosi',
   'Digital Marketing & E-commerce',
-  'Event Committee & Coordination',
-  'Seminar & Training',
-  'Other'
+  'Kepanitiaan & Koordinasi Acara',
+  'Seminar & Pelatihan',
+  'Lainnya'
 ] as const
 
 export const contactFormSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters.'),
-  email: z.string().email('Enter a valid email address.'),
-  service: z.string().min(1, 'Please select a service.'),
-  message: z.string().min(10, 'Message must be at least 10 characters.')
+  name: z.string().min(2, 'Nama minimal 2 karakter.'),
+  email: z.string().email('Masukkan alamat email yang valid.'),
+  service: z.string().min(1, 'Pilih salah satu layanan.'),
+  message: z.string().min(10, 'Pesan minimal 10 karakter.')
 })
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>

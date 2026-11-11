@@ -12,7 +12,7 @@ import { PROFILE, SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 
 const caseStudies = await getCaseStudies()
 
-const pageKeywords = 'Putra Rayhan Assidiqi, creative designer, digital marketing, event poster, product packaging'
+const pageKeywords = 'Putra Rayhan Assidiqi, web builder, admin e-commerce, landing page, desain kemasan, poster acara'
 
 const schema = {
   '@context': 'https://schema.org',
@@ -21,7 +21,7 @@ const schema = {
       '@type': 'WebSite',
       name: PROFILE.name,
       description: SITE_DESCRIPTION,
-      inLanguage: 'en-US'
+      inLanguage: 'id-ID'
     },
     {
       '@type': 'Person',
@@ -35,7 +35,7 @@ const schema = {
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION} keywords={pageKeywords} schema={schema}>
   <Hero />
   <About />
-  <FeaturedWorks caseStudies={caseStudies} title='Projects and events I have worked on' />
+  <FeaturedWorks caseStudies={caseStudies} title='Proyek dan acara yang pernah saya kerjakan' />
   <Experience />
   <Services client:visible />
   <HireMe />

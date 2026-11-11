@@ -37,9 +37,9 @@ const otherCaseStudies = allCaseStudies.filter(item => item.slug !== data.slug).
 const heroImageSrc = data.heroImage ?? data.image
 
 const metaItems = [
-  { label: 'Organisation', value: data.organisation, icon: UsersGroupIcon },
-  { label: 'Role', value: data.role, icon: UserCircleIcon },
-  { label: 'When', value: data.period ?? data.duration, icon: CalendarIcon }
+  { label: 'Organisasi', value: data.organisation, icon: UsersGroupIcon },
+  { label: 'Peran', value: data.role, icon: UserCircleIcon },
+  { label: 'Waktu', value: data.period ?? data.duration, icon: CalendarIcon }
 ].filter(item => item.value)
 
 const schema = {
@@ -56,7 +56,7 @@ const schema = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: '/' },
+        { '@type': 'ListItem', position: 1, name: 'Beranda', item: '/' },
         { '@type': 'ListItem', position: 2, name: data.title, item: `/case-study/${data.slug}/` }
       ]
     }
@@ -79,7 +79,7 @@ const schema = {
       >
         <ChevronLeftIcon className='size-4' />
       </Button>
-      Back to home
+      Kembali ke beranda
     </a>
 
     <h1 class='text-card-foreground text-3xl leading-[1.2] font-semibold sm:text-4xl md:text-5xl lg:text-[64px]'>
@@ -117,7 +117,7 @@ const schema = {
                 <RulerPenIcon className='text-accent size-8' />
               </div>
               <div>
-                <p class='text-muted-foreground text-xs tracking-wide uppercase'>Scope</p>
+                <p class='text-muted-foreground text-xs tracking-wide uppercase'>Cakupan</p>
                 <div class='mt-1 flex flex-wrap gap-1.5'>
                   {data.tools.map(tool => (
                     <Badge variant='secondary' className='text-foreground bg-(--background-darker) font-normal'>
@@ -140,9 +140,9 @@ const schema = {
   <FeaturedWorks
     caseStudies={otherCaseStudies}
     id='other-works'
-    eyebrow='Other works'
+    eyebrow='Karya lain'
     layout='vertical'
-    title='Have a look at my other work'
+    title='Lihat karya saya yang lain'
     showBorder={false}
   />
 </Layout>

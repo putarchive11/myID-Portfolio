@@ -9,8 +9,8 @@ import { CONTACT, PROFILE } from '@/consts'
 
 const caseStudies = await getCaseStudies(2)
 
-const pageTitle = 'Contact'
-const pageDescription = `Contact ${PROFILE.name} on WhatsApp (${CONTACT.phoneDisplay}) or by email (${CONTACT.email}).`
+const pageTitle = 'Kontak'
+const pageDescription = `Hubungi ${PROFILE.name} lewat WhatsApp (${CONTACT.phoneDisplay}) atau email (${CONTACT.email}).`
 
 const schema = {
   '@context': 'https://schema.org',
@@ -33,6 +33,6 @@ const schema = {
 
 <Layout title={pageTitle} description={pageDescription} schema={schema}>
   <ContactHero client:load />
-  <FeaturedWorks caseStudies={caseStudies} layout='vertical' title='Have a look at some of my work' />
+  <FeaturedWorks caseStudies={caseStudies} layout='vertical' title='Lihat beberapa karya saya' />
   <Services client:visible />
 </Layout>

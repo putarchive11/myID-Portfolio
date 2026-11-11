@@ -12,7 +12,7 @@ type ReadingProgressPillProps = {
 }
 
 const HEADER_OFFSET = 150
-const IDLE_LABEL = 'Points'
+const IDLE_LABEL = 'Poin'
 const HOVER_OPEN_DELAY = 500
 const HOVER_CLOSE_DELAY = 200
 

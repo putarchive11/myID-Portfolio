@@ -6,9 +6,9 @@ export const PROFILE = {
   name: 'Putra Rayhan Assidiqi',
   fullName: 'Putra Rayhan Assidiqi S.Pd',
   firstName: 'Putra',
-  title: 'Creative Designer',
+  title: 'Web Builder & Admin E-commerce',
   summary:
-    'Experienced as an e-commerce leader with average monthly sales of 80 million, organized and managed various office events, ensuring smooth execution and engagement, designed multiple product and promotional banners.',
+    'Membangun landing page toko online dan aplikasi web yang sederhana, cepat, dan siap jualan. Berpengalaman memimpin penjualan e-commerce dengan rata-rata omzet 80 juta per bulan, mengelola acara kantor, serta mendesain kemasan produk dan banner promosi.',
   avatar: '/images/putra/avatar.webp',
   photo: '/images/putra/graduation.webp',
   portfolioPdf: '/portofolio-putra-rayhan-assidiqi.pdf'
@@ -20,8 +20,8 @@ export const CONTACT = {
   email: 'putranyarayhan@gmail.com'
 }
 
-export const SITE_TITLE = `${PROFILE.name} - ${PROFILE.title} Portfolio`
-export const SITE_DESCRIPTION = `Portfolio of ${PROFILE.fullName}, a creative designer and digital marketer: product packaging, event posters, e-commerce and event committee work.`
+export const SITE_TITLE = `${PROFILE.name} - Portofolio ${PROFILE.title}`
+export const SITE_DESCRIPTION = `Portofolio ${PROFILE.fullName}, web builder dan admin e-commerce: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.`
 
 export const GITHUB_URL = 'https://github.com/putarchive11/myID-Portfolio'
 export const SITE_URL = 'https://putranyarayhan.my.id/'
@@ -32,7 +32,7 @@ export const SITE_METADATA = {
     default: SITE_TITLE
   },
   description: SITE_DESCRIPTION,
-  keywords: ['Putra Rayhan Assidiqi', 'creative designer', 'digital marketing', 'portfolio', 'event poster'],
+  keywords: ['Putra Rayhan Assidiqi', 'web builder', 'admin e-commerce', 'landing page', 'portofolio', 'desain kemasan'],
   authors: [{ name: PROFILE.name, url: SITE_URL }],
   creator: PROFILE.name,
   publisher: PROFILE.name,
@@ -40,8 +40,8 @@ export const SITE_METADATA = {
     index: true,
     follow: true
   },
-  language: 'en-US',
-  locale: 'en_US',
+  language: 'id-ID',
+  locale: 'id_ID',
   icons: {
     icon: [
       { url: '/favicon/favicon.ico', sizes: '48x48' },
@@ -55,7 +55,7 @@ export const SITE_METADATA = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'id_ID',
     siteName: PROFILE.name,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

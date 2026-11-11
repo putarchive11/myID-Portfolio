@@ -1,7 +1,7 @@
 // Site Configuration
 // Centralized configuration for site metadata, SEO, and branding
 
-export const SITE_TITLE = 'Zolt - Portfolio Landing page'
+export const SITE_TITLE = 'Putra - Portfolio Landing page'
 export const SITE_DESCRIPTION =
   'Zolt is a free modern Shadcn UI Portfolio Template built with Astro for designers, developers, freelancers, and agencies to create fast, responsive, and SEO-friendly portfolio websites.'
 

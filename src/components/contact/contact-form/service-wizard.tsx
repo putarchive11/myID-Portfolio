@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { ArrowUpRightIcon, CheckIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { CONTACT } from '@/consts'
@@ -22,8 +22,7 @@ export const SERVICES = [
     price: 'Rp185.000',
     meta: '13 - 15 halaman · termasuk cetak dan desain ilustrasi',
     description:
-      'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati. Selesai maks. 5 hari kerja, belum termasuk ongkir.',
-    example: 'https://heyzine.com/flip-book/4ad570f64d.html'
+      'Buku halaman tebal berisi foto dan momen tumbuh kembang buah hati. Selesai maks. 5 hari kerja, belum termasuk ongkir.'
   },
   {
     id: 'poster',
@@ -199,18 +198,6 @@ const ServiceWizard = ({ className }: { className?: string }) => {
                           </div>
                           <p className='text-accent text-sm'>{item.meta}</p>
                           <p className='text-muted-foreground text-sm'>{item.description}</p>
-                          {'example' in item && (
-                            <a
-                              href={item.example}
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              onClick={event => event.stopPropagation()}
-                              className='text-accent inline-flex items-center gap-1 pt-1 text-sm font-medium underline-offset-4 hover:underline'
-                            >
-                              Lihat contoh buku
-                              <ArrowUpRightIcon className='size-3.5' />
-                            </a>
-                          )}
                         </div>
                       </div>
                     </div>

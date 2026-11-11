@@ -1,5 +1,7 @@
 ---
-import { MailIcon, PhoneIcon, FileDownIcon } from 'lucide-react'
+import { MailIcon, PhoneIcon, FileDownIcon, SendIcon } from 'lucide-react'
+
+import GithubIcon from '@/assets/svg/github-icon'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -12,11 +14,80 @@ const socials = [
   { label: 'Portofolio PDF', href: PROFILE.portfolioPdf, icon: FileDownIcon, external: true }
 ]
 
+const connect = [
+  { label: 'Email', href: `mailto:${CONTACT.email}`, icon: MailIcon, external: false },
+  { label: 'WhatsApp', href: CONTACT.whatsapp, icon: PhoneIcon, external: true },
+  { label: 'GitHub', href: 'https://github.com/putarchive11', icon: GithubIcon, external: true }
+]
+
 const year = new Date().getFullYear()
 ---
 
 <footer class='lg:px-10.5'>
   <div class='mx-auto max-w-4xl space-y-12 pb-12 lg:border-x xl:max-w-245'>
+    <section id='terhubung' class='grid gap-10 px-4 pt-12 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-10.5 lg:pt-16'>
+      <div class='space-y-4'>
+        <img src={PROFILE.avatar} alt={PROFILE.name} class='size-14 rounded-2xl object-cover' />
+        <h2 class='text-2xl font-semibold sm:text-3xl'>Mari terhubung</h2>
+        <p class='text-muted-foreground max-w-sm text-base'>
+          Ingin bekerja sama, membangun sesuatu bersama, atau sekadar bertanya? Kotak masuk saya selalu terbuka.
+        </p>
+        <p class='text-sm'>
+          <a href={`mailto:${CONTACT.email}`} class='text-accent font-medium'>{CONTACT.email}</a>
+        </p>
+        <div class='flex items-center gap-2 pt-1'>
+          {
+            connect.map(item => (
+              <a
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                aria-label={item.label}
+                class='hover:text-accent hover:border-accent/40 bg-card flex size-11 items-center justify-center rounded-full border transition-colors'
+              >
+                <item.icon className='size-4.5' />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <form data-email-form class='space-y-3' novalidate>
+        <input
+          name='nama'
+          required
+          minlength='2'
+          placeholder='Nama Anda'
+          aria-label='Nama Anda'
+          class='bg-card border-border h-12 w-full rounded-xl border px-4 outline-none focus:border-accent'
+        />
+        <input
+          name='email'
+          type='email'
+          placeholder='Email Anda (agar bisa saya balas)'
+          aria-label='Email Anda'
+          class='bg-card border-border h-12 w-full rounded-xl border px-4 outline-none focus:border-accent'
+        />
+        <textarea
+          name='pesan'
+          required
+          minlength='10'
+          rows='5'
+          placeholder='Tulis pesan Anda'
+          aria-label='Pesan'
+          class='bg-card border-border w-full rounded-xl border px-4 py-3 outline-none focus:border-accent'></textarea>
+        <p data-email-error class='hidden text-sm text-red-600'></p>
+        <button
+          type='submit'
+          class='bg-foreground text-background inline-flex h-12 items-center gap-2 rounded-xl px-5 font-medium transition-opacity hover:opacity-90'
+        >
+          <SendIcon className='size-4' />
+          Kirim lewat email
+        </button>
+        <p class='text-muted-foreground text-xs'>Tombol ini membuka aplikasi email Anda dengan pesan yang sudah terisi.</p>
+      </form>
+    </section>
+
     <div class='flex items-center gap-3'>
       <Separator className='flex-1' />
       <div class='flex items-center gap-3'>
@@ -53,3 +124,32 @@ const year = new Date().getFullYear()
     </div>
   </div>
 </footer>
+
+<script define:vars={{ to: CONTACT.email }}>
+  const form = document.querySelector('[data-email-form]')
+  const error = document.querySelector('[data-email-error]')
+
+  form?.addEventListener('submit', event => {
+    event.preventDefault()
+    const data = new FormData(form)
+    const nama = String(data.get('nama') || '').trim()
+    const email = String(data.get('email') || '').trim()
+    const pesan = String(data.get('pesan') || '').trim()
+
+    let pesanError = ''
+    if (nama.length < 2) pesanError = 'Tulis nama Anda.'
+    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) pesanError = 'Alamat email belum benar.'
+    else if (pesan.length < 10) pesanError = 'Pesan minimal 10 karakter.'
+
+    if (pesanError) {
+      error.textContent = pesanError
+      error.classList.remove('hidden')
+      return
+    }
+    error.classList.add('hidden')
+
+    const subject = `Pesan dari ${nama} lewat portofolio`
+    const body = [`Assalamu'alaikum,`, '', pesan, '', `${nama}${email ? ' (' + email + ')' : ''}`].join('\n')
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  })
+</script>

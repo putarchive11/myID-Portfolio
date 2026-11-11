@@ -33,20 +33,12 @@ const SERVICES = [
       'Saya mengelola dan mengembangkan toko online: listing produk, konten promosi, relasi seller, dan layanan purnajual. Pernah menjual lebih dari 1.000 produk dalam sebulan.'
   },
   {
-    title: 'Kepanitiaan & Koordinasi Acara',
-    image: '/images/putra/service-committee.webp',
-    highlight: 'Islamic Book Fair 2023 · Seminar Tifa Tour',
-    tags: ['Perencanaan', 'Rapat mingguan', 'Peserta'],
+    title: 'Pembuatan Website & Kanal Pribadi',
+    image: '/images/putra/service-website.webp',
+    highlight: 'Landing page toko, portofolio, dan aplikasi web',
+    tags: ['Landing page', 'Website pribadi', 'Domain & hosting'],
     description:
-      'Saya membantu acara kantor dan seminar berjalan lancar: menyiapkan kampanye pemasaran, memimpin rapat mingguan, dan mengoordinasikan peserta.'
-  },
-  {
-    title: 'Seminar & Pelatihan',
-    image: '/images/putra/service-seminar.webp',
-    highlight: 'Digital marketing untuk karang taruna',
-    tags: ['Public speaking', 'Digital marketing', 'Workshop'],
-    description:
-      'Saya membawakan seminar digital marketing, seperti sesi untuk karang taruna di posko KKN Citeureup, Bogor.'
+      'Saya membuat landing page toko online, website portofolio, dan kanal pribadi yang cepat, rapi di HP, dan langsung tersambung ke WhatsApp, lengkap sampai domain dan online.'
   }
 ]
 

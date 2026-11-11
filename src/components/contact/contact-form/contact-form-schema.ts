@@ -1,12 +1,10 @@
 import { z } from 'zod'
 
 export const SERVICE_OPTIONS = [
-  'Landing Page & Aplikasi Web',
   'Desain Kemasan Produk',
   'Poster Acara & Promosi',
   'Digital Marketing & E-commerce',
-  'Kepanitiaan & Koordinasi Acara',
-  'Seminar & Pelatihan',
+  'Pembuatan Website & Kanal Pribadi',
   'Lainnya'
 ] as const
 

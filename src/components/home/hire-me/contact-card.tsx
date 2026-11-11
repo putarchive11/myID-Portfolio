@@ -8,12 +8,11 @@ import { cn } from '@/lib/utils'
 import { CONTACT, PROFILE } from '@/consts'
 
 const HELP_WITH = [
+  'Website & kanal pribadi',
   'Landing page toko online',
-  'Aplikasi web sederhana',
   'Kemasan & label produk',
   'Poster acara & promo',
-  'Toko online & marketplace',
-  'Panitia acara'
+  'Toko online & marketplace'
 ]
 
 const ContactCard = ({ className }: { className?: string }) => {

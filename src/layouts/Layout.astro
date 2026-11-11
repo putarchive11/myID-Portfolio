@@ -6,7 +6,6 @@ import { ClientRouter } from 'astro:transitions'
 import HeadSeo from '@/layouts/HeadSeo.astro'
 import EdgeBlur from '@/components/layout/edge-blur.astro'
 import Footer from '@/components/layout/footer.astro'
-import DownloadButton from '@/components/layout/download-button.astro'
 import NavDock from '@/components/layout/nav-dock'
 import CustomCursor from '@/components/layout/custom-cursor'
 import ScrollProfileToast from '@/components/layout/scroll-profile-toast'
@@ -85,6 +84,5 @@ const seoProps = Astro.props as Props
     <ScrollProfileToast client:load pathname={Astro.url.pathname} />
     <NavDock client:load pathname={Astro.url.pathname} />
     <CustomCursor client:load />
-    <DownloadButton />
   </body>
 </html>

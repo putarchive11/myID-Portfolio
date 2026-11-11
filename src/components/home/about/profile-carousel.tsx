@@ -5,10 +5,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const IMAGES = [
-  '/images/about-me/carousel-01.webp',
-  '/images/about-me/carousel-02.webp',
-  '/images/about-me/carousel-03.webp',
-  '/images/about-me/carousel-04.webp'
+  '/images/putra/carousel-01.webp',
+  '/images/putra/carousel-02.webp',
+  '/images/putra/carousel-03.webp',
+  '/images/putra/carousel-04.webp'
 ]
 
 const ProfileCarousel = () => {
@@ -23,7 +23,7 @@ const ProfileCarousel = () => {
         <img
           key={src}
           src={src}
-          alt='profile images'
+          alt='Putra Rayhan Assidiqi'
           className={cn(
             'absolute inset-0 size-full object-cover transition-opacity duration-500',
             i === index ? 'opacity-100' : 'opacity-0'

@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
 export const SERVICE_OPTIONS = [
-  'UI & Product Design',
-  'Design Engineering',
-  'Framer Development',
-  'Design Systems',
-  'Interaction & Motion Design'
+  'Product Packaging Design',
+  'Event & Promotional Posters',
+  'Digital Marketing & E-commerce',
+  'Event Committee & Coordination',
+  'Seminar & Training',
+  'Other'
 ] as const
 
 export const contactFormSchema = z.object({

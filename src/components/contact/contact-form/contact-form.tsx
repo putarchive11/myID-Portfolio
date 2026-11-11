@@ -2,6 +2,8 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 
+import { CONTACT } from '@/consts'
+
 import type { ContactFormValues } from '@/components/contact/contact-form/contact-form-schema'
 import { contactFormSchema, SERVICE_OPTIONS } from '@/components/contact/contact-form/contact-form-schema'
 
@@ -36,9 +38,17 @@ const ContactForm = ({ className }: ContactFormProps) => {
     }
   })
 
+  // There is no backend: the message is opened in WhatsApp, ready to send to Putra.
   const onSubmit = (values: ContactFormValues) => {
-    void values
-    toast.success("Message sent — I'll get back to you as soon as possible.")
+    const text = [
+      `Assalamu'alaikum, my name is ${values.name} (${values.email}).`,
+      `Service: ${values.service}`,
+      '',
+      values.message
+    ].join('\n')
+
+    window.open(`${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+    toast.success('Opening WhatsApp, just press send.')
     reset()
   }
 
@@ -51,7 +61,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           </FieldLabel>
           <Input
             id='contact-name'
-            placeholder='John doe'
+            placeholder='Your name'
             aria-invalid={!!errors.name}
             className='border-border h-11 rounded-[12px] bg-(--background-darker)'
             {...register('name')}
@@ -66,7 +76,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           <Input
             id='contact-email'
             type='email'
-            placeholder='john@framer.com'
+            placeholder='you@example.com'
             aria-invalid={!!errors.email}
             className='border-border h-11 rounded-[12px] bg-(--background-darker)'
             {...register('email')}
@@ -127,7 +137,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           variant='outline'
           className='hover:bg-card hover:text-accent bg-card h-10 w-full rounded-[12px]'
         >
-          Submit
+          Send via WhatsApp
         </Button>
       </FieldGroup>
     </form>

@@ -1,16 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
+import { PROFILE } from '@/consts'
+
 const ProfileAvailabilityCard = () => {
   return (
     <div className='flex items-center gap-3 py-2 pr-4 pl-2'>
       <Avatar size='lg'>
-        <AvatarImage src='/images/hire-me/profile.webp' alt='Zolt Mercer' />
-        <AvatarFallback>Z</AvatarFallback>
+        <AvatarImage src={PROFILE.avatar} alt={PROFILE.name} />
+        <AvatarFallback>P</AvatarFallback>
       </Avatar>
 
       <div className='text-left'>
-        <p className='text-sm font-medium'>Zolt Mercer</p>
-        <p className='text-muted-foreground text-xs'>Design engineer</p>
+        <p className='text-sm font-medium'>{PROFILE.name}</p>
+        <p className='text-muted-foreground text-xs'>{PROFILE.title}</p>
       </div>
 
       <span className='ml-2 flex items-center gap-1.5 text-sm font-medium whitespace-nowrap text-green-600 dark:text-green-400'>

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { caseStudy, variant = 'grid', imageSide = 'right' } = Astro.props
-const year = caseStudy.publishedAt ? new Date(caseStudy.publishedAt).getFullYear() : undefined
+const period = caseStudy.period
 const isHero = variant === 'hero'
 ---
 
@@ -38,9 +38,9 @@ const isHero = variant === 'hero'
             )
           }
           {
-            year && (
+            period && (
               <Badge variant='outline' className='rounded-full border-(--background-darker) bg-(--background-darker)'>
-                {year}
+                {period}
               </Badge>
             )
           }
@@ -50,11 +50,13 @@ const isHero = variant === 'hero'
 
       <div class='flex items-center justify-between gap-2 border-t pt-3'>
         {
-          caseStudy.logo && (
+          caseStudy.organisation && (
             <div class='flex items-center gap-3'>
-              <div class='bg-background flex items-center justify-center rounded-md'>
-                <img src={caseStudy.logo} alt={`${caseStudy.organisation} logo`} class='size-10.5' />
-              </div>
+              {caseStudy.logo && (
+                <div class='bg-accent/10 text-accent flex size-10.5 shrink-0 items-center justify-center rounded-md text-sm font-semibold'>
+                  {caseStudy.logo}
+                </div>
+              )}
               <div class='text-base'>
                 <p class='text-foreground font-medium'>{caseStudy.organisation}</p>
                 {caseStudy.role && <p class='text-muted-foreground'>{caseStudy.role}</p>}
@@ -78,7 +80,7 @@ const isHero = variant === 'hero'
                 className='absolute inset-0 size-4 -translate-x-5 translate-y-5 -rotate-45 transition-transform duration-400 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0'
               />
             </span>
-            <span class='sr-only'>Read case study: {caseStudy.title}</span>
+            <span class='sr-only'>Read more: {caseStudy.title}</span>
           </Button>
         </div>
       </div>

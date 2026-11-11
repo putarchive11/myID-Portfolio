@@ -3,30 +3,29 @@ import Layout from '@/layouts/Layout.astro'
 import ContactHero from '@/components/contact/contact-hero/contact-hero'
 import FeaturedWorks from '@/components/shared/featured-works/featured-works.astro'
 import Services from '@/components/shared/services/services'
-import Testimonials from '@/components/shared/testimonials/testimonials'
 
 import { getCaseStudies } from '@/lib/case-studies'
+import { CONTACT, PROFILE } from '@/consts'
 
 const caseStudies = await getCaseStudies(2)
 
-const pageTitle = 'Contact Us'
-const pageDescription = "Get in touch with us. We're here to help and answer any questions you may have."
+const pageTitle = 'Contact'
+const pageDescription = `Contact ${PROFILE.name} on WhatsApp (${CONTACT.phoneDisplay}) or by email (${CONTACT.email}).`
 
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Zolt Mercer',
-      description: 'Design engineer based in Austin.',
-      inLanguage: 'en-US'
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
+      '@type': 'ContactPage',
       name: pageTitle,
       description: pageDescription
+    },
+    {
+      '@type': 'Person',
+      name: PROFILE.fullName,
+      jobTitle: PROFILE.title,
+      email: CONTACT.email,
+      telephone: CONTACT.phoneDisplay
     }
   ]
 }
@@ -36,5 +35,4 @@ const schema = {
   <ContactHero client:load />
   <FeaturedWorks caseStudies={caseStudies} layout='vertical' title='Have a look at some of my work' />
   <Services client:visible />
-  <Testimonials client:visible showBorder={false} />
 </Layout>

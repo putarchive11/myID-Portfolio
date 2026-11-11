@@ -9,40 +9,44 @@ import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from '@/
 
 const SERVICES = [
   {
-    title: 'UI & Product Design',
-    image: '/images/services/thumb-01.webp',
-    duration: '1 to 3 weeks',
-    tools: ['Figma', 'Spline', 'Adobe XD'],
+    title: 'Product Packaging Design',
+    image: '/images/putra/service-packaging.webp',
+    highlight: '7 new BPOM-approved products designed',
+    tags: ['Packaging', 'Product label', 'Branding'],
     description:
-      'I design interfaces that are clean, intuitive, and built around your users. From the wireframe to the final pixel-perfect file.'
+      'I design product packaging and labels that look premium on the shelf and carry the information a product needs, such as the Black Garlic premium pouch.'
   },
   {
-    title: 'Design Engineering',
-    image: '/images/services/thumb-02.webp',
-    duration: '2 to 4 weeks',
-    tools: ['React', 'Tailwind', 'Figma'],
-    description: 'I bridge the gap between design and code, turning polished mockups into production-ready interfaces.'
+    title: 'Event & Promotional Posters',
+    image: '/images/putra/service-poster.webp',
+    highlight: 'Umrah packages, seminars and book fair campaigns',
+    tags: ['Event poster', 'Banner', 'Certificate'],
+    description:
+      'I create posters, banners, flyers and certificates for events and promotions, such as umrah package schedules, seminar materials and booth banners.'
   },
   {
-    title: 'Framer Development',
-    image: '/images/services/thumb-03.webp',
-    duration: '1 to 2 weeks',
-    tools: ['Framer', 'CMS', 'SEO'],
-    description: 'I build and launch fast, animated marketing sites in Framer — from first draft to live domain.'
+    title: 'Digital Marketing & E-commerce',
+    image: '/images/putra/service-marketing.webp',
+    highlight: '80 million average sales per month',
+    tags: ['Marketplace', 'Online store', 'After-sales'],
+    description:
+      'I run and grow online stores: product listings, promotional content, seller relationships and after-sales service. Sold more than 1,000 products in one month.'
   },
   {
-    title: 'Design Systems',
-    image: '/images/services/thumb-04.webp',
-    duration: '3 to 6 weeks',
-    tools: ['Figma', 'Tokens', 'Component library'],
-    description: 'I build scalable design systems that keep design and code in sync as your product grows.'
+    title: 'Event Committee & Coordination',
+    image: '/images/putra/service-committee.webp',
+    highlight: 'Islamic Book Fair 2023 · Tifa Tour seminar',
+    tags: ['Planning', 'Weekly meetings', 'Participants'],
+    description:
+      'I help organise office events and seminars so they run smoothly: preparing the marketing campaign, leading weekly meetings and coordinating participants.'
   },
   {
-    title: 'Interaction & Motion Design',
-    image: '/images/services/thumb-05.webp',
-    duration: '1 to 3 weeks',
-    tools: ['Framer', 'GSAP', 'Motion'],
-    description: 'I add the small, purposeful motion details that make an interface feel alive and considered.'
+    title: 'Seminar & Training',
+    image: '/images/putra/service-seminar.webp',
+    highlight: 'Digital marketing for youth organizations',
+    tags: ['Public speaking', 'Digital marketing', 'Workshop'],
+    description:
+      'I present seminars on digital marketing, like the session for youth organizations at posko KKN Citeureup, Bogor.'
   }
 ]
 
@@ -100,7 +104,7 @@ const Services = () => {
     <section id='services' className='border-b py-8 sm:py-16 lg:py-24'>
       <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
         <div className='space-y-2'>
-          <Eyebrow>Services I provide</Eyebrow>
+          <Eyebrow>What I do</Eyebrow>
           <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>I can help you with these things</h2>
         </div>
 
@@ -125,12 +129,12 @@ const Services = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className='mt-2 space-y-4'>
-                    <p className='text-sm font-medium tracking-wide uppercase'>{service.duration}</p>
+                    <p className='text-sm font-medium tracking-wide uppercase'>{service.highlight}</p>
                     <p className='mb-1 flex flex-wrap items-center gap-3 text-sm font-medium tracking-wide uppercase'>
-                      {service.tools.map((tool, toolIndex) => (
+                      {service.tags.map((tool, toolIndex) => (
                         <span key={tool} className='flex items-center gap-2'>
                           {tool}
-                          {toolIndex < service.tools.length - 1 && <span className='text-accent'>✦</span>}
+                          {toolIndex < service.tags.length - 1 && <span className='text-accent'>✦</span>}
                         </span>
                       ))}
                     </p>
@@ -148,7 +152,7 @@ const Services = () => {
             {displayedIndex !== null && (
               <img
                 src={SERVICES[displayedIndex].image}
-                alt='Accordion Thumb'
+                alt={SERVICES[displayedIndex].title}
                 className='h-auto w-full rounded-lg object-cover'
               />
             )}

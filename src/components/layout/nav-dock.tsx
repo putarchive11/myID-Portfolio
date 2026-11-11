@@ -15,7 +15,7 @@ const NAV_ITEMS = [
   { href: '/#about', id: 'about', label: 'About', icon: UserIcon },
   { href: '/#featured-works', id: 'featured-works', label: 'Work', icon: RulerPenIcon },
   { href: '/#experience', id: 'experience', label: 'Experience', icon: ProgrammingIcon },
-  { href: '/#pricing', id: 'pricing', label: 'Pricing', icon: TagPriceIcon },
+  { href: '/#hire-me', id: 'hire-me', label: 'Hire me', icon: TagPriceIcon },
   { href: '/contact', id: 'contact', label: 'Contact', icon: MailIcon }
 ]
 

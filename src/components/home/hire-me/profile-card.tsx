@@ -1,17 +1,20 @@
 import { useRef, useState } from 'react'
 
 import { motion, useScroll, useSpring, useTransform } from 'motion/react'
-import { MapPinIcon } from 'lucide-react'
+import { BadgeCheckIcon } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent } from '@/components/ui/card'
 import AvailabilityBadge from '@/components/shared/availability-badge'
 import { cn } from '@/lib/utils'
 
+import { PROFILE } from '@/consts'
+
+// Figures taken from the portfolio PDF
 const STATS = [
-  { label: 'Total hours', value: '163' },
-  { label: 'Rating', value: '4.82' },
-  { label: 'Total jobs', value: '81' }
+  { label: 'Avg. sales / month', value: '80 jt' },
+  { label: 'Sold in a month', value: '1000+' },
+  { label: 'BPOM products', value: '7' }
 ]
 
 const ProfileCard = ({ className }: { className?: string }) => {
@@ -57,18 +60,20 @@ const ProfileCard = ({ className }: { className?: string }) => {
                 <div className='flex grow flex-col items-center gap-4'>
                   <div className='relative'>
                     <Avatar className='size-30'>
-                      <AvatarImage src='/images/hire-me/profile.webp' alt='Zolt Mercer' />
-                      <AvatarFallback>Z</AvatarFallback>
+                      <AvatarImage src={PROFILE.avatar} alt={PROFILE.name} />
+                      <AvatarFallback>P</AvatarFallback>
                     </Avatar>
                     <span className='absolute -bottom-3 left-[50%] flex size-7.5 -translate-x-1/2 items-center justify-center'>
                       <img src='/images/hire-me/profile-star-icon.webp' alt='Verified' />
                     </span>
                   </div>
                   <div>
-                    <h3 className='text-xl font-semibold lg:text-[36px]'>Zolt Mercer</h3>
+                    <h3 className='text-center text-xl font-semibold lg:text-[28px] lg:leading-tight'>
+                      {PROFILE.firstName} Rayhan
+                    </h3>
                     <p className='text-muted-foreground flex items-center justify-center gap-1 text-base font-medium'>
-                      <MapPinIcon className='fill-muted-foreground text-card size-5' />
-                      Austin, USA
+                      <BadgeCheckIcon className='text-accent size-5' />
+                      {PROFILE.title}
                     </p>
                   </div>
                 </div>
@@ -77,7 +82,7 @@ const ProfileCard = ({ className }: { className?: string }) => {
                   {STATS.map(stat => (
                     <div key={stat.label} className='py-1.5 first:pt-0 last:pb-0'>
                       <p className='text-foreground text-xl font-semibold lg:text-[26px]'>{stat.value}</p>
-                      <p className='text-base'>{stat.label}</p>
+                      <p className='text-sm leading-tight'>{stat.label}</p>
                     </div>
                   ))}
                 </div>
@@ -91,17 +96,15 @@ const ProfileCard = ({ className }: { className?: string }) => {
           >
             <CardContent className='relative flex h-full flex-col justify-between gap-6'>
               <div>
-                <p className='text-xs text-white/60'>Zolt Mercer</p>
-                <h3 className='text-base font-medium'>Verified since April 2019</h3>
+                <p className='text-xs text-white/60'>{PROFILE.fullName}</p>
+                <h3 className='text-base font-medium'>Bachelor of Islamic Education</h3>
               </div>
 
               <div className='flex items-end justify-between gap-3'>
-                <p className='text-base'>
-                  I care about craft, details, and building things people actually enjoy using.
-                </p>
+                <p className='text-base'>Barakallahu fiikum. Hope to work with you.</p>
                 <Avatar className='h-24.5 w-20.5 shrink-0 rounded-[12px]'>
-                  <AvatarImage src='/images/hire-me/profile.webp' alt='Zolt Mercer' className='rounded-[12px]' />
-                  <AvatarFallback>Z</AvatarFallback>
+                  <AvatarImage src={PROFILE.photo} alt={PROFILE.name} className='rounded-[12px] object-cover' />
+                  <AvatarFallback>P</AvatarFallback>
                 </Avatar>
               </div>
             </CardContent>
@@ -115,7 +118,7 @@ const ProfileCard = ({ className }: { className?: string }) => {
         <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Hire me today</p>
 
         <p className='text-muted-foreground text-base'>
-          I take on only a small number of projects at a time, so your work always gets my full focus.
+          Open for creative design, digital marketing and event projects. Reach me on WhatsApp or email.
         </p>
       </div>
     </div>

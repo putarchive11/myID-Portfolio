@@ -15,6 +15,7 @@ import UserCircleIcon from '@/assets/svg/user-circle-icon'
 import RulerPenIcon from '@/assets/svg/ruler-pen-icon'
 
 import { getAllCaseStudies, getCaseStudies } from '@/lib/case-studies'
+import { PROFILE } from '@/consts'
 
 export async function getStaticPaths() {
   const caseStudies = await getAllCaseStudies()
@@ -38,7 +39,7 @@ const heroImageSrc = data.heroImage ?? data.image
 const metaItems = [
   { label: 'Organisation', value: data.organisation, icon: UsersGroupIcon },
   { label: 'Role', value: data.role, icon: UserCircleIcon },
-  { label: 'Duration', value: data.duration, icon: CalendarIcon }
+  { label: 'When', value: data.period ?? data.duration, icon: CalendarIcon }
 ].filter(item => item.value)
 
 const schema = {
@@ -48,8 +49,7 @@ const schema = {
       '@type': 'BlogPosting',
       headline: data.title,
       description: data.description,
-      datePublished: data.publishedAt,
-      author: { '@type': 'Person', name: 'Zolt Mercer' },
+      author: { '@type': 'Person', name: PROFILE.name },
       keywords: data.tools?.join(', '),
       articleSection: data.organisation
     },
@@ -64,7 +64,7 @@ const schema = {
 }
 ---
 
-<Layout title={`Case Study: ${data.title}`} description={data.description} type='article' schema={schema}>
+<Layout title={data.title} description={data.description} type='article' schema={schema}>
   <ReadingProgressPill client:load headings={headings} contentId='case-study-content' />
 
   <section class='mx-auto space-y-8 border-b px-4 pb-8 text-center max-sm:pt-20 sm:px-6 sm:py-24 lg:px-10.5'>
@@ -117,7 +117,7 @@ const schema = {
                 <RulerPenIcon className='text-accent size-8' />
               </div>
               <div>
-                <p class='text-muted-foreground text-xs tracking-wide uppercase'>Tools & Technologies</p>
+                <p class='text-muted-foreground text-xs tracking-wide uppercase'>Scope</p>
                 <div class='mt-1 flex flex-wrap gap-1.5'>
                   {data.tools.map(tool => (
                     <Badge variant='secondary' className='text-foreground bg-(--background-darker) font-normal'>

@@ -22,8 +22,7 @@ const ContactHero = () => {
 
           <ProfileShowcase
             className='order-1 mx-auto max-h-130 w-full lg:order-2'
-            backgroundImageClassName='max-h-93.5 w-full'
-            profileImageClassName='max-w-105'
+            backgroundImageClassName='max-h-93.5'
           />
         </div>
       </div>

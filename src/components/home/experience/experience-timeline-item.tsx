@@ -3,10 +3,10 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 type ExperienceTimelineItemProps = {
-  logo: string
+  initials: string
   company: string
   role: string
-  period: string
+  period?: string
   status?: { text: string; tone: 'positive' | 'accent' }
   stack: string[]
   achievement: string
@@ -14,7 +14,7 @@ type ExperienceTimelineItemProps = {
 }
 
 const ExperienceTimelineItem = ({
-  logo,
+  initials,
   company,
   role,
   period,
@@ -26,8 +26,11 @@ const ExperienceTimelineItem = ({
   return (
     <div className='space-y-4'>
       <div className='mb-6 flex items-center gap-3'>
-        <div className='bg-card flex size-13.5 shrink-0 items-center justify-center rounded-md sm:size-14'>
-          <img src={logo} alt={`${company} logo`} className='size-11.5' />
+        <div
+          className='bg-accent/10 text-accent flex size-13.5 shrink-0 items-center justify-center rounded-md text-base font-semibold sm:size-14'
+          aria-hidden='true'
+        >
+          {initials}
         </div>
         <div>
           <p className='text-muted-foreground'>{company}</p>
@@ -36,22 +39,25 @@ const ExperienceTimelineItem = ({
       </div>
 
       <div className='mb-1.5 space-y-3 text-sm sm:text-base'>
-        <p className='flex items-center gap-2'>
-          <img src='/images/experience/calendar.webp' alt='calendar' className='size-6' />
-          <span className='text-base'>
-            {period}
-            {status && (
-              <span
-                className={cn(
-                  'ml-1 font-medium',
-                  status.tone === 'positive' ? 'text-green-600 dark:text-green-400' : 'text-accent'
-                )}
-              >
-                {status.text}
-              </span>
-            )}
-          </span>
-        </p>
+        {(period || status) && (
+          <p className='flex items-center gap-2'>
+            <img src='/images/experience/calendar.webp' alt='calendar' className='size-6' />
+            <span className='text-base'>
+              {period}
+              {status && (
+                <span
+                  className={cn(
+                    period && 'ml-1',
+                    'font-medium',
+                    status.tone === 'positive' ? 'text-green-600 dark:text-green-400' : 'text-accent'
+                  )}
+                >
+                  {status.text}
+                </span>
+              )}
+            </span>
+          </p>
+        )}
 
         <div className='flex flex-wrap items-center gap-2'>
           <img src='/images/experience/medal.webp' alt='Medal' className='size-6' />

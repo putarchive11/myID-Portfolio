@@ -7,6 +7,7 @@ export type CaseStudyMetadata = {
   organisation?: string
   role?: string
   duration?: string
+  period?: string
   tools?: string[]
   publishedAt?: string
   image?: string

@@ -110,14 +110,6 @@ const schemaData = schema || defaultSchema
 <!-- Sitemap -->
 <link rel='sitemap' href='/sitemap.xml' />
 
-<!-- RSS Feed -->
-<link
-  rel='alternate'
-  type='application/rss+xml'
-  title={`${SITE_METADATA.title.default} RSS Feed`}
-  href={new URL('rss.xml', Astro.site)}
-/>
-
 <!-- Open Graph / Facebook -->
 <meta property='og:type' content={type} />
 <meta property='og:url' content={canonicalURL} />

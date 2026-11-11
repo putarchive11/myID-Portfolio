@@ -5,40 +5,38 @@ import About from '@/components/home/about/about.astro'
 import FeaturedWorks from '@/components/shared/featured-works/featured-works.astro'
 import Experience from '@/components/home/experience/experience.astro'
 import Services from '@/components/shared/services/services'
-import Testimonials from '@/components/shared/testimonials/testimonials'
 import HireMe from '@/components/home/hire-me/hire-me.astro'
-import SelectService from '@/components/home/select-service/select-service.astro'
 
 import { getCaseStudies } from '@/lib/case-studies'
+import { PROFILE, SITE_DESCRIPTION, SITE_TITLE } from '@/consts'
 
 const caseStudies = await getCaseStudies()
 
-const pageTitle = 'Zolt - Portfolio Landing page'
-const pageDescription =
-  'Zolt is a free modern Shadcn UI Portfolio Template built with Astro for designers, developers, freelancers, and agencies to create fast, responsive, and SEO-friendly portfolio websites.'
-const pageKeywords = 'portfolio template, astro template, shadcn ui, design engineer, freelancer portfolio'
+const pageKeywords = 'Putra Rayhan Assidiqi, creative designer, digital marketing, event poster, product packaging'
 
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Zolt Mercer',
-      description: 'Design engineer based in Austin.',
+      name: PROFILE.name,
+      description: SITE_DESCRIPTION,
       inLanguage: 'en-US'
+    },
+    {
+      '@type': 'Person',
+      name: PROFILE.fullName,
+      jobTitle: PROFILE.title
     }
   ]
 }
 ---
 
-<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} keywords={pageKeywords} schema={schema}>
   <Hero />
   <About />
-  <FeaturedWorks caseStudies={caseStudies} />
+  <FeaturedWorks caseStudies={caseStudies} title='Projects and events I have worked on' />
   <Experience />
   <Services client:visible />
-  <Testimonials client:visible />
   <HireMe />
-  <SelectService />
 </Layout>

@@ -1,23 +1,41 @@
 // Site Configuration
-// Centralized configuration for site metadata, SEO, and branding
+// Centralized configuration for site metadata, SEO, branding and personal profile data.
+// Edit the values here to update the name, title and contact details used across the site.
 
-export const SITE_TITLE = 'Putra - Portfolio Landing page'
-export const SITE_DESCRIPTION =
-  'Zolt is a free modern Shadcn UI Portfolio Template built with Astro for designers, developers, freelancers, and agencies to create fast, responsive, and SEO-friendly portfolio websites.'
+export const PROFILE = {
+  name: 'Putra Rayhan Assidiqi',
+  fullName: 'Putra Rayhan Assidiqi S.Pd',
+  firstName: 'Putra',
+  title: 'Creative Designer',
+  summary:
+    'Experienced as an e-commerce leader with average monthly sales of 80 million, organized and managed various office events, ensuring smooth execution and engagement, designed multiple product and promotional banners.',
+  avatar: '/images/putra/avatar.webp',
+  photo: '/images/putra/graduation.webp',
+  portfolioPdf: '/portofolio-putra-rayhan-assidiqi.pdf'
+}
 
-export const GITHUB_URL = 'https://github.com/yourusername/zolt-portfolio'
-export const SITE_URL = 'https://shadcnstudio.com/'
+export const CONTACT = {
+  phoneDisplay: '+62 877 7799 5846',
+  whatsapp: 'https://wa.me/6287777995846',
+  email: 'putranyarayhan@gmail.com'
+}
+
+export const SITE_TITLE = `${PROFILE.name} - ${PROFILE.title} Portfolio`
+export const SITE_DESCRIPTION = `Portfolio of ${PROFILE.fullName}, a creative designer and digital marketer: product packaging, event posters, e-commerce and event committee work.`
+
+export const GITHUB_URL = 'https://github.com/putarchive11/myID-Portfolio'
+export const SITE_URL = '/'
 
 export const SITE_METADATA = {
   title: {
-    template: '%s - Zolt',
-    default: 'Zolt - Portfolio Landing page'
+    template: `%s - ${PROFILE.name}`,
+    default: SITE_TITLE
   },
   description: SITE_DESCRIPTION,
-  keywords: ['portfolio template', 'astro template', 'shadcn ui', 'design engineer', 'freelancer portfolio'],
-  authors: [{ name: 'Zolt Mercer', url: SITE_URL }],
-  creator: 'Zolt Mercer',
-  publisher: 'shadcn Studio',
+  keywords: ['Putra Rayhan Assidiqi', 'creative designer', 'digital marketing', 'portfolio', 'event poster'],
+  authors: [{ name: PROFILE.name, url: SITE_URL }],
+  creator: PROFILE.name,
+  publisher: PROFILE.name,
   robots: {
     index: true,
     follow: true
@@ -38,24 +56,24 @@ export const SITE_METADATA = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Zolt',
-    title: 'Zolt - Portfolio Landing page',
+    siteName: PROFILE.name,
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Zolt - Portfolio Landing page',
+        alt: SITE_TITLE,
         type: 'image/png'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@shadcnstudio',
-    creator: '@shadcnstudio',
-    title: 'Zolt - Portfolio Landing page',
+    site: '',
+    creator: '',
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: ['/images/og-image.png']
   },
@@ -66,32 +84,22 @@ export const SITE_METADATA = {
   }
 }
 
-// Social media links
+// Social / contact links
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/yourusername',
-  linkedin: 'https://linkedin.com/in/yourusername',
-  instagram: 'https://instagram.com/yourusername',
-  twitter: 'https://twitter.com/yourusername'
+  whatsapp: CONTACT.whatsapp,
+  email: `mailto:${CONTACT.email}`
 }
 
-// Company information for structured data
+// Person information for structured data
 export const COMPANY_INFO = {
-  name: 'Zolt Mercer',
-  legalName: 'Zolt Mercer',
+  name: PROFILE.name,
+  legalName: PROFILE.fullName,
   url: SITE_URL,
-  logo: `/images/site-logo.png`,
-  foundingDate: '2024',
-  address: {
-    streetAddress: '',
-    addressLocality: 'Austin',
-    addressRegion: 'TX',
-    postalCode: '',
-    addressCountry: 'US'
-  },
+  logo: PROFILE.avatar,
   contactPoint: {
-    telephone: '',
-    contactType: 'customer support',
-    email: 'hello@zoltmercer.com'
+    telephone: CONTACT.phoneDisplay,
+    contactType: 'personal',
+    email: CONTACT.email
   },
-  sameAs: Object.values(SOCIAL_LINKS)
+  sameAs: [] as string[]
 }

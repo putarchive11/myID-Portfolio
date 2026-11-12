@@ -10,6 +10,8 @@ export const PROFILE = {
   summary:
     'Membangun landing page toko online dan aplikasi web yang sederhana, cepat, dan siap jualan. Berpengalaman memimpin penjualan e-commerce dengan rata-rata omzet 80 juta per bulan, mengelola acara kantor, serta mendesain kemasan produk dan banner promosi.',
   avatar: '/images/putra/avatar.webp',
+  // Foto kecil di kartu yang muncul di atas layar saat halaman di-scroll.
+  scrollAvatar: '/images/putra/avatar-scroll.webp',
   photo: '/images/putra/graduation.webp',
   // Foto di kartu profil halaman Kontak.
   contactPhoto: '/images/putra/contact-photo.webp',

@@ -6,7 +6,7 @@ export const PROFILE = {
   name: 'Putra Rayhan Assidiqi',
   fullName: 'Putra Rayhan Assidiqi S.Pd',
   firstName: 'Putra',
-  title: 'Web Builder & Admin E-commerce',
+  title: 'Web Builder & Designer',
   summary:
     'Membangun landing page toko online dan aplikasi web yang sederhana, cepat, dan siap jualan. Berpengalaman memimpin penjualan e-commerce dengan rata-rata omzet 80 juta per bulan, mengelola acara kantor, serta mendesain kemasan produk dan banner promosi.',
   avatar: '/images/putra/avatar.webp',
@@ -25,7 +25,7 @@ export const CONTACT = {
 }
 
 export const SITE_TITLE = `${PROFILE.name} - Portofolio ${PROFILE.title}`
-export const SITE_DESCRIPTION = `Portofolio ${PROFILE.fullName}, web builder dan admin e-commerce: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.`
+export const SITE_DESCRIPTION = `Portofolio ${PROFILE.fullName}, web builder dan desainer: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.`
 
 export const GITHUB_URL = 'https://github.com/putarchive11/myID-Portfolio'
 export const SITE_URL = 'https://putranyarayhan.my.id/'
@@ -36,7 +36,7 @@ export const SITE_METADATA = {
     default: SITE_TITLE
   },
   description: SITE_DESCRIPTION,
-  keywords: ['Putra Rayhan Assidiqi', 'web builder', 'admin e-commerce', 'landing page', 'portofolio', 'desain kemasan'],
+  keywords: ['Putra Rayhan Assidiqi', 'web builder', 'desainer', 'landing page', 'portofolio', 'desain kemasan'],
   authors: [{ name: PROFILE.name, url: SITE_URL }],
   creator: PROFILE.name,
   publisher: PROFILE.name,

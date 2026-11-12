@@ -10,8 +10,6 @@ export const PROFILE = {
   summary:
     'Membangun landing page toko online dan aplikasi web yang sederhana, cepat, dan siap jualan. Berpengalaman memimpin penjualan e-commerce dengan rata-rata omzet 80 juta per bulan, mengelola acara kantor, serta mendesain kemasan produk dan banner promosi.',
   avatar: '/images/putra/avatar.webp',
-  // Foto kecil di kartu profil yang muncul di atas layar saat halaman di-scroll.
-  toastAvatar: '/images/putra/avatar-toast.webp',
   photo: '/images/putra/graduation.webp',
   portfolioPdf: '/portofolio-putra-rayhan-assidiqi.pdf'
 }

@@ -6,7 +6,7 @@ const ProfileAvailabilityCard = () => {
   return (
     <div className='flex items-center gap-3 py-2 pr-4 pl-2'>
       <Avatar size='lg'>
-        <AvatarImage src={PROFILE.toastAvatar} alt={PROFILE.name} />
+        <AvatarImage src={PROFILE.avatar} alt={PROFILE.name} />
         <AvatarFallback>P</AvatarFallback>
       </Avatar>
 

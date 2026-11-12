@@ -17,7 +17,7 @@ const GreetingWord = () => {
   }, [])
 
   return (
-    <span className='mr-2 inline-grid overflow-hidden align-bottom'>
+    <span className='relative mr-2 inline-grid overflow-hidden align-bottom'>
       {/* Invisible sizers reserve space for the widest greeting so surrounding text doesn't shift */}
       {GREETINGS.map(word => (
         <span key={word} className='invisible col-start-1 row-start-1 whitespace-nowrap' aria-hidden='true'>

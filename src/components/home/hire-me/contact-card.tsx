@@ -8,12 +8,12 @@ import { cn } from '@/lib/utils'
 import { CONTACT, PROFILE } from '@/consts'
 
 const HELP_WITH = [
-  'Website & kanal pribadi',
+  'Website & profil pribadi',
   'Landing page toko online',
-  'Board book kenangan si kecil',
-  'Kemasan & label produk',
-  'Poster acara & promo',
-  'Toko online & marketplace'
+  'Board book kenangan anak',
+  'Desain kemasan & label produk',
+  'Poster acara & materi promosi',
+  'Pengelolaan toko marketplace'
 ]
 
 const ContactCard = ({ className }: { className?: string }) => {
@@ -26,10 +26,10 @@ const ContactCard = ({ className }: { className?: string }) => {
     <Card className={cn('bg-background rounded-2xl border py-6', className)}>
       <CardContent className='space-y-6 px-6'>
         <div className='space-y-2.5'>
-          <p className='text-foreground text-2xl font-medium lg:text-[30px]'>Mari bekerja sama</p>
+          <p className='text-foreground text-2xl font-medium lg:text-[30px]'>Diskusikan kebutuhan Anda</p>
           <p className='text-muted-foreground text-base'>
-            Butuh landing page untuk toko Anda, desain kemasan produk, poster acara, atau bantuan mengelola toko
-            online? Kirim pesan ke saya.
+            Ceritakan kebutuhan Anda, mulai dari landing page toko online, desain kemasan produk, hingga materi promosi
+            acara. Bersama-sama kita rumuskan solusi yang sesuai dengan tujuan dan anggaran Anda.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ const ContactCard = ({ className }: { className?: string }) => {
                 <span className='bg-accent relative flex size-2.5 items-center justify-center overflow-hidden rounded-full transition-all duration-300 group-hover/button:size-6.5'>
                   <ArrowRightIcon className='text-accent-foreground absolute size-4.5 -translate-x-3 opacity-0 transition-all duration-300 group-hover/button:translate-x-0 group-hover/button:opacity-100' />
                 </span>
-                Chat via WhatsApp
+                Hubungi via WhatsApp
               </a>
             }
             nativeButton={false}
@@ -85,7 +85,7 @@ const ContactCard = ({ className }: { className?: string }) => {
             nativeButton={false}
           >
             <FileDownIcon className='size-4' />
-            Portofolio PDF
+            Unduh Portofolio (PDF)
           </Button>
         </div>
       </CardContent>

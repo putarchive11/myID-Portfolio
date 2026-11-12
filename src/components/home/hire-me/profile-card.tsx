@@ -12,9 +12,9 @@ import { PROFILE } from '@/consts'
 
 // Angka diambil dari PDF portofolio
 const STATS = [
-  { label: 'Rata-rata omzet / bulan', value: '80 jt' },
-  { label: 'Terjual sebulan', value: '1000+' },
-  { label: 'Produk BPOM', value: '7' }
+  { label: 'Omzet rata-rata per bulan', value: '80 jt' },
+  { label: 'Produk terjual per bulan', value: '1000+' },
+  { label: 'Produk terdaftar BPOM', value: '7' }
 ]
 
 const ProfileCard = ({ className }: { className?: string }) => {
@@ -101,7 +101,7 @@ const ProfileCard = ({ className }: { className?: string }) => {
               </div>
 
               <div className='flex items-end justify-between gap-3'>
-                <p className='text-base'>Barakallahu fiikum. Semoga bisa bekerja sama.</p>
+                <p className='text-base'>Barakallahu fiikum. Terima kasih atas kepercayaan Anda.</p>
                 <Avatar className='h-24.5 w-20.5 shrink-0 rounded-[12px]'>
                   <AvatarImage src={PROFILE.photo} alt={PROFILE.name} className='rounded-[12px] object-cover' />
                   <AvatarFallback>P</AvatarFallback>
@@ -115,10 +115,11 @@ const ProfileCard = ({ className }: { className?: string }) => {
       <div className='mt-6 space-y-3'>
         <AvailabilityBadge className='h-6.5 gap-1 rounded-full' />
 
-        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Ajak saya bekerja sama</p>
+        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Terbuka untuk proyek baru</p>
 
         <p className='text-muted-foreground text-base'>
-          Terbuka untuk pembuatan landing page, aplikasi web, desain, dan proyek e-commerce. Hubungi saya lewat WhatsApp atau email.
+          Menerima pembuatan landing page dan aplikasi web, desain kemasan serta materi promosi, hingga pengelolaan toko
+          online. Silakan hubungi melalui WhatsApp atau email untuk membicarakan kebutuhan Anda.
         </p>
       </div>
     </div>

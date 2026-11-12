@@ -1,32 +1,38 @@
 ---
 slug: 'aplikasi-kunci-umroh-sendiri'
 title: 'Kunci Umroh Sendiri App'
-description: 'A web app (PWA) guide for independent umrah: checklists, a cost calculator, a worship guide with supplications, and an activation code system for buyers.'
+description: 'A web app (PWA) guide for independent umrah with Kiswah Black and Ihram White themes: a worship guide with fully vowelled supplications and audio, checklists, a cost calculator, qibla direction, and activation codes for buyers.'
 organisation: 'Personal project'
 role: 'Web App Developer'
 period: 'Nov 2026'
 jenis: 'Web App'
+tools: ['React', 'Vite', 'PWA', 'Vercel', 'Upstash Redis', 'Dark & light mode']
 ---
 
 ## The app
 
-Kunci Umroh Sendiri is the companion to the Kunci Umroh Mandiri ebook. It can be installed on a phone's home screen like a regular app and still opens without a signal, which matters once you are in the Holy Land.
-
-## Key features
-
-- **Home:** shortcuts to the tools used most often
-- **Preparation:** document and packing checklists, a timeline from six months before departure to the day before, an itinerary, an umrah cost calculator, a savings calculator, and riyal-to-rupiah conversion
-- **Worship:** the order of the pillars of umrah, guidance on miqat and the intention for ihram, tawaf, sa'i, and tahallul, complete with fully vowelled supplications
-- **Me:** activation status in the buyer's name
+Kunci Umroh Sendiri is the companion to the Kunci Umroh Mandiri ebook. It can be installed on a phone's home screen like a regular app and still opens without a signal, which matters once you are in the Holy Land. All of a user's notes stay on their own device, with no account needed.
 
 <div className='bg-card relative my-16 w-full overflow-hidden rounded-3xl p-1.5 dark:bg-white/10'>
-  <img src='/images/putra/slide-umroh-app.webp' alt='Activation, home, preparation, and worship guide screens of the Kunci Umroh Sendiri app' className='w-full rounded-3xl' />
+  <img src='/images/putra/slide-umroh-app-v2.webp' alt='Activation, home, tawaf guide, Me tab, and light-theme home screens of the Kunci Umroh Sendiri app' className='w-full rounded-3xl' />
 </div>
+
+## What's inside
+
+- **Home:** shortcuts to the most-used tools, a talbiyah card, and WhatsApp contacts for transport, muthawwif (pilgrim guide), and visa services
+- **Preparation:** document and packing checklists, a timeline from six months before departure to the day before, an itinerary, an umrah cost calculator, a savings calculator, riyal-to-rupiah conversion, an expense log, qibla direction, and product recommendations
+- **Worship:** miqat and the intention for ihram, talbiyah, tawaf with a supplication for each circuit, supplications at the Yemeni Corner and Maqam Ibrahim, sa'i with a lap counter, tahallul, the Zamzam supplication, and the supplication for leaving the mosque
+- **Me:** personal notes and supplications, savings progress, expenses, a souvenir list, and display settings
+- **Ebook:** a home for the guide ebook, coming soon
+
+## Vowelled supplications with audio
+
+Every supplication is written with full vowel marks in Uthmani script (the Madinah mushaf style), right to left, together with a Latin transliteration, its meaning, and its source. Qur'anic verses and supplications from Hisnul Muslim can be played right in the app, so pilgrims can listen to how they are recited.
+
+## Two display themes
+
+A labelled button next to the title switches themes. The dark **Kiswah Black** theme uses satin black with gold accents, like the kiswah covering of the Ka'bah, while the light **Ihram White** theme has a clean white feel, like the ihram garment. The chosen theme is saved on the device and applied as soon as the app opens, with no flicker.
 
 ## Activation codes
 
-So that only buyers can use the app, I built an activation code system in the format KUS-XXXX-XXXX. Codes are checked on the server (a Vercel function with an Upstash Redis database), so the list of codes never reaches the browser. Each code works on up to two devices. An admin page lets me create codes, send them to buyers via WhatsApp, reset devices when a buyer changes phones, and revoke codes when a refund is issued.
-
-## Design details
-
-I replaced emoji icons with consistent line icons, used an Islamic star pattern for the background, and set the supplication text with the mushaf form of sukun so it matches what pilgrims read in the Qur'an.
+So that only buyers can use the app, I built an activation code system in the format KUS-XXXX-XXXX. Codes are checked on the server (a Vercel function with an Upstash Redis database), so the list of codes never reaches the browser. Each code works on up to two devices. An admin page lets me create codes, send them to buyers via WhatsApp, reset devices when a buyer changes phones, and revoke codes when a refund is issued. Once activated, the app keeps working without a signal.

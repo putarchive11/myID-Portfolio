@@ -1,16 +1,16 @@
 ---
 slug: 'aplikasi-kunci-umroh-sendiri'
 title: 'Aplikasi Kunci Umroh Sendiri'
-description: 'Aplikasi web (PWA) panduan umroh mandiri: checklist, kalkulator biaya, panduan ibadah dengan doa, dan sistem kode aktivasi untuk pembeli.'
+description: 'Aplikasi web (PWA) panduan umroh mandiri bertema Kiswah Hitam dan Ihram Putih: panduan ibadah dengan doa berharakat dan audio, checklist, kalkulator biaya, arah kiblat, dan kode aktivasi untuk pembeli.'
 organisation: 'Proyek pribadi'
 role: 'Pembuat Aplikasi Web'
 period: 'Nov 2026'
-tools: ['React', 'Vite', 'PWA', 'Vercel', 'Upstash Redis']
+tools: ['React', 'Vite', 'PWA', 'Vercel', 'Upstash Redis', 'Mode gelap & terang']
 publishedAt: '2026-11-09'
-image: '/images/putra/work-umroh-app.webp'
-heroImage: '/images/putra/slide-umroh-app.webp'
+image: '/images/putra/work-umroh-app-v2.webp'
+heroImage: '/images/putra/slide-umroh-app-v2.webp'
 kategori: 'web'
-showcase: '/images/putra/show-umroh-app.webp'
+showcase: '/images/putra/show-umroh-app-v2.webp'
 jenis: 'Aplikasi Web'
 github: 'https://github.com/putarchive11/App-Umroh-Sendiri'
 logo: 'KS'
@@ -18,23 +18,28 @@ logo: 'KS'
 
 ## Aplikasinya
 
-Kunci Umroh Sendiri adalah pendamping ebook Kunci Umroh Mandiri. Aplikasi ini bisa dipasang di layar utama HP seperti aplikasi biasa dan tetap bisa dibuka tanpa sinyal, yang penting saat sudah berada di Tanah Suci.
-
-## Fitur utama
-
-- **Beranda:** jalan pintas ke alat yang paling sering dipakai
-- **Persiapan:** checklist dokumen dan barang bawaan, timeline H-6 bulan sampai H-1, itinerary, kalkulator biaya umroh, kalkulator nabung, dan konversi riyal ke rupiah
-- **Ibadah:** urutan rukun umroh, panduan miqat dan niat ihram, tawaf, sa'i, dan tahallul, lengkap dengan doa berharakat
-- **Saya:** status aktivasi atas nama pembeli
+Kunci Umroh Sendiri adalah pendamping ebook Kunci Umroh Mandiri. Aplikasi ini bisa dipasang di layar utama HP seperti aplikasi biasa dan tetap bisa dibuka tanpa sinyal, yang penting saat sudah berada di Tanah Suci. Semua catatan pengguna tersimpan di perangkat masing-masing, tanpa perlu membuat akun.
 
 <div className='bg-card relative my-16 w-full overflow-hidden rounded-3xl p-1.5 dark:bg-white/10'>
-  <img src='/images/putra/slide-umroh-app.webp' alt='Layar aktivasi, beranda, persiapan, dan panduan ibadah aplikasi Kunci Umroh Sendiri' className='w-full rounded-3xl' />
+  <img src='/images/putra/slide-umroh-app-v2.webp' alt='Layar aktivasi, beranda, panduan tawaf, menu Saya, dan beranda versi terang aplikasi Kunci Umroh Sendiri' className='w-full rounded-3xl' />
 </div>
+
+## Isi aplikasi
+
+- **Beranda:** akses cepat ke alat yang paling sering dipakai, kartu talbiyah, dan kontak layanan transportasi, muthowif, serta visa lewat WhatsApp
+- **Persiapan:** checklist dokumen dan barang bawaan, timeline H-6 bulan sampai H-1, itinerary, kalkulator biaya umroh, kalkulator nabung, konversi riyal ke rupiah, catatan pengeluaran, arah kiblat, dan rekomendasi produk
+- **Ibadah:** miqat dan niat ihram, talbiyah, tawaf dengan doa tiap putaran, doa di Rukun Yamani dan Maqam Ibrahim, sa'i dengan penghitung lintasan, tahallul, doa Zamzam, dan doa keluar masjid
+- **Saya:** catatan dan doa pribadi, progress tabungan, pengeluaran, daftar oleh-oleh, serta pilihan tampilan
+- **Ebook:** tempat ebook panduan, segera hadir
+
+## Doa berharakat dan audio
+
+Setiap doa ditulis lengkap dengan harakat memakai khat Utsman Taha (mushaf Madinah) dari kanan ke kiri, disertai bacaan latin, arti, dan sumbernya. Ayat Al-Qur'an dan doa dari Hisnul Muslim bisa diputar langsung di aplikasi, sehingga jamaah bisa menyimak bacaannya.
+
+## Dua tema tampilan
+
+Ada tombol berlabel di samping judul untuk berganti tema. Mode gelap **Kiswah Hitam** memakai hitam satin dengan aksen emas seperti kiswah Ka'bah, sedangkan mode terang **Ihram Putih** bernuansa putih bersih seperti kain ihram. Pilihan tema tersimpan di perangkat dan langsung terpasang saat aplikasi dibuka, tanpa layar berkedip.
 
 ## Kode aktivasi
 
-Supaya hanya pembeli yang bisa memakai aplikasi, saya membuat sistem kode aktivasi berformat KUS-XXXX-XXXX. Kode diperiksa di server (fungsi Vercel dengan database Upstash Redis), jadi daftar kode tidak pernah sampai ke browser. Satu kode berlaku untuk maksimal dua perangkat. Ada halaman admin untuk membuat kode, mengirimkannya ke pembeli lewat WhatsApp, mereset perangkat saat pembeli ganti HP, dan mencabut kode bila ada pengembalian dana.
-
-## Detail tampilan
-
-Ikon emoji saya ganti dengan ikon garis yang seragam, latar memakai pola bintang islami, dan teks doa memakai bentuk sukun mushaf agar sama dengan yang dibaca jamaah di Al-Qur'an.
+Supaya hanya pembeli yang bisa memakai aplikasi, saya membuat sistem kode aktivasi berformat KUS-XXXX-XXXX. Kode diperiksa di server (fungsi Vercel dengan database Upstash Redis), jadi daftar kode tidak pernah sampai ke browser. Satu kode berlaku untuk maksimal dua perangkat. Ada halaman admin untuk membuat kode, mengirimkannya ke pembeli lewat WhatsApp, mereset perangkat saat pembeli ganti HP, dan mencabut kode bila ada pengembalian dana. Setelah aktif, aplikasi tetap bisa dibuka tanpa sinyal.

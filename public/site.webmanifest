@@ -1,12 +1,12 @@
 {
-  "name": "Zolt - Portfolio Landing Page | Shadcn Studio",
-  "short_name": "Zolt",
-  "description": "Zolt is a Free modern Shadcn UI Portfolio Template built with Next.js for designers, developers, freelancers, and agencies to create fast, responsive, and SEO-friendly portfolio websites.",
+  "name": "Putra Rayhan Assidiqi - Portofolio",
+  "short_name": "PUT Portofolio",
+  "description": "Portofolio Putra Rayhan Assidiqi S.Pd, web builder dan admin e-commerce: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#282423",
   "orientation": "portrait-primary",
   "categories": [
     "productivity",
@@ -17,27 +17,32 @@
     {
       "src": "/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon/favicon-32x32.png",
       "sizes": "32x32",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon/favicon-16x16.png",
       "sizes": "16x16",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "screenshots": [
@@ -50,10 +55,11 @@
   ],
   "shortcuts": [
     {
-      "name": "Home",
-      "short_name": "Home",
-      "description": "Go to homepage",
+      "name": "Beranda",
+      "short_name": "Beranda",
+      "description": "Ke halaman utama",
       "url": "/"
     }
-  ]
+  ],
+  "lang": "id-ID"
 }

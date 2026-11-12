@@ -60,7 +60,7 @@ const ProfileCard = ({ className }: { className?: string }) => {
                 <div className='flex grow flex-col items-center gap-4'>
                   <div className='relative'>
                     <Avatar className='size-30'>
-                      <AvatarImage src={PROFILE.avatar} alt={PROFILE.name} />
+                      <AvatarImage src={PROFILE.scrollAvatar} alt={PROFILE.name} />
                       <AvatarFallback>P</AvatarFallback>
                     </Avatar>
                     <span className='absolute -bottom-3 left-[50%] flex size-7.5 -translate-x-1/2 items-center justify-center'>

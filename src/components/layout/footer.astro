@@ -158,13 +158,10 @@ const year = new Date().getFullYear()
     const email = String(data.get('email') || '').trim()
     const pesan = String(data.get('pesan') || '').trim()
 
-    const en = document.documentElement.dataset.lang === 'en'
     let pesanError = ''
-    if (nama.length < 2) pesanError = en ? 'Please enter your name.' : 'Tulis nama Anda.'
-    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      pesanError = en ? 'That email address doesn’t look right.' : 'Alamat email belum benar.'
-    else if (pesan.length < 10)
-      pesanError = en ? 'Your message needs at least 10 characters.' : 'Pesan minimal 10 karakter.'
+    if (nama.length < 2) pesanError = 'Please enter your name.'
+    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) pesanError = 'That email address doesn’t look right.'
+    else if (pesan.length < 10) pesanError = 'Your message needs at least 10 characters.'
 
     if (pesanError) {
       error.textContent = pesanError
@@ -173,7 +170,7 @@ const year = new Date().getFullYear()
     }
     error.classList.add('hidden')
 
-    const subject = en ? `Message from ${nama} via portfolio` : `Pesan dari ${nama} lewat portofolio`
+    const subject = `Message from ${nama} via portfolio`
     const body = [`Assalamu'alaikum,`, '', pesan, '', `${nama}${email ? ' (' + email + ')' : ''}`].join('\n')
     window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   })

@@ -28,10 +28,9 @@ pnpm build    # production build in dist/
 | Photos and work images | `public/images/putra/` |
 | Downloadable portfolio PDF | `public/portofolio-putra-rayhan-assidiqi.pdf` |
 
-## Dua bahasa (Indonesia & Inggris)
+## Bahasa
 
-Pengunjung bisa mengganti bahasa lewat tombol **EN / ID** di menu bawah (HP) atau menu samping (laptop). Pilihannya tersimpan di browser.
+Website ditampilkan dalam **bahasa Inggris**. Teks ditulis berpasangan, misalnya `<T id='Tentang saya' en='About me' />` atau `{ id: '…', en: '…' }`, dan yang tampil hanya versi `en`. Versi Indonesia disimpan sebagai cadangan di kode.
 
-- **Teks halaman**: ditulis berpasangan, misalnya `<T id='Tentang saya' en='About me' />` (Astro & React) atau objek `{ id: '…', en: '…' }` di daftar data.
-- **Cerita proyek**: versi Indonesia di `src/content/case-studies/`, versi Inggris di `src/content/case-studies-en/` dengan `slug` yang sama. Bila file Inggris belum ada, versi Indonesia yang tampil.
-- Sistemnya ada di `src/lib/i18n.ts`, `src/hooks/use-lang.ts`, dan `src/components/i18n/`.
+- **Cerita proyek**: versi Inggris yang tampil ada di `src/content/case-studies-en/` (slug sama dengan `src/content/case-studies/`). Bila file Inggris belum ada, versi Indonesia yang dipakai.
+- Pengaturannya ada di `src/lib/i18n.ts` dan `src/components/i18n/`.

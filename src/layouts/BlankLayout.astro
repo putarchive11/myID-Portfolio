@@ -23,37 +23,10 @@ const seoProps = Astro.props as Props
 ---
 
 <!doctype html>
-<html lang='id'>
+<html lang='en'>
   <head>
     <HeadSeo {...seoProps} />
     <ClientRouter />
-    <script is:inline>
-      ;(function () {
-        // Terapkan bahasa tersimpan sebelum halaman tampil, supaya tidak berkedip.
-        const readLang = () => {
-          try {
-            const stored = localStorage.getItem('lang')
-            if (stored === 'id' || stored === 'en') return stored
-          } catch (e) {}
-          return 'id'
-        }
-        const applyLang = () => {
-          const lang = readLang()
-          document.documentElement.dataset.lang = lang
-          document.documentElement.lang = lang
-          document.querySelectorAll('[data-i18n-attrs]').forEach(el => {
-            el.dataset.i18nAttrs.split(',').forEach(attr => {
-              const value = el.getAttribute('data-i18n-' + attr + '-' + lang)
-              if (value !== null) el.setAttribute(attr, value)
-            })
-          })
-        }
-        applyLang()
-        // Navigasi antar halaman (ClientRouter) mengganti atribut <html>; terapkan ulang.
-        document.addEventListener('astro:after-swap', applyLang)
-        document.addEventListener('astro:page-load', applyLang)
-      })()
-    </script>
     <script is:inline>
       ;(function () {
         const getTheme = () => {

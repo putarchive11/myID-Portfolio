@@ -1,6 +1,5 @@
 import { Separator } from '@/components/ui/separator'
 import ThemeToggle from '@/components/layout/theme-toggle'
-import LangToggle from '@/components/i18n/lang-toggle'
 import T from '@/components/i18n/t'
 
 import { useLang } from '@/hooks/use-lang'
@@ -66,12 +65,6 @@ const NavDock = ({ pathname }: NavDockProps) => {
             <T id='Mode' en='Theme' />
           </span>
         </ThemeToggle>
-
-        <LangToggle className='text-muted-foreground hover:text-accent hover:bg-accent/10 flex h-8 items-center overflow-hidden rounded-md px-2 transition-colors max-lg:h-7'>
-          <span className='hidden overflow-hidden text-sm whitespace-nowrap transition-all duration-300 ease-out lg:inline-block lg:max-w-0 lg:opacity-0 lg:group-hover:ml-2 lg:group-hover:max-w-24 lg:group-hover:opacity-100'>
-            <T id='English' en='Indonesia' />
-          </span>
-        </LangToggle>
       </div>
     </nav>
   )

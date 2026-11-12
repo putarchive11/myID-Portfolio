@@ -1,7 +1,7 @@
 {
-  "name": "Putra Rayhan Assidiqi - Portofolio",
-  "short_name": "PUT Portofolio",
-  "description": "Portofolio Putra Rayhan Assidiqi S.Pd, web builder dan desainer: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.",
+  "name": "Putra Rayhan Assidiqi - Portfolio",
+  "short_name": "PUT Portfolio",
+  "description": "Portfolio of Putra Rayhan Assidiqi S.Pd, web builder and designer: online store landing pages, web apps, product packaging, event posters, and event committees.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -55,11 +55,11 @@
   ],
   "shortcuts": [
     {
-      "name": "Beranda",
-      "short_name": "Beranda",
-      "description": "Ke halaman utama",
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Go to homepage",
       "url": "/"
     }
   ],
-  "lang": "id-ID"
+  "lang": "en"
 }

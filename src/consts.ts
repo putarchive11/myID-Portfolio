@@ -28,8 +28,8 @@ export const CONTACT = {
   email: 'putranyarayhan@gmail.com'
 }
 
-export const SITE_TITLE = `${PROFILE.name} - Portofolio ${PROFILE.title}`
-export const SITE_DESCRIPTION = `Portofolio ${PROFILE.fullName}, web builder dan desainer: landing page toko online, aplikasi web, kemasan produk, poster acara, dan kepanitiaan.`
+export const SITE_TITLE = `${PROFILE.name} - ${PROFILE.title} Portfolio`
+export const SITE_DESCRIPTION = `Portfolio of ${PROFILE.fullName}, web builder and designer: online store landing pages, web apps, product packaging, event posters, and event committees.`
 
 export const GITHUB_URL = 'https://github.com/putarchive11/myID-Portfolio'
 export const SITE_URL = 'https://putranyarayhan.my.id/'
@@ -40,7 +40,7 @@ export const SITE_METADATA = {
     default: SITE_TITLE
   },
   description: SITE_DESCRIPTION,
-  keywords: ['Putra Rayhan Assidiqi', 'web builder', 'desainer', 'landing page', 'portofolio', 'desain kemasan'],
+  keywords: ['Putra Rayhan Assidiqi', 'web builder', 'designer', 'landing page', 'portfolio', 'packaging design'],
   authors: [{ name: PROFILE.name, url: SITE_URL }],
   creator: PROFILE.name,
   publisher: PROFILE.name,
@@ -48,8 +48,8 @@ export const SITE_METADATA = {
     index: true,
     follow: true
   },
-  language: 'id-ID',
-  locale: 'id_ID',
+  language: 'en-US',
+  locale: 'en_US',
   icons: {
     icon: [
       { url: '/favicon/favicon.ico', sizes: '48x48' },
@@ -63,7 +63,7 @@ export const SITE_METADATA = {
   },
   openGraph: {
     type: 'website',
-    locale: 'id_ID',
+    locale: 'en_US',
     siteName: PROFILE.name,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

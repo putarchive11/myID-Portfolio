@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowUpRightIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
 
 import Eyebrow from '@/components/shared/eyebrow/eyebrow'
+import GlassFolder, { type FolderFile } from '@/components/ui/glass-folder-cards'
+
+import { useTheme } from '@/hooks/use-theme'
 
 import { cn } from '@/lib/utils'
 import type { CaseStudyMetadata } from '@/lib/case-studies'
@@ -15,75 +18,108 @@ type WorkFoldersProps = {
   title?: string
 }
 
-// Posisi foto yang mengintip dari map: tertutup, saat disorot
-const PEEK = [
-  { rest: '-translate-x-[22%] translate-y-[10%] -rotate-[10deg]', hover: 'group-hover/folder:-translate-x-[34%] group-hover/folder:-translate-y-[2%] group-hover/folder:-rotate-[15deg]' },
-  { rest: 'translate-y-[2%]', hover: 'group-hover/folder:-translate-y-[14%]' },
-  { rest: 'translate-x-[22%] translate-y-[10%] rotate-[9deg]', hover: 'group-hover/folder:translate-x-[34%] group-hover/folder:-translate-y-[2%] group-hover/folder:rotate-[14deg]' }
-]
-
 const photosOf = (item: CaseStudyMetadata) => {
   const list = item.galeri && item.galeri.length > 0 ? item.galeri : [item.image, item.heroImage]
 
   return list.filter((src): src is string => Boolean(src))
 }
 
-const Folder = ({ item, onOpen }: { item: CaseStudyMetadata; onOpen: () => void }) => {
+const MAX_FOLDER_WIDTH = 360
+
+// Lebar map kaca mengikuti lebar kolomnya (komponen butuh angka px, bukan persen).
+const useWidth = <T extends HTMLElement>() => {
+  const ref = useRef<T>(null)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+
+    if (!el) return
+
+    const measure = () => setWidth(Math.min(MAX_FOLDER_WIDTH, Math.floor(el.clientWidth)))
+
+    measure()
+
+    const observer = new ResizeObserver(measure)
+
+    observer.observe(el)
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, width }
+}
+
+const Folder = ({
+  item,
+  index,
+  tone,
+  onOpen
+}: {
+  item: CaseStudyMetadata
+  index: number
+  tone: 'light' | 'dark'
+  onOpen: (photoIndex: number) => void
+}) => {
   const photos = photosOf(item)
+  const { ref, width } = useWidth<HTMLDivElement>()
+
+  const files: FolderFile[] = photos.map((src, i) => ({
+    name: `Foto ${i + 1}`,
+    meta: `${i + 1}/${photos.length}`,
+    image: src
+  }))
 
   return (
-    <button
-      type='button'
-      onClick={onOpen}
-      data-cursor='pointer'
-      aria-label={`Buka folder ${item.title}`}
-      className='group/folder ring-border flex h-full w-full flex-col justify-start gap-5 rounded-[24px] bg-(--background-darker) p-5 text-left ring-1 transition-shadow hover:shadow-lg sm:p-6'
-    >
-      <div className='relative aspect-[5/4] w-full'>
-        {/* Bagian belakang map dengan tab */}
-        <div className='absolute inset-x-[7%] top-[16%] bottom-[5%] rounded-2xl bg-[#c79f67] shadow-sm dark:bg-[#8a6a3f]'>
-          <div className='absolute -top-[9%] left-[8%] h-[12%] w-[34%] rounded-t-xl bg-[#c79f67] dark:bg-[#8a6a3f]' />
-        </div>
-
-        {photos.slice(0, 3).map((src, i) => (
-          <div
-            key={src}
-            style={{ zIndex: i + 1 }}
-            className={cn(
-              'absolute top-[8%] left-1/2 -ml-[29%] aspect-[4/3] w-[58%] overflow-hidden rounded-lg border-[3px] border-white bg-white shadow-lg transition-transform duration-500 ease-out',
-              PEEK[i].rest,
-              PEEK[i].hover
-            )}
-          >
-            <img src={src} alt='' loading='lazy' className='size-full object-cover' />
-          </div>
-        ))}
-
-        {/* Bagian depan map */}
-        <div className='absolute inset-x-[4%] bottom-[3%] z-10 h-[50%] origin-bottom transform-[perspective(1200px)_rotateX(-12deg)] rounded-2xl bg-linear-to-b from-[#e7c998] to-[#d8b47c] shadow-[0_-6px_18px_-8px_rgb(0_0_0/0.35)] transition-transform duration-500 group-hover/folder:transform-[perspective(1200px)_rotateX(-30deg)] dark:from-[#b38b55] dark:to-[#9c7746]'>
-          <div className='absolute inset-x-[10%] top-[14%] h-px bg-white/45' />
-          <span className='absolute bottom-[14%] left-[9%] rounded-md bg-white/85 px-2 py-0.5 text-[11px] font-medium text-[#7a5a2c] sm:text-xs'>
-            {photos.length} foto
-          </span>
-        </div>
+    <div className='ring-border flex h-full w-full flex-col gap-5 rounded-[24px] bg-(--background-darker) p-5 ring-1 sm:p-6'>
+      <div ref={ref} className='flex w-full justify-center'>
+        {width > 0 && (
+          <GlassFolder
+            label={item.organisation ?? item.jenis ?? 'Proyek'}
+            meta={`${photos.length} foto`}
+            tone={tone}
+            image={photos[0]}
+            files={files}
+            action='none'
+            width={width}
+            appearDelay={(index % 3) * 140}
+            onFileSelect={(_, photoIndex) => onOpen(photoIndex)}
+          />
+        )}
       </div>
 
-      <div className='space-y-1.5'>
-        <p className='text-muted-foreground text-sm'>{item.organisation ?? item.role}</p>
-        <h3 className='text-foreground text-lg leading-snug font-medium sm:text-xl'>{item.title}</h3>
-      </div>
-    </button>
+      <button
+        type='button'
+        onClick={() => onOpen(0)}
+        data-cursor='pointer'
+        aria-label={`Lihat galeri ${item.title}`}
+        className='group/info space-y-1.5 text-left'
+      >
+        <p className='text-muted-foreground text-sm'>
+          {[item.role, item.period ?? item.duration].filter(Boolean).join(' · ')}
+        </p>
+        <h3 className='text-foreground group-hover/info:text-accent text-lg leading-snug font-medium transition-colors sm:text-xl'>
+          {item.title}
+        </h3>
+        <span className='text-muted-foreground inline-flex items-center gap-1 text-sm'>
+          Lihat galeri
+          <ArrowUpRightIcon className='size-3.5' />
+        </span>
+      </button>
+    </div>
   )
 }
 
 const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan acara', title }: WorkFoldersProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [photoIndex, setPhotoIndex] = useState(0)
+  const { theme } = useTheme()
 
   const open = openIndex === null ? null : caseStudies[openIndex]
   const photos = open ? photosOf(open) : []
 
   const close = useCallback(() => setOpenIndex(null), [])
+
   const step = useCallback(
     (dir: number) => setPhotoIndex(i => (photos.length ? (i + dir + photos.length) % photos.length : 0)),
     [photos.length]
@@ -117,17 +153,18 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
           {title && <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>}
         </div>
 
-        <div className='flex flex-wrap justify-center gap-3 sm:gap-6'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {caseStudies.map((item, index) => (
-            <div key={item.slug} className='w-[calc(50%-0.375rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]'>
             <Folder
+              key={item.slug}
               item={item}
-              onOpen={() => {
-                setPhotoIndex(0)
+              index={index}
+              tone={theme}
+              onOpen={photo => {
+                setPhotoIndex(photo)
                 setOpenIndex(index)
               }}
             />
-            </div>
           ))}
         </div>
       </div>

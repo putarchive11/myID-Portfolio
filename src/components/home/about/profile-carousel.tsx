@@ -4,9 +4,11 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
+// `position` mengatur bagian foto yang tetap terlihat saat kotaknya lebih lebar dari fotonya (misalnya di HP).
 const IMAGES = [
-  '/images/putra/carousel-00.webp',
-  '/images/putra/carousel-casual.webp'
+  { src: '/images/putra/carousel-00.webp' },
+  { src: '/images/putra/carousel-casual.webp' },
+  { src: '/images/putra/carousel-golf.webp', position: '50% 8%' }
 ]
 
 const ProfileCarousel = () => {
@@ -17,11 +19,12 @@ const ProfileCarousel = () => {
 
   return (
     <div className='relative row-span-2 h-130 overflow-hidden rounded-[24px]'>
-      {IMAGES.map((src, i) => (
+      {IMAGES.map(({ src, position }, i) => (
         <img
           key={src}
           src={src}
           alt='Putra Rayhan Assidiqi'
+          style={position ? { objectPosition: position } : undefined}
           className={cn(
             'absolute inset-0 size-full object-cover transition-opacity duration-500',
             i === index ? 'opacity-100' : 'opacity-0'
@@ -30,7 +33,7 @@ const ProfileCarousel = () => {
       ))}
 
       <div className='absolute top-15 right-12 z-20 flex gap-0.5'>
-        {IMAGES.map((src, i) => (
+        {IMAGES.map(({ src }, i) => (
           <span
             key={src}
             className={cn(

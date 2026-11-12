@@ -5,6 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const IMAGES = [
+  '/images/putra/carousel-00.webp',
   '/images/putra/carousel-01.webp',
   '/images/putra/carousel-02.webp',
   '/images/putra/carousel-03.webp',

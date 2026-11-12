@@ -23,7 +23,7 @@ const ProfileShowcase = ({ className, backgroundImageClassName }: ProfileShowcas
     <div className={cn('flex flex-col justify-end overflow-hidden', className)}>
       <div className='relative w-full flex-1 overflow-hidden rounded-3xl'>
         <img
-          src={PROFILE.photo}
+          src={PROFILE.contactPhoto}
           alt={PROFILE.name}
           className={cn('size-full object-cover object-top', backgroundImageClassName)}
         />

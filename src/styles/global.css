@@ -364,3 +364,10 @@
     @apply my-6 rounded-lg;
   }
 }
+
+/* ---- Dua bahasa (lihat src/lib/i18n.ts) ----
+   Setiap teks dirender dalam dua versi; yang tidak aktif disembunyikan di sini. */
+html:not([data-lang='en']) [data-l='en'],
+html[data-lang='en'] [data-l='id'] {
+  display: none !important;
+}

@@ -1,5 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
+import T from '@/components/i18n/t'
+
 import { PROFILE } from '@/consts'
 
 const ProfileAvailabilityCard = () => {
@@ -20,7 +22,7 @@ const ProfileAvailabilityCard = () => {
           <span className='absolute -inset-0.5 animate-[ping_1.8s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-green-600/40 opacity-75 dark:bg-green-400/40' />
           <span className='relative inline-flex size-1.5 rounded-full bg-green-600 dark:bg-green-400' />
         </span>
-        Tersedia
+        <T id='Tersedia' en='Available' />
       </span>
     </div>
   )

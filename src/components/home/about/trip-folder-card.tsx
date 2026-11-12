@@ -2,6 +2,9 @@ import { useState } from 'react'
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import T from '@/components/i18n/t'
+
+import { useLang } from '@/hooks/use-lang'
 
 import { cn } from '@/lib/utils'
 
@@ -30,6 +33,7 @@ const PHOTOS = [
 
 const TripFolderCard = () => {
   const [expanded, setExpanded] = useState(false)
+  const { t } = useLang()
 
   return (
     <Card
@@ -51,7 +55,7 @@ const TripFolderCard = () => {
                 expanded ? photo.expanded : cn(photo.collapsed, photo.hover)
               )}
             >
-              <img src={photo.src} alt='Dokumentasi acara' className='object-cover' />
+              <img src={photo.src} alt={t({ id: 'Dokumentasi acara', en: 'Event photo' })} className='object-cover' />
             </div>
           ))}
 
@@ -62,19 +66,25 @@ const TripFolderCard = () => {
               expanded && 'transform-[perspective(4000px)_rotateX(-45deg)]'
             )}
           >
-            <img src='/images/about-me/folder-front.webp' alt='Sampul map' className='w-40' />
+            <img
+              src='/images/about-me/folder-front.webp'
+              alt={t({ id: 'Sampul map', en: 'Folder cover' })}
+              className='w-40'
+            />
           </div>
         </div>
       </CardContent>
 
       <CardContent>
         <div className='flex items-center justify-center gap-3'>
-          <p className='text-foreground text-xl font-medium text-nowrap xl:text-[26px]'>Acara</p>
+          <p className='text-foreground text-xl font-medium text-nowrap xl:text-[26px]'>
+            <T id='Acara' en='Events' />
+          </p>
           <Badge
             variant='secondary'
             className='text-muted dark:bg-background dark:text-primary/70 h-6.5 rounded-sm bg-white font-light'
           >
-            {PHOTOS.length} foto
+            {PHOTOS.length} <T id='foto' en='photos' />
           </Badge>
         </div>
       </CardContent>

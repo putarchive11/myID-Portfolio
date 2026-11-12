@@ -1,19 +1,21 @@
 import Eyebrow from '@/components/shared/eyebrow/eyebrow'
 import ProfileShowcase from '@/components/shared/profile-showcase'
 import ServiceWizard from '@/components/contact/contact-form/service-wizard'
+import T from '@/components/i18n/t'
 
 const ContactHero = () => {
   return (
     <section className='border-b py-8 sm:py-16 lg:py-24'>
       <div className='mx-auto max-w-245 space-y-10 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
         <div className='max-w-2xl space-y-2'>
-          <Eyebrow>Hubungi saya</Eyebrow>
+          <Eyebrow>
+            <T id='Hubungi saya' en='Get in touch' />
+          </Eyebrow>
           <h1 className='text-2xl font-semibold sm:text-3xl lg:text-[36px]'>
-            <span className='max-md:hidden'>Silakan kirim pesan,</span>{' '}
-            <span className='text-nowrap max-md:hidden'>saya akan membalas secepatnya.</span>
-            <span className='md:hidden'>
-              Silakan kirim pesan, saya akan membalas secepatnya.
-            </span>
+            <T
+              id='Silakan kirim pesan, saya akan membalas secepatnya.'
+              en='Send me a message and I will get back to you as soon as possible.'
+            />
           </h1>
         </div>
 

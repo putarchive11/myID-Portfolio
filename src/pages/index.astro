@@ -38,15 +38,18 @@ const schema = {
   <About />
   <WorkShowcase
     caseStudies={caseStudies.filter(item => item.kategori === 'web')}
-    eyebrow='Karya web'
-    title='Website dan aplikasi yang saya bangun'
+    eyebrow={{ id: 'Karya web', en: 'Web work' }}
+    title={{ id: 'Website dan aplikasi yang saya bangun', en: 'Websites and apps I have built' }}
   />
   <WorkFolders
     client:visible
     caseStudies={caseStudies.filter(item => item.kategori !== 'web')}
     id='karya-desain'
-    eyebrow='Eksekusi Proyek'
-    title='Menghidupkan Ide: Dari Produk Fisik Hingga Gelaran Acara'
+    eyebrow={{ id: 'Eksekusi Proyek', en: 'Project Execution' }}
+    title={{
+      id: 'Menghidupkan Ide: Dari Produk Fisik Hingga Gelaran Acara',
+      en: 'Bringing Ideas to Life: From Physical Products to Live Events'
+    }}
   />
   <Experience />
   <Services client:visible />

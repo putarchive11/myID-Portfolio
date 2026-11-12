@@ -4,24 +4,33 @@ import type { MouseEvent } from 'react'
 import { CheckIcon } from 'lucide-react'
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react'
 
+import { useLang } from '@/hooks/use-lang'
+
 import { cn } from '@/lib/utils'
 
+type Heading = { slug: string; text: string; depth: number }
+
 type ReadingProgressPillProps = {
-  headings: { slug: string; text: string; depth: number }[]
+  headings: Heading[]
+
+  /** Judul bagian versi bahasa Inggris (isi cerita versi Inggris). */
+  headingsEn?: Heading[]
   contentId: string
 }
 
 const HEADER_OFFSET = 150
-const IDLE_LABEL = 'Poin'
+const IDLE_LABEL = { id: 'Poin', en: 'Contents' }
 const HOVER_OPEN_DELAY = 500
 const HOVER_CLOSE_DELAY = 200
 
 const cornerCurveBackground = 'radial-gradient(circle at 100% 100%, transparent 15.5px, var(--card) 16px)'
 
-const ReadingProgressPill = ({ headings, contentId }: ReadingProgressPillProps) => {
+const ReadingProgressPill = ({ headings: headingsId, headingsEn, contentId }: ReadingProgressPillProps) => {
+  const { lang, t } = useLang()
+  const headings = lang === 'en' && headingsEn && headingsEn.length > 0 ? headingsEn : headingsId
   const [percent, setPercent] = useState(0)
   const [activeSlug, setActiveSlug] = useState('')
-  const [activeLabel, setActiveLabel] = useState(IDLE_LABEL)
+  const [activeLabel, setActiveLabel] = useState('')
   const [isOpen, setIsOpen] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,7 +64,7 @@ const ReadingProgressPill = ({ headings, contentId }: ReadingProgressPillProps) 
         .filter((el): el is HTMLElement => Boolean(el))
 
       let currentSlug = ''
-      let currentLabel = IDLE_LABEL
+      let currentLabel = ''
 
       for (let i = headingElements.length - 1; i >= 0; i--) {
         const heading = headingElements[i]
@@ -185,14 +194,14 @@ const ReadingProgressPill = ({ headings, contentId }: ReadingProgressPillProps) 
 
           <AnimatePresence mode='wait'>
             <motion.span
-              key={activeLabel}
+              key={activeLabel || lang}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.2 }}
               className='text-base'
             >
-              {activeLabel}
+              {activeLabel || t(IDLE_LABEL)}
             </motion.span>
           </AnimatePresence>
         </motion.button>

@@ -2,6 +2,8 @@ import { ArrowRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
+import T from '@/components/i18n/t'
+
 import { PROFILE } from '@/consts'
 
 const HeroCta = () => {
@@ -13,7 +15,7 @@ const HeroCta = () => {
         render={<a href={PROFILE.portfolioPdf} target='_blank' rel='noopener noreferrer' />}
         nativeButton={false}
       >
-        Unduh Portofolio
+        <T id='Unduh Portofolio' en='Download Portfolio' />
       </Button>
       <Button
         variant='outline'
@@ -23,7 +25,7 @@ const HeroCta = () => {
             <span className='bg-accent relative flex size-2.5 items-center justify-center overflow-hidden rounded-full transition-all duration-300 group-hover/button:size-6.5'>
               <ArrowRightIcon className='text-accent-foreground absolute size-4.5 -translate-x-3 opacity-0 transition-all duration-300 group-hover/button:translate-x-0 group-hover/button:opacity-100' />
             </span>
-            Hubungi saya
+            <T id='Hubungi saya' en='Get in touch' />
           </a>
         }
         nativeButton={false}

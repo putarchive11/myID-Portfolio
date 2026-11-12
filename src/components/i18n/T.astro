@@ -1,0 +1,17 @@
+---
+
+// Teks dua bahasa untuk komponen Astro. Pakai prop `id`/`en` untuk teks biasa,
+// atau slot bernama `id`/`en` untuk isi yang berisi tag (tautan, tebal, dll).
+interface Props {
+  id?: string
+  en?: string
+}
+
+const { id, en } = Astro.props
+const hasIdSlot = Astro.slots.has('id')
+const hasEnSlot = Astro.slots.has('en')
+---
+
+<span data-l='id'>{hasIdSlot ? <slot name='id' /> : id}</span><span data-l='en'
+  >{hasEnSlot ? <slot name='en' /> : en}</span
+>

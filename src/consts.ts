@@ -9,10 +9,14 @@ export const PROFILE = {
   title: 'Web Builder & Designer',
   summary:
     'Membangun landing page toko online dan aplikasi web yang sederhana, cepat, dan siap jualan. Berpengalaman memimpin penjualan e-commerce dengan rata-rata omzet 80 juta per bulan, mengelola acara kantor, serta mendesain kemasan produk dan banner promosi.',
+  summaryEn:
+    'I build simple, fast, sales-ready online store landing pages and web apps. Experienced in leading e-commerce sales averaging IDR 80 million in monthly revenue, running company events, and designing product packaging and promotional banners.',
   avatar: '/images/putra/avatar.webp',
+
   // Foto kecil di kartu yang muncul di atas layar saat halaman di-scroll.
   scrollAvatar: '/images/putra/avatar-scroll.webp',
   photo: '/images/putra/graduation.webp',
+
   // Foto di kartu profil halaman Kontak.
   contactPhoto: '/images/putra/contact-photo.webp',
   portfolioPdf: '/portofolio-putra-rayhan-assidiqi.pdf'

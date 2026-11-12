@@ -4,17 +4,26 @@ import { ArrowUpRightIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-reac
 import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
 import GithubIcon from '@/assets/svg/github-icon'
 
+import T from '@/components/i18n/T.astro'
+
 import { cn } from '@/lib/utils'
-import type { CaseStudyMetadata } from '@/lib/case-studies'
+import { caseText, caseTools, type CaseStudyMetadata } from '@/lib/case-studies'
+import { i18nAttrs, toBilingual, type Bilingual } from '@/lib/i18n'
 
 interface Props {
   caseStudies: CaseStudyMetadata[]
   id?: string
-  eyebrow?: string
-  title?: string
+  eyebrow?: string | Bilingual
+  title?: string | Bilingual
 }
 
-const { caseStudies, id = 'featured-works', eyebrow = 'Karya web', title = 'Karya web' } = Astro.props
+const {
+  caseStudies,
+  id = 'featured-works',
+  eyebrow = { id: 'Karya web', en: 'Web work' },
+  title = { id: 'Karya web', en: 'Web work' }
+} = Astro.props
+const heading = toBilingual(title)
 const total = String(caseStudies.length).padStart(2, '0')
 ---
 
@@ -22,7 +31,7 @@ const total = String(caseStudies.length).padStart(2, '0')
   <div class='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-12 lg:px-10.5'>
     <div class='space-y-2'>
       <Eyebrow text={eyebrow} />
-      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'><T id={heading.id} en={heading.en} /></h2>
     </div>
 
     <div
@@ -43,7 +52,7 @@ const total = String(caseStudies.length).padStart(2, '0')
               <div class='relative order-1 aspect-16/10 overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[54%]'>
                 <img
                   src={item.showcase ?? item.heroImage ?? item.image}
-                  alt={item.title ?? ''}
+                  {...i18nAttrs({ alt: caseText(item, 'title') })}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   class='size-full object-cover object-top-left lg:brightness-[0.82]'
                 />
@@ -55,23 +64,29 @@ const total = String(caseStudies.length).padStart(2, '0')
               <div class='relative z-10 order-2 flex flex-col justify-center gap-5 px-5 pt-2 pb-20 sm:px-8 lg:order-0 lg:py-14 lg:pr-0 lg:pl-12'>
                 <div class='flex items-center gap-3 text-sm'>
                   {item.jenis && (
-                    <span class='rounded-full border border-white/25 bg-white/10 px-3 py-1 font-medium'>{item.jenis}</span>
+                    <span class='rounded-full border border-white/25 bg-white/10 px-3 py-1 font-medium'>
+                      <T id={caseText(item, 'jenis').id} en={caseText(item, 'jenis').en} />
+                    </span>
                   )}
                   <span class='text-white/50 tabular-nums'>
                     [{String(index + 1).padStart(2, '0')}/{total}]
                   </span>
                 </div>
 
-                <h3 class='max-w-md lg:max-w-lg text-[28px] leading-[1.1] font-bold tracking-tight text-balance sm:text-4xl lg:text-[42px]'>
-                  {item.title}
+                <h3 class='max-w-md text-[28px] leading-[1.1] font-bold tracking-tight text-balance sm:text-4xl lg:max-w-lg lg:text-[42px]'>
+                  <T id={caseText(item, 'title').id} en={caseText(item, 'title').en} />
                 </h3>
 
-                <p class='max-w-lg text-[15px] leading-relaxed text-white/70 sm:text-base'>{item.description}</p>
+                <p class='max-w-lg text-[15px] leading-relaxed text-white/70 sm:text-base'>
+                  <T id={caseText(item, 'description').id} en={caseText(item, 'description').en} />
+                </p>
 
                 {item.tools && item.tools.length > 0 && (
                   <ul class='flex max-w-lg flex-wrap gap-2'>
-                    {item.tools.map(tool => (
-                      <li class='rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium tracking-wider uppercase'>{tool}</li>
+                    {caseTools(item).map(tool => (
+                      <li class='rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium tracking-wider uppercase'>
+                        <T id={tool.id} en={tool.en} />
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -82,20 +97,20 @@ const total = String(caseStudies.length).padStart(2, '0')
                       href={item.liveUrl}
                       target='_blank'
                       rel='noopener noreferrer'
-                      class='inline-flex h-10 items-center gap-1.5 rounded-lg text-sm sm:h-11 sm:gap-2 sm:text-base bg-white px-3.5 font-medium text-[#101413] no-underline transition-transform hover:-translate-y-0.5'
+                      class='inline-flex h-10 items-center gap-1.5 rounded-lg bg-white px-3.5 text-sm font-medium text-[#101413] no-underline transition-transform hover:-translate-y-0.5 sm:h-11 sm:gap-2 sm:text-base'
                     >
-                      Lihat situs
+                      <T id='Lihat situs' en='Visit site' />
                       <ArrowUpRightIcon className='size-4' />
                     </a>
                   ) : null}
                   <a
                     href={`/case-study/${item.slug}`}
                     class={cn(
-                      'inline-flex h-10 items-center gap-1.5 rounded-lg text-sm sm:h-11 sm:gap-2 sm:text-base px-3.5 font-medium no-underline transition-transform hover:-translate-y-0.5',
+                      'inline-flex h-10 items-center gap-1.5 rounded-lg px-3.5 text-sm font-medium no-underline transition-transform hover:-translate-y-0.5 sm:h-11 sm:gap-2 sm:text-base',
                       item.liveUrl ? 'border border-white/30 text-white' : 'bg-white text-[#101413]'
                     )}
                   >
-                    Baca detail
+                    <T id='Baca detail' en='Read details' />
                     <ArrowUpRightIcon className='size-4' />
                   </a>
                   {item.github && (
@@ -103,8 +118,13 @@ const total = String(caseStudies.length).padStart(2, '0')
                       href={item.github}
                       target='_blank'
                       rel='noopener noreferrer'
-                      aria-label={`Kode ${item.title} di GitHub`}
-                      class='inline-flex size-10 items-center justify-center rounded-lg sm:size-11 border border-white/30 text-white transition-transform hover:-translate-y-0.5'
+                      {...i18nAttrs({
+                        'aria-label': {
+                          id: `Kode ${caseText(item, 'title').id} di GitHub`,
+                          en: `${caseText(item, 'title').en} code on GitHub`
+                        }
+                      })}
+                      class='inline-flex size-10 items-center justify-center rounded-lg border border-white/30 text-white transition-transform hover:-translate-y-0.5 sm:size-11'
                     >
                       <GithubIcon className='size-5' />
                     </a>
@@ -123,8 +143,16 @@ const total = String(caseStudies.length).padStart(2, '0')
               <button
                 type='button'
                 data-dot={index}
-                aria-label={`Tampilkan ${item.title}`}
-                class={cn('h-1.5 rounded-full transition-all duration-300', index === 0 ? 'bg-white w-7' : 'bg-white/35 w-1.5')}
+                {...i18nAttrs({
+                  'aria-label': {
+                    id: `Tampilkan ${caseText(item, 'title').id}`,
+                    en: `Show ${caseText(item, 'title').en}`
+                  }
+                })}
+                class={cn(
+                  'h-1.5 rounded-full transition-all duration-300',
+                  index === 0 ? 'w-7 bg-white' : 'w-1.5 bg-white/35'
+                )}
               />
             ))
           }
@@ -132,7 +160,7 @@ const total = String(caseStudies.length).padStart(2, '0')
         <button
           type='button'
           data-prev
-          aria-label='Karya sebelumnya'
+          {...i18nAttrs({ 'aria-label': { id: 'Karya sebelumnya', en: 'Previous work' } })}
           class='flex size-10 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur transition-colors hover:bg-white hover:text-[#101413]'
         >
           <ChevronLeftIcon className='size-5' />
@@ -140,7 +168,7 @@ const total = String(caseStudies.length).padStart(2, '0')
         <button
           type='button'
           data-next
-          aria-label='Karya berikutnya'
+          {...i18nAttrs({ 'aria-label': { id: 'Karya berikutnya', en: 'Next work' } })}
           class='flex size-10 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur transition-colors hover:bg-white hover:text-[#101413]'
         >
           <ChevronRightIcon className='size-5' />

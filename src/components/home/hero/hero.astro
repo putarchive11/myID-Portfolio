@@ -3,6 +3,7 @@ import AvailabilityBadge from '@/components/shared/availability-badge'
 import GreetingWord from '@/components/home/hero/greeting-word'
 import HeroCta from '@/components/home/hero/hero-cta'
 import IdCard from '@/components/ui/id-card'
+import T from '@/components/i18n/T.astro'
 
 import { PROFILE } from '@/consts'
 ---
@@ -13,10 +14,12 @@ import { PROFILE } from '@/consts'
       <div class='space-y-6 lg:max-w-lg'>
         <AvailabilityBadge className='h-6.5 gap-1 rounded-full' />
         <h1 class='mb-2 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-[54px] lg:font-bold'>
-          <GreetingWord client:load /><span class='whitespace-nowrap'>Saya {PROFILE.firstName} 👋🏻</span>
+          <GreetingWord client:load /><span class='whitespace-nowrap'
+            ><T id={`Saya ${PROFILE.firstName}`} en={`I'm ${PROFILE.firstName}`} /> 👋🏻</span
+          >
         </h1>
         <p class='text-muted-foreground text-xl font-medium sm:text-2xl lg:text-3xl'>{PROFILE.title}</p>
-        <p class='mb-8 max-w-2xl text-base'>{PROFILE.summary}</p>
+        <p class='mb-8 max-w-2xl text-base'><T id={PROFILE.summary} en={PROFILE.summaryEn} /></p>
         <HeroCta />
       </div>
     </div>

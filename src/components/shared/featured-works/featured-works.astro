@@ -2,14 +2,17 @@
 import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
 import FeaturedWorkCard from '@/components/shared/featured-works/featured-work-card.astro'
 
+import T from '@/components/i18n/T.astro'
+
 import { cn } from '@/lib/utils'
+import { toBilingual, type Bilingual } from '@/lib/i18n'
 import type { CaseStudyMetadata } from '@/lib/case-studies'
 
 interface Props {
   caseStudies: CaseStudyMetadata[]
   id?: string
-  eyebrow?: string
-  title?: string
+  eyebrow?: string | Bilingual
+  title?: string | Bilingual
   layout?: 'bento' | 'vertical'
   showBorder?: boolean
 }
@@ -17,11 +20,13 @@ interface Props {
 const {
   caseStudies,
   id = 'featured-works',
-  eyebrow = 'Karya pilihan',
-  title = 'Karya yang paling banyak mengajari saya',
+  eyebrow = { id: 'Karya pilihan', en: 'Selected work' },
+  title = { id: 'Karya yang paling banyak mengajari saya', en: 'The work that taught me the most' },
   layout = 'bento',
   showBorder = true
 } = Astro.props
+
+const heading = toBilingual(title)
 
 const CYCLE_SIZE = 3
 
@@ -42,7 +47,7 @@ const cycles = chunkIntoCycles(caseStudies)
   <div class='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
     <div class='space-y-2'>
       <Eyebrow text={eyebrow} />
-      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'><T id={heading.id} en={heading.en} /></h2>
     </div>
 
     {

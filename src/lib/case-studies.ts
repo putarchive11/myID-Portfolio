@@ -1,24 +1,14 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 
-export type CaseStudyMetadata = {
-  slug: string
-  title?: string
-  description?: string
-  organisation?: string
-  role?: string
-  duration?: string
-  period?: string
-  tools?: string[]
-  publishedAt?: string
-  image?: string
-  heroImage?: string
-  logo?: string
-  kategori?: 'web' | 'desain'
-  jenis?: string
-  showcase?: string
-  galeri?: string[]
-  liveUrl?: string
-  github?: string
+import type { CaseStudyMetadata } from '@/lib/case-text'
+
+export { caseText, caseTools } from '@/lib/case-text'
+export type { CaseStudyMetadata, CaseStudyTranslation } from '@/lib/case-text'
+
+export async function getEnglishEntry(slug: string): Promise<CollectionEntry<'case-studies-en'> | null> {
+  const entries = await getCollection('case-studies-en')
+
+  return entries.find(entry => entry.data.slug === slug) ?? null
 }
 
 export async function getAllCaseStudies(): Promise<CollectionEntry<'case-studies'>[]> {
@@ -29,7 +19,19 @@ export async function getAllCaseStudies(): Promise<CollectionEntry<'case-studies
 
 export async function getCaseStudies(limit?: number): Promise<CaseStudyMetadata[]> {
   const caseStudies = await getAllCaseStudies()
-  const metadata = caseStudies.map(entry => entry.data)
+  const english = await getCollection('case-studies-en')
+  const bySlug = new Map(english.map(entry => [entry.data.slug, entry.data]))
+
+  const metadata: CaseStudyMetadata[] = caseStudies.map(entry => {
+    const translation = bySlug.get(entry.data.slug)
+
+    if (!translation) return entry.data
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { slug, ...en } = translation
+
+    return { ...entry.data, en }
+  })
 
   return limit ? metadata.slice(0, limit) : metadata
 }

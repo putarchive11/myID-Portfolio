@@ -4,6 +4,8 @@ import type { ComponentProps } from 'react'
 import SunIcon from '@/assets/svg/sun'
 import MoonIcon from '@/assets/svg/moon'
 
+import T from '@/components/i18n/t'
+
 import { useTheme } from '@/hooks/use-theme'
 import { cn } from '@/lib/utils'
 
@@ -24,7 +26,9 @@ const ThemeToggle = ({ className, children, ...props }: ThemeToggleProps) => {
         <SunIcon className='absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
       </span>
       {children}
-      <span className='sr-only'>Ganti tema</span>
+      <span className='sr-only'>
+        <T id='Ganti tema' en='Toggle theme' />
+      </span>
     </button>
   )
 }

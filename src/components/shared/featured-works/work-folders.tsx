@@ -5,17 +5,20 @@ import { ArrowUpRightIcon, ChevronLeftIcon, ChevronRightIcon, XIcon } from 'luci
 
 import Eyebrow from '@/components/shared/eyebrow/eyebrow'
 import GlassFolder, { type FolderFile } from '@/components/ui/glass-folder-cards'
+import T, { Tx } from '@/components/i18n/t'
 
+import { useLang } from '@/hooks/use-lang'
 import { useTheme } from '@/hooks/use-theme'
 
 import { cn } from '@/lib/utils'
-import type { CaseStudyMetadata } from '@/lib/case-studies'
+import { caseText, caseTools, type CaseStudyMetadata } from '@/lib/case-text'
+import type { Bilingual } from '@/lib/i18n'
 
 type WorkFoldersProps = {
   caseStudies: CaseStudyMetadata[]
   id?: string
-  eyebrow?: string
-  title?: string
+  eyebrow?: string | Bilingual
+  title?: string | Bilingual
 }
 
 const photosOf = (item: CaseStudyMetadata) => {
@@ -62,11 +65,12 @@ const Folder = ({
   onOpen: (photoIndex: number) => void
 }) => {
   const photos = photosOf(item)
+  const { t } = useLang()
+  const title = caseText(item, 'title')
   const { ref, width } = useWidth<HTMLDivElement>()
 
   const files: FolderFile[] = photos.map((src, i) => ({
-    name: `Foto ${i + 1}`,
-    meta: `${i + 1}/${photos.length}`,
+    name: `${i + 1}/${photos.length}`,
     image: src
   }))
 
@@ -75,8 +79,8 @@ const Folder = ({
       <div ref={ref} className='flex w-full justify-center'>
         {width > 0 && (
           <GlassFolder
-            label={item.organisation ?? item.jenis ?? 'Proyek'}
-            meta={`${photos.length} foto`}
+            label={t(caseText(item, 'organisation')) || t({ id: 'Proyek', en: 'Project' })}
+            meta={`${photos.length} ${t({ id: 'foto', en: 'photos' })}`}
             tone={tone}
             image={photos[0]}
             files={files}
@@ -92,17 +96,24 @@ const Folder = ({
         type='button'
         onClick={() => onOpen(0)}
         data-cursor='pointer'
-        aria-label={`Lihat galeri ${item.title}`}
+        aria-label={t({ id: `Lihat galeri ${title.id}`, en: `View gallery: ${title.en}` })}
         className='group/info space-y-1.5 text-left'
       >
         <p className='text-muted-foreground text-sm'>
-          {[item.role, item.period ?? item.duration].filter(Boolean).join(' · ')}
+          {[caseText(item, 'role'), item.period ? caseText(item, 'period') : caseText(item, 'duration')]
+            .filter(text => text.id)
+            .map((text, i) => (
+              <span key={text.id}>
+                {i > 0 && ' · '}
+                <Tx text={text} />
+              </span>
+            ))}
         </p>
         <h3 className='text-foreground group-hover/info:text-accent text-lg leading-snug font-medium transition-colors sm:text-xl'>
-          {item.title}
+          <Tx text={title} />
         </h3>
         <span className='text-muted-foreground inline-flex items-center gap-1 text-sm'>
-          Lihat galeri
+          <T id='Lihat galeri' en='View gallery' />
           <ArrowUpRightIcon className='size-3.5' />
         </span>
       </button>
@@ -110,10 +121,16 @@ const Folder = ({
   )
 }
 
-const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan acara', title }: WorkFoldersProps) => {
+const WorkFolders = ({
+  caseStudies,
+  id = 'karya-desain',
+  eyebrow = { id: 'Desain dan acara', en: 'Design and events' },
+  title
+}: WorkFoldersProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [photoIndex, setPhotoIndex] = useState(0)
   const { theme } = useTheme()
+  const { t } = useLang()
 
   const open = openIndex === null ? null : caseStudies[openIndex]
   const photos = open ? photosOf(open) : []
@@ -149,8 +166,14 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
     <section id={id} className='border-b py-8 sm:py-16 lg:py-24'>
       <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-12 lg:px-10.5'>
         <div className='space-y-2'>
-          <Eyebrow>{eyebrow}</Eyebrow>
-          {title && <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>{title}</h2>}
+          <Eyebrow>
+            <Tx text={eyebrow} />
+          </Eyebrow>
+          {title && (
+            <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+              <Tx text={title} />
+            </h2>
+          )}
         </div>
 
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
@@ -181,7 +204,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
             onClick={close}
             role='dialog'
             aria-modal='true'
-            aria-label={open.title}
+            aria-label={t(caseText(open, 'title'))}
           >
             <motion.div
               initial={{ y: 40, scale: 0.97, opacity: 0 }}
@@ -194,7 +217,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
               <button
                 type='button'
                 onClick={close}
-                aria-label='Tutup'
+                aria-label={t({ id: 'Tutup', en: 'Close' })}
                 className='absolute top-3 right-3 z-20 flex size-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur transition-colors hover:bg-black/70'
               >
                 <XIcon className='size-5' />
@@ -206,7 +229,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
                     <motion.img
                       key={photos[photoIndex]}
                       src={photos[photoIndex]}
-                      alt={`${open.title} — foto ${photoIndex + 1}`}
+                      alt={`${t(caseText(open, 'title'))} — ${t({ id: 'foto', en: 'photo' })} ${photoIndex + 1}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -220,7 +243,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
                       <button
                         type='button'
                         onClick={() => step(-1)}
-                        aria-label='Foto sebelumnya'
+                        aria-label={t({ id: 'Foto sebelumnya', en: 'Previous photo' })}
                         className='absolute left-3 flex size-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur hover:bg-black/70'
                       >
                         <ChevronLeftIcon className='size-5' />
@@ -228,7 +251,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
                       <button
                         type='button'
                         onClick={() => step(1)}
-                        aria-label='Foto berikutnya'
+                        aria-label={t({ id: 'Foto berikutnya', en: 'Next photo' })}
                         className='absolute right-3 flex size-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur hover:bg-black/70'
                       >
                         <ChevronRightIcon className='size-5' />
@@ -247,7 +270,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
                         key={src}
                         type='button'
                         onClick={() => setPhotoIndex(i)}
-                        aria-label={`Foto ${i + 1}`}
+                        aria-label={`${t({ id: 'Foto', en: 'Photo' })} ${i + 1}`}
                         className={cn(
                           'h-14 w-20 shrink-0 overflow-hidden rounded-lg ring-2 transition-opacity',
                           i === photoIndex ? 'ring-accent opacity-100' : 'opacity-60 ring-transparent hover:opacity-100'
@@ -261,18 +284,34 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
 
                 <div className='space-y-4 px-5 py-6 sm:px-7'>
                   <div className='text-muted-foreground flex flex-wrap items-center gap-x-2 gap-y-1 text-sm'>
-                    {open.organisation && <span className='text-foreground font-medium'>{open.organisation}</span>}
-                    {open.role && <span>· {open.role}</span>}
-                    {(open.period ?? open.duration) && <span>· {open.period ?? open.duration}</span>}
+                    {open.organisation && (
+                      <span className='text-foreground font-medium'>
+                        <Tx text={caseText(open, 'organisation')} />
+                      </span>
+                    )}
+                    {open.role && (
+                      <span>
+                        · <Tx text={caseText(open, 'role')} />
+                      </span>
+                    )}
+                    {(open.period ?? open.duration) && (
+                      <span>
+                        · <Tx text={open.period ? caseText(open, 'period') : caseText(open, 'duration')} />
+                      </span>
+                    )}
                   </div>
-                  <h3 className='text-2xl leading-tight font-semibold sm:text-3xl'>{open.title}</h3>
-                  <p className='text-muted-foreground text-base'>{open.description}</p>
+                  <h3 className='text-2xl leading-tight font-semibold sm:text-3xl'>
+                    <Tx text={caseText(open, 'title')} />
+                  </h3>
+                  <p className='text-muted-foreground text-base'>
+                    <Tx text={caseText(open, 'description')} />
+                  </p>
 
                   {open.tools && open.tools.length > 0 && (
                     <div className='flex flex-wrap gap-2'>
-                      {open.tools.map(tool => (
-                        <span key={tool} className='rounded-full bg-(--background-darker) px-3 py-1 text-sm'>
-                          {tool}
+                      {caseTools(open).map(tool => (
+                        <span key={tool.id} className='rounded-full bg-(--background-darker) px-3 py-1 text-sm'>
+                          <Tx text={tool} />
                         </span>
                       ))}
                     </div>
@@ -282,7 +321,7 @@ const WorkFolders = ({ caseStudies, id = 'karya-desain', eyebrow = 'Desain dan a
                     href={`/case-study/${open.slug}`}
                     className='bg-accent text-accent-foreground inline-flex h-11 items-center gap-2 rounded-full px-5 font-medium no-underline transition-opacity hover:opacity-90'
                   >
-                    Baca cerita lengkapnya
+                    <T id='Baca cerita lengkapnya' en='Read the full story' />
                     <ArrowUpRightIcon className='size-4' />
                   </a>
                 </div>

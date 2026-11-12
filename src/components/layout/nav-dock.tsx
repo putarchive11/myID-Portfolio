@@ -1,5 +1,9 @@
 import { Separator } from '@/components/ui/separator'
 import ThemeToggle from '@/components/layout/theme-toggle'
+import LangToggle from '@/components/i18n/lang-toggle'
+import T from '@/components/i18n/t'
+
+import { useLang } from '@/hooks/use-lang'
 
 import { useActiveSection } from '@/hooks/use-active-section'
 
@@ -12,11 +16,11 @@ import TagPriceIcon from '@/assets/svg/tag-price'
 import MailIcon from '@/assets/svg/mail'
 
 const NAV_ITEMS = [
-  { href: '/#about', id: 'about', label: 'Tentang', icon: UserIcon },
-  { href: '/#featured-works', id: 'featured-works', label: 'Karya', icon: RulerPenIcon },
-  { href: '/#experience', id: 'experience', label: 'Pengalaman', icon: ProgrammingIcon },
-  { href: '/#hire-me', id: 'hire-me', label: 'Kerja sama', icon: TagPriceIcon },
-  { href: '/contact', id: 'contact', label: 'Kontak', icon: MailIcon }
+  { href: '/#about', id: 'about', label: { id: 'Tentang', en: 'About' }, icon: UserIcon },
+  { href: '/#featured-works', id: 'featured-works', label: { id: 'Karya', en: 'Work' }, icon: RulerPenIcon },
+  { href: '/#experience', id: 'experience', label: { id: 'Pengalaman', en: 'Experience' }, icon: ProgrammingIcon },
+  { href: '/#hire-me', id: 'hire-me', label: { id: 'Kolaborasi', en: 'Collaborate' }, icon: TagPriceIcon },
+  { href: '/contact', id: 'contact', label: { id: 'Kontak', en: 'Contact' }, icon: MailIcon }
 ]
 
 const SECTION_IDS = NAV_ITEMS.filter(item => item.id !== 'contact').map(item => item.id)
@@ -27,6 +31,7 @@ type NavDockProps = {
 
 const NavDock = ({ pathname }: NavDockProps) => {
   const activeId = useActiveSection(SECTION_IDS)
+  const { t } = useLang()
 
   return (
     <nav className='group fixed bottom-4 left-1/2 z-70 -translate-x-1/2 lg:top-1/2 lg:bottom-auto lg:left-6 lg:translate-x-0 lg:-translate-y-1/2'>
@@ -38,7 +43,7 @@ const NavDock = ({ pathname }: NavDockProps) => {
             <a
               key={item.href}
               href={item.href}
-              aria-label={item.label}
+              aria-label={t(item.label)}
               aria-current={isActive ? 'location' : undefined}
               className={cn(
                 'hover:text-accent hover:bg-accent/10 dark:hover:text-accent flex h-8 items-center overflow-hidden rounded-sm px-2 no-underline transition-colors max-lg:h-7 lg:rounded-md',
@@ -47,7 +52,7 @@ const NavDock = ({ pathname }: NavDockProps) => {
             >
               <item.icon className='size-4 shrink-0' />
               <span className='hidden overflow-hidden text-sm whitespace-nowrap transition-all duration-300 ease-out lg:inline-block lg:max-w-0 lg:opacity-0 lg:group-hover:ml-2 lg:group-hover:max-w-24 lg:group-hover:opacity-100'>
-                {item.label}
+                <T id={item.label.id} en={item.label.en} />
               </span>
             </a>
           )
@@ -58,9 +63,15 @@ const NavDock = ({ pathname }: NavDockProps) => {
 
         <ThemeToggle className='text-muted-foreground hover:text-accent hover:bg-accent/10 flex h-8 items-center overflow-hidden rounded-md px-2 transition-colors max-lg:h-7'>
           <span className='hidden overflow-hidden text-sm whitespace-nowrap transition-all duration-300 ease-out lg:inline-block lg:max-w-0 lg:opacity-0 lg:group-hover:ml-2 lg:group-hover:max-w-24 lg:group-hover:opacity-100'>
-            Mode
+            <T id='Mode' en='Theme' />
           </span>
         </ThemeToggle>
+
+        <LangToggle className='text-muted-foreground hover:text-accent hover:bg-accent/10 flex h-8 items-center overflow-hidden rounded-md px-2 transition-colors max-lg:h-7'>
+          <span className='hidden overflow-hidden text-sm whitespace-nowrap transition-all duration-300 ease-out lg:inline-block lg:max-w-0 lg:opacity-0 lg:group-hover:ml-2 lg:group-hover:max-w-24 lg:group-hover:opacity-100'>
+            <T id='English' en='Indonesia' />
+          </span>
+        </LangToggle>
       </div>
     </nav>
   )

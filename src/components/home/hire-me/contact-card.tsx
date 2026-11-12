@@ -3,17 +3,18 @@ import { ArrowRightIcon, FileDownIcon, MailIcon, PhoneIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import T, { Tx } from '@/components/i18n/t'
 import { cn } from '@/lib/utils'
 
 import { CONTACT, PROFILE } from '@/consts'
 
 const HELP_WITH = [
-  'Website & profil pribadi',
-  'Landing page toko online',
-  'Board book kenangan anak',
-  'Desain kemasan & label produk',
-  'Poster acara & materi promosi',
-  'Pengelolaan toko marketplace'
+  { id: 'Website & profil pribadi', en: 'Personal websites & profiles' },
+  { id: 'Landing page toko online', en: 'Online store landing pages' },
+  { id: 'Board book kenangan anak', en: 'Children’s keepsake board books' },
+  { id: 'Desain kemasan & label produk', en: 'Packaging & product label design' },
+  { id: 'Poster acara & materi promosi', en: 'Event posters & promotional materials' },
+  { id: 'Pengelolaan toko marketplace', en: 'Marketplace store management' }
 ]
 
 const ContactCard = ({ className }: { className?: string }) => {
@@ -26,10 +27,14 @@ const ContactCard = ({ className }: { className?: string }) => {
     <Card className={cn('bg-background rounded-2xl border py-6', className)}>
       <CardContent className='space-y-6 px-6'>
         <div className='space-y-2.5'>
-          <p className='text-foreground text-2xl font-medium lg:text-[30px]'>Diskusikan kebutuhan Anda</p>
+          <p className='text-foreground text-2xl font-medium lg:text-[30px]'>
+            <T id='Diskusikan kebutuhan Anda' en='Tell me what you need' />
+          </p>
           <p className='text-muted-foreground text-base'>
-            Ceritakan kebutuhan Anda, mulai dari landing page toko online, desain kemasan produk, hingga materi promosi
-            acara. Bersama-sama kita rumuskan solusi yang sesuai dengan tujuan dan anggaran Anda.
+            <T
+              id='Ceritakan kebutuhan Anda, mulai dari landing page toko online, desain kemasan produk, hingga materi promosi acara. Bersama-sama kita rumuskan solusi yang sesuai dengan tujuan dan anggaran Anda.'
+              en='Tell me what you need, from an online store landing page to product packaging and event promotion. Together we will shape a solution that fits your goals and budget.'
+            />
           </p>
         </div>
 
@@ -57,9 +62,9 @@ const ContactCard = ({ className }: { className?: string }) => {
 
         <ul className='grid gap-x-4 gap-y-2 sm:grid-cols-2'>
           {HELP_WITH.map(item => (
-            <li key={item} className='text-foreground flex items-center gap-2 text-base font-medium'>
+            <li key={item.id} className='text-foreground flex items-center gap-2 text-base font-medium'>
               <span className='bg-foreground size-1.5 shrink-0 rounded-full' />
-              {item}
+              <Tx text={item} />
             </li>
           ))}
         </ul>
@@ -73,7 +78,7 @@ const ContactCard = ({ className }: { className?: string }) => {
                 <span className='bg-accent relative flex size-2.5 items-center justify-center overflow-hidden rounded-full transition-all duration-300 group-hover/button:size-6.5'>
                   <ArrowRightIcon className='text-accent-foreground absolute size-4.5 -translate-x-3 opacity-0 transition-all duration-300 group-hover/button:translate-x-0 group-hover/button:opacity-100' />
                 </span>
-                Hubungi via WhatsApp
+                <T id='Hubungi via WhatsApp' en='Message on WhatsApp' />
               </a>
             }
             nativeButton={false}
@@ -85,7 +90,7 @@ const ContactCard = ({ className }: { className?: string }) => {
             nativeButton={false}
           >
             <FileDownIcon className='size-4' />
-            Unduh Portofolio (PDF)
+            <T id='Unduh Portofolio (PDF)' en='Download Portfolio (PDF)' />
           </Button>
         </div>
       </CardContent>

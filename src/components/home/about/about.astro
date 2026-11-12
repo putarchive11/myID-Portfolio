@@ -4,13 +4,16 @@ import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
 import ProfileCarousel from '@/components/home/about/profile-carousel'
 import EducationCard from '@/components/home/about/education-card'
 import TripFolderCard from '@/components/home/about/trip-folder-card'
+import T from '@/components/i18n/T.astro'
 ---
 
 <section id='about' class='border-b py-8 sm:py-16 lg:py-24'>
   <div class='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
     <div class='space-y-2'>
-      <Eyebrow text='Tentang saya' />
-      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>Orang di balik karya ini</h2>
+      <Eyebrow text='Tentang saya' en='About me' />
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+        <T id='Orang di balik karya ini' en='The person behind the work' />
+      </h2>
     </div>
 
     <div class='grid grid-cols-1 gap-6 md:grid-cols-[380px_1fr]'>
@@ -24,11 +27,14 @@ import TripFolderCard from '@/components/home/about/trip-folder-card'
         <Card className='ring-border rounded-[24px] bg-(--background-darker) shadow-none lg:col-span-2'>
           <CardContent className='space-y-3 py-2'>
             <p class='text-accent [font-family:var(--font-handwritten)] text-3xl sm:text-4xl'>Barakallahu fiikum</p>
-            <p class='text-foreground text-xl font-medium sm:text-[26px]'>Semoga bisa bekerja sama.</p>
+            <p class='text-foreground text-xl font-medium sm:text-[26px]'>
+              <T id='Semoga bisa bekerja sama.' en='Hope we can work together.' />
+            </p>
             <p class='text-muted-foreground text-base'>
-              Lulusan pendidikan agama Islam yang kini membangun landing page dan aplikasi web, mengelola toko
-              online, mendesain kemasan produk dan banner promosi, serta membantu acara dari poster sampai peserta
-              terakhir.
+              <T
+                id='Lulusan pendidikan agama Islam yang kini membangun landing page dan aplikasi web, mengelola toko online, mendesain kemasan produk dan banner promosi, serta membantu acara dari poster sampai peserta terakhir.'
+                en='An Islamic education graduate who now builds landing pages and web apps, runs online stores, designs product packaging and promotional banners, and helps with events from the first poster to the last attendee.'
+              />
             </p>
           </CardContent>
         </Card>

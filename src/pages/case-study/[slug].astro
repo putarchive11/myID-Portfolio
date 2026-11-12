@@ -8,13 +8,15 @@ import { Badge } from '@/components/ui/badge'
 import FeaturedWorks from '@/components/shared/featured-works/featured-works.astro'
 import ReadingProgressPill from '@/components/case-study/reading-progress-pill'
 import { mdxComponents } from '@/components/case-study/mdx-components'
+import T from '@/components/i18n/T.astro'
 
 import UsersGroupIcon from '@/assets/svg/users-group-icon'
 import CalendarIcon from '@/assets/svg/calendar-icon'
 import UserCircleIcon from '@/assets/svg/user-circle-icon'
 import RulerPenIcon from '@/assets/svg/ruler-pen-icon'
 
-import { getAllCaseStudies, getCaseStudies } from '@/lib/case-studies'
+import { caseText, caseTools, getAllCaseStudies, getCaseStudies, getEnglishEntry } from '@/lib/case-studies'
+import { i18nAttrs } from '@/lib/i18n'
 import { PROFILE } from '@/consts'
 
 export async function getStaticPaths() {
@@ -31,16 +33,30 @@ const { data } = caseStudy
 
 const { Content, headings } = await render(caseStudy)
 
+// Versi bahasa Inggris (src/content/case-studies-en). Jika belum ada, versi Indonesia dipakai.
+const englishEntry = await getEnglishEntry(data.slug)
+const english = englishEntry ? await render(englishEntry) : null
+const ContentEn = english?.Content
+const headingsEn = english?.headings ?? []
+
+const item = { ...data, en: englishEntry?.data }
+const title = caseText(item, 'title')
+const tools = caseTools(item)
+
 const allCaseStudies = await getCaseStudies()
 const otherCaseStudies = allCaseStudies.filter(item => item.slug !== data.slug).slice(0, 2)
 
 const heroImageSrc = data.heroImage ?? data.image
 
 const metaItems = [
-  { label: 'Organisasi', value: data.organisation, icon: UsersGroupIcon },
-  { label: 'Peran', value: data.role, icon: UserCircleIcon },
-  { label: 'Waktu', value: data.period ?? data.duration, icon: CalendarIcon }
-].filter(item => item.value)
+  { label: { id: 'Organisasi', en: 'Organization' }, value: caseText(item, 'organisation'), icon: UsersGroupIcon },
+  { label: { id: 'Peran', en: 'Role' }, value: caseText(item, 'role'), icon: UserCircleIcon },
+  {
+    label: { id: 'Waktu', en: 'Date' },
+    value: data.period ? caseText(item, 'period') : caseText(item, 'duration'),
+    icon: CalendarIcon
+  }
+].filter(meta => meta.value.id)
 
 const schema = {
   '@context': 'https://schema.org',
@@ -65,7 +81,7 @@ const schema = {
 ---
 
 <Layout title={data.title} description={data.description} type='article' schema={schema}>
-  <ReadingProgressPill client:load headings={headings} contentId='case-study-content' />
+  <ReadingProgressPill client:load headings={headings} headingsEn={headingsEn} contentId='case-study-content' />
 
   <section class='mx-auto space-y-8 border-b px-4 pb-8 text-center max-sm:pt-20 sm:px-6 sm:py-24 lg:px-10.5'>
     <a
@@ -79,18 +95,18 @@ const schema = {
       >
         <ChevronLeftIcon className='size-4' />
       </Button>
-      Kembali ke beranda
+      <T id='Kembali ke beranda' en='Back to home' />
     </a>
 
     <h1 class='text-card-foreground text-3xl leading-[1.2] font-semibold sm:text-4xl md:text-5xl lg:text-[64px]'>
-      {data.title}
+      <T id={title.id} en={title.en} />
     </h1>
 
     {
       heroImageSrc && (
         <div class='bg-card relative w-full overflow-hidden rounded-3xl p-2 sm:p-3 dark:bg-white/10'>
           <div class='bg-background relative size-full overflow-hidden rounded-2xl'>
-            <img src={heroImageSrc} alt={data.title ?? ''} class='object-cover' />
+            <img src={heroImageSrc} {...i18nAttrs({ alt: title })} class='object-cover' />
           </div>
         </div>
       )
@@ -99,14 +115,18 @@ const schema = {
     {
       metaItems.length > 0 && (
         <div class='mx-auto grid max-w-xl justify-start gap-4 pt-16 text-left sm:grid-cols-2 sm:justify-center'>
-          {metaItems.map(item => (
+          {metaItems.map(meta => (
             <div class='flex w-fit items-center gap-3'>
               <div class='flex size-13.5 shrink-0 items-center justify-center rounded-xl bg-(--background-darker)'>
-                <item.icon className='text-accent size-8' />
+                <meta.icon className='text-accent size-8' />
               </div>
               <div>
-                <p class='text-muted-foreground text-xs tracking-wide uppercase'>{item.label}</p>
-                <p class='font-medium'>{item.value}</p>
+                <p class='text-muted-foreground text-xs tracking-wide uppercase'>
+                  <T id={meta.label.id} en={meta.label.en} />
+                </p>
+                <p class='font-medium'>
+                  <T id={meta.value.id} en={meta.value.en} />
+                </p>
               </div>
             </div>
           ))}
@@ -117,11 +137,13 @@ const schema = {
                 <RulerPenIcon className='text-accent size-8' />
               </div>
               <div>
-                <p class='text-muted-foreground text-xs tracking-wide uppercase'>Cakupan</p>
+                <p class='text-muted-foreground text-xs tracking-wide uppercase'>
+                  <T id='Cakupan' en='Scope' />
+                </p>
                 <div class='mt-1 flex flex-wrap gap-1.5'>
-                  {data.tools.map(tool => (
+                  {tools.map(tool => (
                     <Badge variant='secondary' className='text-foreground bg-(--background-darker) font-normal'>
-                      {tool}
+                      <T id={tool.id} en={tool.en} />
                     </Badge>
                   ))}
                 </div>
@@ -133,16 +155,29 @@ const schema = {
     }
 
     <div id='case-study-content' class='mt-16 text-left'>
-      <Content components={mdxComponents} />
+      {
+        ContentEn ? (
+          <>
+            <div data-l='id'>
+              <Content components={mdxComponents} />
+            </div>
+            <div data-l='en'>
+              <ContentEn components={mdxComponents} />
+            </div>
+          </>
+        ) : (
+          <Content components={mdxComponents} />
+        )
+      }
     </div>
   </section>
 
   <FeaturedWorks
     caseStudies={otherCaseStudies}
     id='other-works'
-    eyebrow='Karya lain'
+    eyebrow={{ id: 'Karya lain', en: 'More work' }}
     layout='vertical'
-    title='Lihat karya saya yang lain'
+    title={{ id: 'Lihat karya saya yang lain', en: 'See more of my work' }}
     showBorder={false}
   />
 </Layout>

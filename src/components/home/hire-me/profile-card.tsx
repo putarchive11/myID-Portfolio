@@ -6,20 +6,24 @@ import { BadgeCheckIcon } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent } from '@/components/ui/card'
 import AvailabilityBadge from '@/components/shared/availability-badge'
+import T, { Tx } from '@/components/i18n/t'
+
+import { useLang } from '@/hooks/use-lang'
 import { cn } from '@/lib/utils'
 
 import { PROFILE } from '@/consts'
 
 // Angka diambil dari PDF portofolio
 const STATS = [
-  { label: 'Omzet rata-rata per bulan', value: '80 jt' },
-  { label: 'Produk terjual per bulan', value: '1000+' },
-  { label: 'Produk terdaftar BPOM', value: '7' }
+  { label: { id: 'Omzet rata-rata per bulan', en: 'Average monthly revenue' }, value: { id: '80 jt', en: 'IDR 80M' } },
+  { label: { id: 'Produk terjual per bulan', en: 'Products sold per month' }, value: '1000+' },
+  { label: { id: 'Produk terdaftar BPOM', en: 'BPOM-registered products' }, value: '7' }
 ]
 
 const ProfileCard = ({ className }: { className?: string }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isFlipped, setIsFlipped] = useState(false)
+  const { t } = useLang()
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -64,7 +68,10 @@ const ProfileCard = ({ className }: { className?: string }) => {
                       <AvatarFallback>P</AvatarFallback>
                     </Avatar>
                     <span className='absolute -bottom-3 left-[50%] flex size-7.5 -translate-x-1/2 items-center justify-center'>
-                      <img src='/images/hire-me/profile-star-icon.webp' alt='Terverifikasi' />
+                      <img
+                        src='/images/hire-me/profile-star-icon.webp'
+                        alt={t({ id: 'Terverifikasi', en: 'Verified' })}
+                      />
                     </span>
                   </div>
                   <div>
@@ -80,9 +87,13 @@ const ProfileCard = ({ className }: { className?: string }) => {
 
                 <div className='divide-border divide-y text-center'>
                   {STATS.map(stat => (
-                    <div key={stat.label} className='py-1.5 first:pt-0 last:pb-0'>
-                      <p className='text-foreground text-xl font-semibold lg:text-[26px]'>{stat.value}</p>
-                      <p className='text-sm leading-tight'>{stat.label}</p>
+                    <div key={stat.label.id} className='py-1.5 first:pt-0 last:pb-0'>
+                      <p className='text-foreground text-xl font-semibold lg:text-[26px]'>
+                        <Tx text={stat.value} />
+                      </p>
+                      <p className='text-sm leading-tight'>
+                        <Tx text={stat.label} />
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -97,11 +108,18 @@ const ProfileCard = ({ className }: { className?: string }) => {
             <CardContent className='relative flex h-full flex-col justify-between gap-6'>
               <div>
                 <p className='text-xs text-white/60'>{PROFILE.fullName}</p>
-                <h3 className='text-base font-medium'>Sarjana Pendidikan Agama Islam</h3>
+                <h3 className='text-base font-medium'>
+                  <T id='Sarjana Pendidikan Agama Islam' en='Bachelor of Islamic Education' />
+                </h3>
               </div>
 
               <div className='flex items-end justify-between gap-3'>
-                <p className='text-base'>Barakallahu fiikum. Terima kasih atas kepercayaan Anda.</p>
+                <p className='text-base'>
+                  <T
+                    id='Barakallahu fiikum. Terima kasih atas kepercayaan Anda.'
+                    en='Barakallahu fiikum. Thank you for your trust.'
+                  />
+                </p>
                 <Avatar className='h-24.5 w-20.5 shrink-0 rounded-[12px]'>
                   <AvatarImage src={PROFILE.photo} alt={PROFILE.name} className='rounded-[12px] object-cover' />
                   <AvatarFallback>P</AvatarFallback>
@@ -115,11 +133,15 @@ const ProfileCard = ({ className }: { className?: string }) => {
       <div className='mt-6 space-y-3'>
         <AvailabilityBadge className='h-6.5 gap-1 rounded-full' />
 
-        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>Terbuka untuk proyek baru</p>
+        <p className='mb-2 text-xl font-medium sm:text-2xl lg:text-[30px]'>
+          <T id='Terbuka untuk proyek baru' en='Open to new projects' />
+        </p>
 
         <p className='text-muted-foreground text-base'>
-          Menerima pembuatan landing page dan aplikasi web, desain kemasan serta materi promosi, hingga pengelolaan toko
-          online. Silakan hubungi melalui WhatsApp atau email untuk membicarakan kebutuhan Anda.
+          <T
+            id='Menerima pembuatan landing page dan aplikasi web, desain kemasan serta materi promosi, hingga pengelolaan toko online. Silakan hubungi melalui WhatsApp atau email untuk membicarakan kebutuhan Anda.'
+            en='Available for landing pages and web apps, packaging and promotional design, through to online store management. Reach out via WhatsApp or email to discuss what you need.'
+          />
         </p>
       </div>
     </div>

@@ -1,0 +1,32 @@
+---
+slug: 'aplikasi-kunci-umroh-sendiri'
+title: 'Kunci Umroh Sendiri App'
+description: 'A web app (PWA) guide for independent umrah: checklists, a cost calculator, a worship guide with supplications, and an activation code system for buyers.'
+organisation: 'Personal project'
+role: 'Web App Developer'
+period: 'Nov 2026'
+jenis: 'Web App'
+---
+
+## The app
+
+Kunci Umroh Sendiri is the companion to the Kunci Umroh Mandiri ebook. It can be installed on a phone's home screen like a regular app and still opens without a signal, which matters once you are in the Holy Land.
+
+## Key features
+
+- **Home:** shortcuts to the tools used most often
+- **Preparation:** document and packing checklists, a timeline from six months before departure to the day before, an itinerary, an umrah cost calculator, a savings calculator, and riyal-to-rupiah conversion
+- **Worship:** the order of the pillars of umrah, guidance on miqat and the intention for ihram, tawaf, sa'i, and tahallul, complete with fully vowelled supplications
+- **Me:** activation status in the buyer's name
+
+<div className='bg-card relative my-16 w-full overflow-hidden rounded-3xl p-1.5 dark:bg-white/10'>
+  <img src='/images/putra/slide-umroh-app.webp' alt='Activation, home, preparation, and worship guide screens of the Kunci Umroh Sendiri app' className='w-full rounded-3xl' />
+</div>
+
+## Activation codes
+
+So that only buyers can use the app, I built an activation code system in the format KUS-XXXX-XXXX. Codes are checked on the server (a Vercel function with an Upstash Redis database), so the list of codes never reaches the browser. Each code works on up to two devices. An admin page lets me create codes, send them to buyers via WhatsApp, reset devices when a buyer changes phones, and revoke codes when a refund is issued.
+
+## Design details
+
+I replaced emoji icons with consistent line icons, used an Islamic star pattern for the background, and set the supplication text with the mushaf form of sukun so it matches what pilgrims read in the Qur'an.

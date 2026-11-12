@@ -19,11 +19,14 @@ const caseStudies = defineCollection({
     image: z.string().optional(),
     heroImage: z.string().optional(),
     logo: z.string().optional(),
+
     // 'web' = website/aplikasi, 'desain' = desain, kepanitiaan, seminar
     kategori: z.enum(['web', 'desain']).default('desain'),
+
     // Untuk slide karya web
     jenis: z.string().optional(),
     showcase: z.string().optional(),
+
     // Foto-foto untuk folder dan popup galeri
     galeri: z.array(z.string()).default([]),
     liveUrl: z.string().url().optional(),
@@ -31,4 +34,21 @@ const caseStudies = defineCollection({
   })
 })
 
-export const collections = { 'case-studies': caseStudies }
+// Terjemahan bahasa Inggris: satu file per studi kasus dengan `slug` yang sama.
+// Frontmatter berisi teks yang diterjemahkan, isi file adalah cerita versi Inggris.
+const caseStudiesEn = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/case-studies-en' }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string(),
+    organisation: z.string().optional(),
+    role: z.string().optional(),
+    duration: z.string().optional(),
+    period: z.string().optional(),
+    jenis: z.string().optional(),
+    tools: z.array(z.string()).optional()
+  })
+})
+
+export const collections = { 'case-studies': caseStudies, 'case-studies-en': caseStudiesEn }

@@ -1,13 +1,16 @@
 ---
 import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
 import ExperienceTimeline from '@/components/home/experience/experience.tsx'
+import T from '@/components/i18n/T.astro'
 ---
 
 <section id='experience' class='min-w-0 border-b py-8 sm:py-16 lg:py-24'>
   <div class='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
     <div class='space-y-2'>
-      <Eyebrow text='Pengalaman' />
-      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>Tempat saya bekerja dan apa yang saya kerjakan</h2>
+      <Eyebrow text='Pengalaman' en='Experience' />
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+        <T id='Tempat saya bekerja dan apa yang saya kerjakan' en='Where I have worked and what I did there' />
+      </h2>
     </div>
 
     <ExperienceTimeline client:visible />

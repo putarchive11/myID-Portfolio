@@ -5,8 +5,11 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 
+import T from '@/components/i18n/T.astro'
+
 import { cn } from '@/lib/utils'
-import type { CaseStudyMetadata } from '@/lib/case-studies'
+import { caseText, type CaseStudyMetadata } from '@/lib/case-studies'
+import { i18nAttrs } from '@/lib/i18n'
 
 interface Props {
   caseStudy: CaseStudyMetadata
@@ -15,7 +18,12 @@ interface Props {
 }
 
 const { caseStudy, variant = 'grid', imageSide = 'right' } = Astro.props
-const period = caseStudy.period
+const title = caseText(caseStudy, 'title')
+const description = caseText(caseStudy, 'description')
+const organisation = caseText(caseStudy, 'organisation')
+const role = caseText(caseStudy, 'role')
+const duration = caseText(caseStudy, 'duration')
+const period = caseText(caseStudy, 'period')
 const isHero = variant === 'hero'
 ---
 
@@ -28,24 +36,24 @@ const isHero = variant === 'hero'
   >
     <div class={cn('order-2 flex flex-col justify-between gap-3 p-4 sm:p-6', isHero ? 'sm:py-8 md:order-0' : '')}>
       <div class='space-y-3'>
-        <h3 class='line-clamp-2 text-xl font-medium md:text-2xl lg:text-[26px]'>{caseStudy.title}</h3>
+        <h3 class='line-clamp-2 text-xl font-medium md:text-2xl lg:text-[26px]'><T id={title.id} en={title.en} /></h3>
         <div class='flex items-center gap-2.5'>
           {
             caseStudy.duration && (
               <Badge variant='outline' className='rounded-full border-(--background-darker) bg-(--background-darker)'>
-                {caseStudy.duration}
+                <T id={duration.id} en={duration.en} />
               </Badge>
             )
           }
           {
-            period && (
+            period.id && (
               <Badge variant='outline' className='rounded-full border-(--background-darker) bg-(--background-darker)'>
-                {period}
+                <T id={period.id} en={period.en} />
               </Badge>
             )
           }
         </div>
-        <p class='text-muted-foreground line-clamp-3 text-base'>{caseStudy.description}</p>
+        <p class='text-muted-foreground line-clamp-3 text-base'><T id={description.id} en={description.en} /></p>
       </div>
 
       <div class='flex items-center justify-between gap-2 border-t pt-3'>
@@ -58,8 +66,14 @@ const isHero = variant === 'hero'
                 </div>
               )}
               <div class='text-base'>
-                <p class='text-foreground font-medium'>{caseStudy.organisation}</p>
-                {caseStudy.role && <p class='text-muted-foreground'>{caseStudy.role}</p>}
+                <p class='text-foreground font-medium'>
+                  <T id={organisation.id} en={organisation.en} />
+                </p>
+                {role.id && (
+                  <p class='text-muted-foreground'>
+                    <T id={role.id} en={role.en} />
+                  </p>
+                )}
               </div>
             </div>
           )
@@ -80,7 +94,7 @@ const isHero = variant === 'hero'
                 className='absolute inset-0 size-4 -translate-x-5 translate-y-5 -rotate-45 transition-transform duration-400 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0'
               />
             </span>
-            <span class='sr-only'>Baca selengkapnya: {caseStudy.title}</span>
+            <span class='sr-only'><T id={`Baca selengkapnya: ${title.id}`} en={`Read more: ${title.en}`} /></span>
           </Button>
         </div>
       </div>
@@ -91,7 +105,7 @@ const isHero = variant === 'hero'
         <div class={cn('relative order-1 w-full overflow-hidden', isHero ? 'md:order-0 md:max-w-1/2' : '')}>
           <img
             src={caseStudy.image}
-            alt={caseStudy.title ?? ''}
+            {...i18nAttrs({ alt: title })}
             class={cn(
               'w-full object-cover transition-all duration-300 group-hover:scale-105',
               isHero ? 'h-full max-h-81' : 'h-68'

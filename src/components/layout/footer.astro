@@ -6,12 +6,20 @@ import GithubIcon from '@/assets/svg/github-icon'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 
+import T from '@/components/i18n/T.astro'
+
 import { CONTACT, PROFILE } from '@/consts'
+import { i18nAttrs } from '@/lib/i18n'
 
 const socials = [
-  { label: 'WhatsApp', href: CONTACT.whatsapp, icon: PhoneIcon, external: true },
-  { label: 'Email', href: `mailto:${CONTACT.email}`, icon: MailIcon, external: false },
-  { label: 'Portofolio PDF', href: PROFILE.portfolioPdf, icon: FileDownIcon, external: true }
+  { label: { id: 'WhatsApp', en: 'WhatsApp' }, href: CONTACT.whatsapp, icon: PhoneIcon, external: true },
+  { label: { id: 'Email', en: 'Email' }, href: `mailto:${CONTACT.email}`, icon: MailIcon, external: false },
+  {
+    label: { id: 'Portofolio PDF', en: 'Portfolio PDF' },
+    href: PROFILE.portfolioPdf,
+    icon: FileDownIcon,
+    external: true
+  }
 ]
 
 const connect = [
@@ -28,9 +36,12 @@ const year = new Date().getFullYear()
     <section id='terhubung' class='grid gap-10 px-4 pt-12 sm:px-6 md:grid-cols-[1fr_1.2fr] lg:px-10.5 lg:pt-16'>
       <div class='space-y-4'>
         <img src={PROFILE.scrollAvatar} alt={PROFILE.name} class='size-14 rounded-2xl object-cover' />
-        <h2 class='text-2xl font-semibold sm:text-3xl'>Mari terhubung</h2>
+        <h2 class='text-2xl font-semibold sm:text-3xl'><T id='Mari terhubung' en='Let’s connect' /></h2>
         <p class='text-muted-foreground max-w-sm text-base'>
-          Ingin bekerja sama, membangun sesuatu bersama, atau sekadar bertanya? Kotak masuk saya selalu terbuka.
+          <T
+            id='Ingin bekerja sama, membangun sesuatu bersama, atau sekadar bertanya? Kotak masuk saya selalu terbuka.'
+            en='Want to work together, build something, or just ask a question? My inbox is always open.'
+          />
         </p>
         <p class='text-sm'>
           <a href={`mailto:${CONTACT.email}`} class='text-accent font-medium'>{CONTACT.email}</a>
@@ -57,34 +68,45 @@ const year = new Date().getFullYear()
           name='nama'
           required
           minlength='2'
-          placeholder='Nama Anda'
-          aria-label='Nama Anda'
-          class='bg-card border-border h-12 w-full rounded-xl border px-4 outline-none focus:border-accent'
+          {...i18nAttrs({
+            placeholder: { id: 'Nama Anda', en: 'Your name' },
+            'aria-label': { id: 'Nama Anda', en: 'Your name' }
+          })}
+          class='bg-card border-border focus:border-accent h-12 w-full rounded-xl border px-4 outline-none'
         />
         <input
           name='email'
           type='email'
-          placeholder='Email Anda (agar bisa saya balas)'
-          aria-label='Email Anda'
-          class='bg-card border-border h-12 w-full rounded-xl border px-4 outline-none focus:border-accent'
+          {...i18nAttrs({
+            placeholder: { id: 'Email Anda (agar bisa saya balas)', en: 'Your email (so I can reply)' },
+            'aria-label': { id: 'Email Anda', en: 'Your email' }
+          })}
+          class='bg-card border-border focus:border-accent h-12 w-full rounded-xl border px-4 outline-none'
         />
         <textarea
           name='pesan'
           required
           minlength='10'
           rows='5'
-          placeholder='Tulis pesan Anda'
-          aria-label='Pesan'
-          class='bg-card border-border w-full rounded-xl border px-4 py-3 outline-none focus:border-accent'></textarea>
+          {...i18nAttrs({
+            placeholder: { id: 'Tulis pesan Anda', en: 'Write your message' },
+            'aria-label': { id: 'Pesan', en: 'Message' }
+          })}
+          class='bg-card border-border focus:border-accent w-full rounded-xl border px-4 py-3 outline-none'></textarea>
         <p data-email-error class='hidden text-sm text-red-600'></p>
         <button
           type='submit'
           class='bg-foreground text-background inline-flex h-12 items-center gap-2 rounded-xl px-5 font-medium transition-opacity hover:opacity-90'
         >
           <SendIcon className='size-4' />
-          Kirim lewat email
+          <T id='Kirim lewat email' en='Send via email' />
         </button>
-        <p class='text-muted-foreground text-xs'>Tombol ini membuka aplikasi email Anda dengan pesan yang sudah terisi.</p>
+        <p class='text-muted-foreground text-xs'>
+          <T
+            id='Tombol ini membuka aplikasi email Anda dengan pesan yang sudah terisi.'
+            en='This button opens your email app with the message already filled in.'
+          />
+        </p>
       </form>
     </section>
 
@@ -97,7 +119,7 @@ const year = new Date().getFullYear()
               href={social.href}
               target={social.external ? '_blank' : undefined}
               rel={social.external ? 'noopener noreferrer' : undefined}
-              aria-label={social.label}
+              {...i18nAttrs({ 'aria-label': social.label })}
               class={buttonVariants({
                 variant: 'outline',
                 size: 'icon',
@@ -113,9 +135,9 @@ const year = new Date().getFullYear()
     </div>
 
     <div class='mb-8 flex items-center justify-center gap-5 text-center max-lg:hidden xl:ml-8'>
-      <p class='text-muted-foreground'>Terima kasih sudah berkunjung</p>
-      <img src='/images/footer/tree-seal.webp' alt='Segel' class='size-25' />
-      <p class='text-muted-foreground'>Mari berkarya bersama</p>
+      <p class='text-muted-foreground'><T id='Terima kasih sudah berkunjung' en='Thanks for stopping by' /></p>
+      <img src='/images/footer/tree-seal.webp' {...i18nAttrs({ alt: { id: 'Segel', en: 'Seal' } })} class='size-25' />
+      <p class='text-muted-foreground'><T id='Mari berkarya bersama' en='Let’s create together' /></p>
     </div>
 
     <div class='space-y-1 text-center'>
@@ -136,10 +158,13 @@ const year = new Date().getFullYear()
     const email = String(data.get('email') || '').trim()
     const pesan = String(data.get('pesan') || '').trim()
 
+    const en = document.documentElement.dataset.lang === 'en'
     let pesanError = ''
-    if (nama.length < 2) pesanError = 'Tulis nama Anda.'
-    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) pesanError = 'Alamat email belum benar.'
-    else if (pesan.length < 10) pesanError = 'Pesan minimal 10 karakter.'
+    if (nama.length < 2) pesanError = en ? 'Please enter your name.' : 'Tulis nama Anda.'
+    else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      pesanError = en ? 'That email address doesn’t look right.' : 'Alamat email belum benar.'
+    else if (pesan.length < 10)
+      pesanError = en ? 'Your message needs at least 10 characters.' : 'Pesan minimal 10 karakter.'
 
     if (pesanError) {
       error.textContent = pesanError
@@ -148,7 +173,7 @@ const year = new Date().getFullYear()
     }
     error.classList.add('hidden')
 
-    const subject = `Pesan dari ${nama} lewat portofolio`
+    const subject = en ? `Message from ${nama} via portfolio` : `Pesan dari ${nama} lewat portofolio`
     const body = [`Assalamu'alaikum,`, '', pesan, '', `${nama}${email ? ' (' + email + ')' : ''}`].join('\n')
     window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   })

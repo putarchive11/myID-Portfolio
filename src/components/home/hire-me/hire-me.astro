@@ -2,13 +2,16 @@
 import Eyebrow from '@/components/shared/eyebrow/eyebrow.astro'
 import ProfileCard from '@/components/home/hire-me/profile-card'
 import ContactCard from '@/components/home/hire-me/contact-card'
+import T from '@/components/i18n/T.astro'
 ---
 
 <section id='hire-me' class='border-b py-8 sm:py-16 lg:py-24'>
   <div class='mx-auto max-w-245 space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
     <div class='space-y-4'>
-      <Eyebrow text='Kolaborasi' />
-      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>Punya rencana proyek? Mari wujudkan bersama</h2>
+      <Eyebrow text='Kolaborasi' en='Collaboration' />
+      <h2 class='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+        <T id='Punya rencana proyek? Mari wujudkan bersama' en='Have a project in mind? Let’s bring it to life' />
+      </h2>
     </div>
 
     <div class='grid grid-cols-1 gap-6 md:grid-cols-[240px_1fr] lg:grid-cols-[334px_1fr]'>

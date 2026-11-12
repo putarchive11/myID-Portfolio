@@ -6,39 +6,60 @@ import { MinusIcon, PlusIcon } from 'lucide-react'
 
 import Eyebrow from '@/components/shared/eyebrow/eyebrow'
 import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from '@/components/ui/accordion'
+import T, { Tx, textOf } from '@/components/i18n/t'
+
+import { useLang } from '@/hooks/use-lang'
 
 const SERVICES = [
   {
-    title: 'Desain Kemasan Produk',
+    key: 'packaging',
+    title: { id: 'Desain Kemasan Produk', en: 'Product Packaging Design' },
     image: '/images/putra/service-packaging.webp',
-    highlight: '7 produk baru ber-BPOM sudah didesain',
-    tags: ['Kemasan', 'Label produk', 'Branding'],
-    description:
-      'Saya mendesain kemasan dan label produk yang tampil premium di rak dan memuat informasi yang dibutuhkan produk, seperti pouch premium Black Garlic.'
+    highlight: { id: '7 produk baru ber-BPOM sudah didesain', en: '7 new BPOM-registered products designed' },
+    tags: [{ id: 'Kemasan', en: 'Packaging' }, { id: 'Label produk', en: 'Product labels' }, 'Branding'],
+    description: {
+      id: 'Saya mendesain kemasan dan label produk yang tampil premium di rak dan memuat informasi yang dibutuhkan produk, seperti pouch premium Black Garlic.',
+      en: 'I design packaging and product labels that look premium on the shelf and carry all the information a product needs, such as the premium Black Garlic pouch.'
+    }
   },
   {
-    title: 'Poster Acara & Promosi',
+    key: 'poster',
+    title: { id: 'Poster Acara & Promosi', en: 'Event & Promotional Posters' },
     image: '/images/putra/service-poster.webp',
-    highlight: 'Paket umrah, seminar, dan kampanye pameran buku',
-    tags: ['Poster acara', 'Banner', 'Sertifikat'],
-    description:
-      'Saya membuat poster, banner, flyer, dan sertifikat untuk acara dan promosi, seperti jadwal paket umrah, materi seminar, dan banner booth.'
+    highlight: {
+      id: 'Paket umrah, seminar, dan kampanye pameran buku',
+      en: 'Umrah packages, seminars, and book fair campaigns'
+    },
+    tags: [{ id: 'Poster acara', en: 'Event posters' }, 'Banner', { id: 'Sertifikat', en: 'Certificates' }],
+    description: {
+      id: 'Saya membuat poster, banner, flyer, dan sertifikat untuk acara dan promosi, seperti jadwal paket umrah, materi seminar, dan banner booth.',
+      en: 'I create posters, banners, flyers, and certificates for events and promotions, such as umrah package schedules, seminar materials, and booth banners.'
+    }
   },
   {
+    key: 'marketing',
     title: 'Digital Marketing & E-commerce',
     image: '/images/putra/service-marketing.webp',
-    highlight: 'Rata-rata omzet 80 juta per bulan',
-    tags: ['Marketplace', 'Toko online', 'Purnajual'],
-    description:
-      'Saya mengelola dan mengembangkan toko online: listing produk, konten promosi, relasi seller, dan layanan purnajual. Pernah menjual lebih dari 1.000 produk dalam sebulan.'
+    highlight: { id: 'Rata-rata omzet 80 juta per bulan', en: 'Average revenue of IDR 80 million per month' },
+    tags: ['Marketplace', { id: 'Toko online', en: 'Online stores' }, { id: 'Purnajual', en: 'After-sales' }],
+    description: {
+      id: 'Saya mengelola dan mengembangkan toko online: listing produk, konten promosi, relasi seller, dan layanan purnajual. Pernah menjual lebih dari 1.000 produk dalam sebulan.',
+      en: 'I manage and grow online stores: product listings, promotional content, seller relations, and after-sales service. I have sold more than 1,000 products in a single month.'
+    }
   },
   {
-    title: 'Pembuatan Website & Kanal Pribadi',
+    key: 'website',
+    title: { id: 'Pembuatan Website & Kanal Pribadi', en: 'Websites & Personal Channels' },
     image: '/images/putra/service-website.webp',
-    highlight: 'Landing page toko, portofolio, dan aplikasi web',
-    tags: ['Landing page', 'Website pribadi', 'Domain & hosting'],
-    description:
-      'Saya membuat landing page toko online, website portofolio, dan kanal pribadi yang cepat, rapi di HP, dan langsung tersambung ke WhatsApp, lengkap sampai domain dan online.'
+    highlight: {
+      id: 'Landing page toko, portofolio, dan aplikasi web',
+      en: 'Store landing pages, portfolios, and web apps'
+    },
+    tags: ['Landing page', { id: 'Website pribadi', en: 'Personal website' }, 'Domain & hosting'],
+    description: {
+      id: 'Saya membuat landing page toko online, website portofolio, dan kanal pribadi yang cepat, rapi di HP, dan langsung tersambung ke WhatsApp, lengkap sampai domain dan online.',
+      en: 'I build online store landing pages, portfolio websites, and personal channels that are fast, look great on mobile, and connect straight to WhatsApp, all the way to a live domain.'
+    }
   }
 ]
 
@@ -46,6 +67,7 @@ const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [displayedIndex, setDisplayedIndex] = useState<number | null>(null)
+  const { lang } = useLang()
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -96,8 +118,12 @@ const Services = () => {
     <section id='services' className='border-b py-8 sm:py-16 lg:py-24'>
       <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-10.5'>
         <div className='space-y-2'>
-          <Eyebrow>Layanan saya</Eyebrow>
-          <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>Hal-hal yang bisa saya bantu</h2>
+          <Eyebrow>
+            <T id='Layanan saya' en='My services' />
+          </Eyebrow>
+          <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+            <T id='Hal-hal yang bisa saya bantu' en='What I can help you with' />
+          </h2>
         </div>
 
         <div
@@ -109,10 +135,10 @@ const Services = () => {
         >
           <Accordion className='divide-y'>
             {SERVICES.map((service, index) => (
-              <AccordionItem key={service.title} value={index} onMouseEnter={() => handleServiceMouseEnter(index)}>
+              <AccordionItem key={service.key} value={index} onMouseEnter={() => handleServiceMouseEnter(index)}>
                 <AccordionTrigger className='text-primary items-center border-0 py-4 text-lg hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden sm:text-xl lg:text-[26px]'>
                   <span>
-                    {index + 1}. {service.title}
+                    {index + 1}. <Tx text={service.title} />
                   </span>
                   <span className='bg-card relative flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-full'>
                     <PlusIcon className='text-accent size-4 rotate-0 opacity-100 transition-all duration-300 group-aria-expanded/accordion-trigger:rotate-90 group-aria-expanded/accordion-trigger:opacity-0' />
@@ -121,16 +147,20 @@ const Services = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className='mt-2 space-y-4'>
-                    <p className='text-sm font-medium tracking-wide uppercase'>{service.highlight}</p>
+                    <p className='text-sm font-medium tracking-wide uppercase'>
+                      <Tx text={service.highlight} />
+                    </p>
                     <p className='mb-1 flex flex-wrap items-center gap-3 text-sm font-medium tracking-wide uppercase'>
                       {service.tags.map((tool, toolIndex) => (
-                        <span key={tool} className='flex items-center gap-2'>
-                          {tool}
+                        <span key={textOf(tool, 'id')} className='flex items-center gap-2'>
+                          <Tx text={tool} />
                           {toolIndex < service.tags.length - 1 && <span className='text-accent'>✦</span>}
                         </span>
                       ))}
                     </p>
-                    <p className='text-muted-foreground text-base'>{service.description}</p>
+                    <p className='text-muted-foreground text-base'>
+                      <Tx text={service.description} />
+                    </p>
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -144,7 +174,7 @@ const Services = () => {
             {displayedIndex !== null && (
               <img
                 src={SERVICES[displayedIndex].image}
-                alt={SERVICES[displayedIndex].title}
+                alt={textOf(SERVICES[displayedIndex].title, lang)}
                 className='h-auto w-full rounded-lg object-cover'
               />
             )}
